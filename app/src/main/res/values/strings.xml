@@ -7,4 +7,5 @@
     <string name="title_activity_instructions">InstructionsActivity</string>
     <string name="title_activity_information">InformationActivity</string>
     <string name="title_activity_navigation">NavigationActivity</string>
+    <string name="title_activity_score">ScoreActivity</string>
 </resources>
