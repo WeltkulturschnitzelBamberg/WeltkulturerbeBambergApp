@@ -7,4 +7,43 @@
     <string name="title_activity_instructions">InstructionsActivity</string>
     <string name="title_activity_information">InformationActivity</string>
     <string name="title_activity_navigation">NavigationActivity</string>
+    <string name="title_activity_score">ScoreActivity</string>
+
+    <!-- Welcome Page Activity -->
+    <string name="tv_welcome_title">Welcome!</string>
+    <string name="btn_welcome_continue">Continue</string>
+    <string name="btn_welcome_start">Start</string>
+    <string name="btn_welcome_score">Score</string>
+
+    <!-- Instructions Activity -->
+    <string name="tv_instruc_title">Instructions</string>
+    <string name="tv_instruc_instructions">Welcome to this Paper Chase,\n\nThis
+        application will guide you to all important World Cultural Heritage sights in Bamberg.
+        Once you arrive at the first waypoint you have to solve a riddle to unlock the next waypoint.
+        Please mind the traffic rules and the suggested bus routes.\n\nYou will receive
+        important information and tips about the sight at every waypoint.\n\nHave fun solving
+        the riddles and discovering Bamberg.\nYours sincerely project workshop "Schnitzeljagd World-Heritage"
+        2015/2016 of the Academic High School Clavius - Bamberg</string>
+    <string name="btn_instruc_short_route">Short route</string>
+    <string name="btn_instruc_long_route">Long route</string>
+
+    <!-- Quiz Activity -->
+    <string name="tv_quiz_title">No Waypoint found :(</string>
+    <string name="tv_quiz_question">If you can read this something went wrong :(</string>
+    <string name="btn_quiz_answer_one">Answer 1</string>
+    <string name="btn_quiz_answer_two">Answer 2</string>
+    <string name="btn_quiz_answer_three">Answer 3</string>
+    <string name="btn_quiz_answer_four">Answer 4</string>
+    <string name="btn_quiz_help">Help</string>
+
+    <!-- Information Activity -->
+    <string name="tv_info_information">No information available ...</string>
+    <string name="btn_info_selfie_spot">Show Selfie-Spot</string>
+    <string name="btn_info_continue">Continue</string>
+    <string name="btn_info_score">Show Score</string>
+
+    <!-- Score Activity -->
+    <string name="tv_score_title">Your score is</string>
+    <string name="tv_score_score">0</string>
+    <string name="btn_score_back_to_start">Return to Welcome Page</string>
 </resources>
