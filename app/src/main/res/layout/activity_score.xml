@@ -6,7 +6,32 @@
     android:paddingBottom="@dimen/activity_vertical_margin"
     tools:context="com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.ScoreActivity">
 
-    <TextView android:text="@string/hello_world" android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="@string/tv_score_score"
+        android:id="@+id/tv_score_score"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:background="#fffafafa"
+        android:singleLine="false" />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="@string/tv_score_title"
+        android:id="@+id/tv_score_title"
+        android:layout_above="@+id/tv_score_score"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="10dp" />
+
+    <Button
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/btn_score_back_to_start"
+        android:id="@+id/btn_score_back_to_start"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
 </RelativeLayout>
