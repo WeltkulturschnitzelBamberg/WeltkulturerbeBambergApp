@@ -24,6 +24,13 @@
     <string name="btn_instruc_long_route">Long route</string>
 
     <!-- Quiz Activity -->
+    <string name="tv_quiz_title">No Waypoint found :(</string>
+    <string name="tv_quiz_question">If you can read this something went wrong :(</string>
+    <string name="btn_quiz_answer_one">Answer 1</string>
+    <string name="btn_quiz_answer_two">Answer 2</string>
+    <string name="btn_quiz_answer_three">Answer 3</string>
+    <string name="btn_quiz_answer_four">Answer 4</string>
+    <string name="btn_quiz_help">Help</string>
 
     <!-- Information Activity -->
     <string name="tv_info_information">No information available ...</string>
