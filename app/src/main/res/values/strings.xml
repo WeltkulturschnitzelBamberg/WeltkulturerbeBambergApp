@@ -10,6 +10,10 @@
     <string name="title_activity_score">ScoreActivity</string>
 
     <!-- Welcome Page Activity -->
+    <string name="tv_welcome_title">Welcome!</string>
+    <string name="btn_welcome_continue">Continue</string>
+    <string name="btn_welcome_start">Start</string>
+    <string name="btn_welcome_score">Score</string>
 
     <!-- Instructions Activity -->
     <string name="tv_instruc_title">Instructions</string>
