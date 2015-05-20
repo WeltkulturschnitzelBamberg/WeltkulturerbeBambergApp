@@ -11,10 +11,6 @@
 
     <!-- Welcome Page Activity -->
 
-    <!-- Information Activity -->
-
-    <!-- Quiz Activity -->
-
     <!-- Instructions Activity -->
     <string name="tv_instruc_title">Instructions</string>
     <string name="tv_instruc_instructions">Welcome to this Paper Chase,\n\nThis
@@ -27,4 +23,11 @@
     <string name="btn_instruc_short_route">Short route</string>
     <string name="btn_instruc_long_route">Long route</string>
 
+    <!-- Quiz Activity -->
+
+    <!-- Information Activity -->
+    <string name="tv_info_information">No information available ...</string>
+    <string name="btn_info_selfie_spot">Show Selfie-Spot</string>
+    <string name="btn_info_continue">Continue</string>
+    <string name="btn_info_score">Show Score</string>
 </resources>

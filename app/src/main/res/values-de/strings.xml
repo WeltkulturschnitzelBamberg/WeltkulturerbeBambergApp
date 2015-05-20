@@ -11,18 +11,23 @@
 
     <!-- Welcome Page Activity -->
 
-    <!-- Information Activity -->
+    <!-- Instructions Activity -->
+    <string name="tv_instruc_title">Einführung</string>
+    <string name="tv_instruc_instructions">Herzlich willkommen zur Schnitzeljagd,\n\nIn dIeser App
+        werden Sie zu allen wichtigen Weltkulturerbe-Sehenswürdigkeiten in Bamberg geführt.
+        Wenn Sie am ersten Punkt angekommen sind, werden Sie dort ein Rätsel lösen müssen, um die
+        Navigation zum nächsten Punkt freizuschalten.\nAchten sie dabei bitte auf die
+        Verkehrsregeln und Hinweise auf Buslinien.\n\nAn allen Punkten erhalten sie wichtige
+        Informationen und Tips zur Sehenswürdigkeit.\n\nViel Spaß beim Rätseln und Entdecken,\nDas
+        P-Seminar „Schnitzeljagt World-Heritage“  2015/2016 des Clavius Gymnasiums Bamberg</string>
+    <string name="btn_instruc_short_route">Kurze Route</string>
+    <string name="btn_instruc_long_route">Lange Route</string>
 
     <!-- Quiz Activity -->
 
-    <!-- Instructions Activity -->
-    <string name="tv_instruc_title">Einführung</string>
-    <string name="tv_instruc_instructions">Herzlich willkommen zur Schnitzeljagd,\n
-    \nIn dIeser App werden Sie zu allen wichtigen Weltkulturerbe-Sehenswürdigkeiten in Bamberg geführt.
-    Wenn Sie am ersten Punkt angekommen sind, werden Sie dort ein Rätsel lösen müssen, um die Navigation zum
-    nächsten Punkt freizuschalten.\nAchten sie dabei bitte auf die Verkehrsregeln und Hinweise auf Buslinien.\n
-    \nAn allen Punkten erhalten sie wichtige Informationen und Tips zur Sehenswürdigkeit.\n
-    \nViel Spaß beim Rätseln und Entdecken,\nDas P-Seminar „Schnitzeljagt World-Heritage“  2015/2016 des Clavius Gymnasiums Bamberg</string>
-    <string name="btn_instruc_short_route">Kurze Route</string>
-    <string name="btn_instruc_long_route">Lange Route</string>
+    <!-- Information Activity -->
+    <string name="tv_info_information">Keine Informationen gefunden ...</string>
+    <string name="btn_info_selfie_spot">Selfie-Spot anzeigen</string>
+    <string name="btn_info_continue">Weiter</string>
+    <string name="btn_info_score">Zu deinem Score</string>
 </resources>
