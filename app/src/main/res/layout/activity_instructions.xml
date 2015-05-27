@@ -3,12 +3,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    tools:context="com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.InstructionActivity"
-    android:id="@+id/">
+    tools:context="com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.InstructionActivity">
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:layout_marginRight="@dimen/activity_horizontal_margin"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:layout_marginBottom="@dimen/activity_vertical_margin"
+        tools:context="match_parent" >
 
     <TextView
         android:layout_width="wrap_content"
@@ -47,4 +51,14 @@
         android:layout_alignParentEnd="true"
         android:text="@string/btn_instruc_long_route" />
 
+    </RelativeLayout>
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/instruc_toolbar"
+        android:layout_height="@dimen/abc_action_bar_default_height_material"
+        android:layout_width="match_parent"
+        android:minHeight="@dimen/abc_action_bar_default_height_material"
+        android:background="?attr/colorPrimary"
+
+        />
 </RelativeLayout>
