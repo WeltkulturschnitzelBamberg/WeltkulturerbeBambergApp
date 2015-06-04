@@ -8,6 +8,14 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+/**
+ * Diese Activity zeigt eine GoogleMaps Karte an, auf der die Route zum nächsten Wegpunkt angezeigt
+ * wird. Ausserdem werden die einzelnen Wegpunkte angezeigt
+ *
+ * @author Projekt-Seminar "Schnitzeljagd World-heritage" 2015/2016 des Clavius Gymnasiums Bamberg
+ * @version 1.0
+ * @since 2015-06-04
+ */
 public class NavigationActivity extends FragmentActivity {
 
     private GoogleMap mMap; // Might be null if Google Play services APK is not available.

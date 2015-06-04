@@ -11,7 +11,7 @@ import android.view.MenuItem;
  * Sie wird nach dem Beenden von verschiedener Quizee von der {@link QuizActivity} aufgerufen. Abhängig von dem
  * beendeten Quiz und dem Weltkulturerbe-Standpunkt werden verschiedene Informationen angezeigt
  *
- * @author Projekt-Seminar "Schnitzeljagd Wolrd-heritage" 2015/2016 des Clavius Gymnasiums Bamberg
+ * @author Projekt-Seminar "Schnitzeljagd World-heritage" 2015/2016 des Clavius Gymnasiums Bamberg
  * @version 1.0
  * @since 2015-06-04
  */
