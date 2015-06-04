@@ -7,7 +7,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 
-public class WelcomePageApp extends Activity {
+public class WelcomePageActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
