@@ -6,8 +6,14 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
-
-public class WelcomePageApp extends Activity {
+/**
+ * Diese Activity ist die StartActivity der Weltkulturerbe-Application
+ *
+ * @author Projekt-Seminar "Schnitzeljagd World-heritage" 2015/2016 des Clavius Gymnasiums Bamberg
+ * @version 1.0
+ * @since 2015-06-04
+ */
+public class WelcomePageActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
