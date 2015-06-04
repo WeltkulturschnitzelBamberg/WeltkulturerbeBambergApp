@@ -4,7 +4,7 @@ import android.database.sqlite.SQLiteDatabase;
 
 /**
  * Diese Klasse beschreibt den Table 'LangeRouteTable' für die Database
- * {@link WeltkulturerbeDatabaseOpenHelper}
+ * {@link WeltkulturerbeDatabaseHelper}
  *
  * @author Projekt-Seminar "Schnitzeljagd World-heritage" 2015/2016 des Clavius Gymnasiums Bamberg
  * @version 1.0
@@ -38,11 +38,11 @@ public final class LangeRouteTable {
             + COLUMN_LATITUDE + " REAL NOT NULL"
             + ");";
 
-    private static void onCreate(SQLiteDatabase database) {
+    public static void onCreate(SQLiteDatabase database) {
         database.execSQL(SQL_CREATE);
     }
 
-    private static void onUpgrade() {
+    public static void onUpgrade() {
         //TODO onUpgrade() schreiben
     }
 }
