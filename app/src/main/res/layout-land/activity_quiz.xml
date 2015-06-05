@@ -8,13 +8,14 @@
     tools:context="com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.QuizActivity">
 
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:id="@+id/tv_quiz_title"
         android:text="@string/tv_quiz_title"
-        android:layout_below="@+id/quiz_toolbar"
-        android:layout_centerHorizontal="true" />72dp"
+        android:layout_alignTop="@+id/tableLayout"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />72dp"
 
     <TextView
         android:layout_width="wrap_content"
@@ -22,18 +23,19 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="@string/tv_quiz_question"
         android:id="@+id/tv_quiz_question"
-        android:layout_below="@+id/tv_quiz_title"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignRight="@+id/quiz_toolbar"
+        android:layout_alignEnd="@+id/quiz_toolbar"
+        android:layout_toRightOf="@+id/tableLayout"
+        android:layout_toEndOf="@+id/tableLayout"
+        android:layout_alignBottom="@+id/tableLayout" />
 
     <TableLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:id="@+id/tableLayout"
         android:layout_above="@+id/btn_quiz_help"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="10dp"
-        android:layout_marginLeft="64dp" >
+        android:layout_toStartOf="@+id/tv_quiz_title"
+        android:layout_toLeftOf="@+id/tv_quiz_title">
 
         <TableRow
             android:layout_width="match_parent"
@@ -95,10 +97,10 @@
     <android.support.v7.widget.Toolbar
         android:id="@+id/quiz_toolbar"
         android:layout_height="@dimen/abc_action_bar_default_height_material"
-        android:layout_width="match_parent"
+        android:layout_width="fill_parent"
         android:minHeight="@dimen/abc_action_bar_default_height_material"
         android:background="?attr/colorPrimary"
 
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
 </RelativeLayout>

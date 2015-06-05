@@ -51,4 +51,10 @@
     <!-- Help Activity -->
     <string name="help_text">This is a helpful screen!</string>
     <string name="quizTitle">Keine Station gefunden :(</string>
+
+    <string name="action_score">Score</string>
+    <string name="action_start">start page</string>
+
+
+
 </resources>

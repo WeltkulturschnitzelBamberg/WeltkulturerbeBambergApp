@@ -47,6 +47,6 @@
     <string name="tv_score_score">0</string>
     <string name="btn_score_back_to_start">Zur Startseite</string>
 
-    <!-- Help Activity -->
-    <string name="help_text">Dies ist ein hilfreicher Bildschirm!</string>
+    <string name="action_score">Punktzahl</string>
+    <string name="action_start">Startseite</string>
 </resources>

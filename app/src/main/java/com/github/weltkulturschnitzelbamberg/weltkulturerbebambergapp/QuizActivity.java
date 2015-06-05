@@ -25,6 +25,12 @@ public class QuizActivity extends Activity implements AppCompatCallback {
     }
     private AppCompatDelegate delegate;
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_score, menu);
+        return true;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,5 +53,25 @@ public class QuizActivity extends Activity implements AppCompatCallback {
                 startActivity(new Intent(QuizActivity.this, InformationActivity.class));
             }
         });
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        switch (item.getItemId()) {
+            case R.id.action_score:
+                if (item.isChecked()) item.setChecked(false);
+                else item.setChecked(true);
+                startActivity(new Intent(QuizActivity.this, ScoreActivity.class));
+                return true;
+            case R.id.action_start:
+                if (item.isChecked()) item.setChecked(false);
+                else item.setChecked(true);
+                startActivity(new Intent(QuizActivity.this, WelcomePageApp.class));
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+
     }
 }
