@@ -9,8 +9,7 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 /**
- * Diese Activity zeigt eine GoogleMaps Karte an, auf der die Route zum nächsten Wegpunkt angezeigt
- * wird. Ausserdem werden die einzelnen Wegpunkte angezeigt
+ * This activity shows a GoogleMaps map on which a route between to waypoints is shown.
  *
  * @author Projekt-Seminar "Schnitzeljagd World-heritage" 2015/2016 des Clavius Gymnasiums Bamberg
  * @version 1.0

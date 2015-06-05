@@ -7,7 +7,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 /**
- * Diese Activity ist die StartActivity der Weltkulturerbe-Application
+ * This activity is the launch activity of the World-Heritage-Application
  *
  * @author Projekt-Seminar "Schnitzeljagd World-heritage" 2015/2016 des Clavius Gymnasiums Bamberg
  * @version 1.0

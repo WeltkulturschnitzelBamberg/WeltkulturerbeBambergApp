@@ -4,8 +4,7 @@ import android.app.Activity;
 import android.os.Bundle;
 
 /**
- * Diese Activity zeigt einen Gruﬂ und eine Erkl‰rung an, wie die Weltkulturerbe-Application verwendet
- * wird. Sie wird von der Activity {@link WelcomePageActivity} nach dem Start der App aufgerufen
+ * This activity shows a greeting and instructions how to use the World-heritage-Application.
  *
  * @author Projekt-Seminar "Schnitzeljagd World-heritage" 2015/2016 des Clavius Gymnasiums Bamberg
  * @version 1.0
