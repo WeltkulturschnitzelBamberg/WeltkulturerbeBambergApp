@@ -26,11 +26,11 @@ public class WeltkulturerbeContentProvider extends ContentProvider {
 
     private static final String AUTHORITY = "com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.contentprovider.WeltkulturerbeContentProvider";
 
-    private static final Uri URI_TABLE_LONG_ROUTE = Uri.parse("content://" + AUTHORITY + "/" + LongRouteTable.TABLE_LONG_ROUTE);
+    public static final Uri URI_TABLE_LONG_ROUTE = Uri.parse("content://" + AUTHORITY + "/" + LongRouteTable.TABLE_LONG_ROUTE);
     private static final int CODE_TABLE_LONG_ROUTE = 1;
     private static final int CODE_TABLE_LONG_ROUTE_ROW = 2;
 
-    private static final Uri URI_TABLE_SHORT_ROUTE = Uri.parse("content://" + AUTHORITY + "/" + ShortRouteTable.TABLE_SHORT_ROUTE);
+    public static final Uri URI_TABLE_SHORT_ROUTE = Uri.parse("content://" + AUTHORITY + "/" + ShortRouteTable.TABLE_SHORT_ROUTE);
     private static final int CODE_TABLE_SHORT_ROUTE = 3;
     private static final int CODE_TABLE_SHORT_ROUTE_ROW = 4;
 
@@ -55,19 +55,22 @@ public class WeltkulturerbeContentProvider extends ContentProvider {
     @Override
     public Cursor query(Uri uri, String[] projection, String selection, String[] selectionArgs, String sortOrder) {
         SQLiteQueryBuilder queryBuilder = new SQLiteQueryBuilder();
-        queryBuilder.setTables(LongRouteTable.TABLE_LONG_ROUTE);
         //TODO support more tables
 
         int uriType = sUriMatcher.match(uri);
         switch (uriType) {
             case CODE_TABLE_LONG_ROUTE:
+                queryBuilder.setTables(LongRouteTable.TABLE_LONG_ROUTE);
                 break;
             case CODE_TABLE_LONG_ROUTE_ROW:
+                queryBuilder.setTables(LongRouteTable.TABLE_LONG_ROUTE);
                 queryBuilder.appendWhere(LongRouteTable.COLUMN_WAYPOINT_ID + "=" + uri.getLastPathSegment());
                 break;
             case CODE_TABLE_SHORT_ROUTE:
+                queryBuilder.setTables(ShortRouteTable.TABLE_SHORT_ROUTE);
                 break;
             case CODE_TABLE_SHORT_ROUTE_ROW:
+                queryBuilder.setTables(ShortRouteTable.TABLE_SHORT_ROUTE);
                 queryBuilder.appendWhere(ShortRouteTable.COLUMN_WAYPOINT_ID + "=" + uri.getLastPathSegment());
                 break;
             default:
