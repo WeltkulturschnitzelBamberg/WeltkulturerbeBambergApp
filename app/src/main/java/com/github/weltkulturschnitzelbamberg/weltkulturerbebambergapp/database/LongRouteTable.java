@@ -3,34 +3,34 @@ package com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.database;
 import android.database.sqlite.SQLiteDatabase;
 
 /**
- * Diese Klasse beschreibt den Table 'LangeRouteTable' für die Database
+ * This class describes the table "long_route" in the Database
  * {@link WeltkulturerbeDatabaseHelper}
  *
- * @author Projekt-Seminar "Schnitzeljagd World-heritage" 2015/2016 des Clavius Gymnasiums Bamberg
+ * @author Project-Seminar "Schnitzeljagd World-heritage" 2015/2016 des Clavius Gymnasiums Bamberg
  * @version 1.0
  * @since 2015-06-04
  */
-public final class LangeRouteTable {
+public final class LongRouteTable {
 
-    /** Privater Konstruktor um eine Instantiierung zu verhindern. Falls diese Klasse
-     * instantiiert wird wirft sie eine {@link IllegalAccessException}
+    /** Private constructor to prevent instantiation. If this class is instantiated,
+     * it throws a {@link IllegalAccessException}
      * @throws IllegalAccessException
      */
-    private LangeRouteTable() throws IllegalAccessException {
-        throw new IllegalAccessException("'LangeRouteTable' should not be instantiated");
+    private LongRouteTable() throws IllegalAccessException {
+        throw new IllegalAccessException("'LongRouteTable' should not be instantiated");
     }
 
-    /** Name des Tables in der Datenbank **/
-    private static final String TABLE_LANGE_ROUTE = "lange_route";
+    /** Name of the table in the database **/
+    public static final String TABLE_LONG_ROUTE = "lange_route";
 
-    /** Namen der Zeilen im Table**/
+    /** Names of the columns inside the table **/
     private static final String COLUMN_WAYPOINT_ID = "_id";
     private static final String COLUMN_NAME = "name";
     private static final String COLUMN_LONGITUDE = "longitude";
     private static final String COLUMN_LATITUDE = "latitude";
 
-    /** SQL Erzeugungs-Befehl für den Table **/
-    private static final String SQL_CREATE = "CREATE TABLE " + TABLE_LANGE_ROUTE
+    /** SQL command to create the table **/
+    private static final String SQL_CREATE = "CREATE TABLE " + TABLE_LONG_ROUTE
             + "("
             + COLUMN_WAYPOINT_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
             + COLUMN_NAME + " TEXT NOT NULL,"

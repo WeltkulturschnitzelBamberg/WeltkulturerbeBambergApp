@@ -23,8 +23,8 @@ public class WeltkulturerbeDatabaseHelper extends SQLiteOpenHelper{
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        KurzeRouteTable.onCreate(db);
-        LangeRouteTable.onCreate(db);
+        ShortRouteTable.onCreate(db);
+        LongRouteTable.onCreate(db);
     }
 
     @Override
