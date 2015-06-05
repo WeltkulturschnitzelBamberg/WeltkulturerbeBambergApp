@@ -18,7 +18,7 @@ public final class DebugUtils {
 
     public static void toast(Context context, String message) {
         if (debug) {
-            Toast.makeText(context, message, Toast.LENGTH_SHORT);
+            Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
             log(message);
         }
     }
