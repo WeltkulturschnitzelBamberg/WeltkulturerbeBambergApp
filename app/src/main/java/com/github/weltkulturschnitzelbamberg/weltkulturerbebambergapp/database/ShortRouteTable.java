@@ -24,7 +24,7 @@ public final class ShortRouteTable {
     public static final String TABLE_SHORT_ROUTE = "kurze_route";
 
     /** Namens of the columns inside the table**/
-    private static final String COLUMN_WAYPOINT_ID = "_id";
+    public static final String COLUMN_WAYPOINT_ID = "_id";
     private static final String COLUMN_NAME = "name";
     private static final String COLUMN_LONGITUDE = "longitude";
     private static final String COLUMN_LATITUDE = "latitude";
