@@ -12,8 +12,15 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
+/**
+ * This activity is the launch activity of the World-Heritage-Application
+ *
+ * @author Projekt-Seminar "Schnitzeljagd World-heritage" 2015/2016 des Clavius Gymnasiums Bamberg
+ * @version 1.0
+ * @since 2015-06-04
+ */
 
-public class WelcomePageApp extends Activity implements AppCompatCallback {
+public class WelcomePageActivity extends Activity implements AppCompatCallback {
     @Override
     public void onSupportActionModeStarted(ActionMode mode) {
         //let's leave this empty, for now
@@ -45,21 +52,21 @@ public class WelcomePageApp extends Activity implements AppCompatCallback {
         Button btn_welcome_start = (Button) findViewById(R.id.btn_welcome_start);
              btn_welcome_start.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
-                startActivity(new Intent(WelcomePageApp.this, InstructionActivity.class));
+                startActivity(new Intent(WelcomePageActivity.this, InstructionActivity.class));
                                             }
                                                                             });
 
         Button btn_welcome_continue = (Button) findViewById(R.id.btn_welcome_continue);
             btn_welcome_continue.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
-                startActivity(new Intent(WelcomePageApp.this, QuizActivity.class));
+                startActivity(new Intent(WelcomePageActivity.this, QuizActivity.class));
                                             }
                                                                              });
 
         Button btn_welcome_score = (Button) findViewById(R.id.btn_welcome_score);
             btn_welcome_score.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
-                startActivity(new Intent(WelcomePageApp.this, ScoreActivity.class));
+                startActivity(new Intent(WelcomePageActivity.this, ScoreActivity.class));
                                             }
                                                                             });
     }

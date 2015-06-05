@@ -12,6 +12,13 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
+/**
+ * This activity shows a quiz to solve.
+ *
+ * @author Projekt-Seminar "Schnitzeljagd World-heritage" 2015/2016 des Clavius Gymnasiums Bamberg
+ * @version 1.0
+ * @since 2015-06-04
+ */
 
 public class QuizActivity extends Activity implements AppCompatCallback {
     @Override
@@ -67,7 +74,7 @@ public class QuizActivity extends Activity implements AppCompatCallback {
             case R.id.action_start:
                 if (item.isChecked()) item.setChecked(false);
                 else item.setChecked(true);
-                startActivity(new Intent(QuizActivity.this, WelcomePageApp.class));
+                startActivity(new Intent(QuizActivity.this, WelcomePageActivity.class));
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

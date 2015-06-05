@@ -15,6 +15,14 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+/**
+ * This activity shows a GoogleMaps map on which a route between to waypoints is shown.
+ *
+ * @author Projekt-Seminar "Schnitzeljagd World-heritage" 2015/2016 des Clavius Gymnasiums Bamberg
+ * @version 1.0
+ * @since 2015-06-04
+ */
+
 public class NavigationActivity extends FragmentActivity implements AppCompatCallback {
 
     @Override
@@ -111,7 +119,7 @@ public class NavigationActivity extends FragmentActivity implements AppCompatCal
             case R.id.action_start:
                 if (item.isChecked()) item.setChecked(false);
                 else item.setChecked(true);
-                startActivity(new Intent(NavigationActivity.this, WelcomePageApp.class));
+                startActivity(new Intent(NavigationActivity.this, WelcomePageActivity.class));
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

@@ -12,7 +12,13 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
-
+/**
+ * This activity shows a greeting and instructions how to use the World-heritage-Application.
+ *
+ * @author Projekt-Seminar "Schnitzeljagd World-heritage" 2015/2016 des Clavius Gymnasiums Bamberg
+ * @version 1.0
+ * @since 2015-06-04
+ */
 public class InstructionActivity extends Activity implements AppCompatCallback {
     @Override
     public void onSupportActionModeStarted(ActionMode mode) {

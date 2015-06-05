@@ -12,7 +12,13 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
-
+/**
+ * This activity shows the score of the user.
+ *
+ * @author Projekt-Seminar "Schnitzeljagd World-heritage" 2015/2016 des Clavius Gymnasiums Bamberg
+ * @version 1.0
+ * @since 2015-06-04
+ */
 public class ScoreActivity extends Activity implements AppCompatCallback {
     @Override
     public void onSupportActionModeStarted(ActionMode mode) {
@@ -44,9 +50,8 @@ public class ScoreActivity extends Activity implements AppCompatCallback {
         Button btn_score_back_to_start = (Button) findViewById(R.id.btn_score_back_to_start);
         btn_score_back_to_start.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                startActivity(new Intent(ScoreActivity.this, WelcomePageApp.class));
+                startActivity(new Intent(ScoreActivity.this, WelcomePageActivity.class));
             }
         });
     }
-
 }
