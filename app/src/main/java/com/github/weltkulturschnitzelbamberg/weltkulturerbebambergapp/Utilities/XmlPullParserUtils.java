@@ -1,4 +1,4 @@
-package com.github.orangeutan.androidxmlloader;
+package com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.Utilities;
 
 import android.util.Log;
 
