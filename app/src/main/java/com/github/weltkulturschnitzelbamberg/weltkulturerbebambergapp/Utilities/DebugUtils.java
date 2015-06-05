@@ -17,7 +17,10 @@ public final class DebugUtils {
     private static final String tag = "DEBUG";
 
     public static void toast(Context context, String message) {
-        if (debug) Toast.makeText(context, message, Toast.LENGTH_SHORT);
+        if (debug) {
+            Toast.makeText(context, message, Toast.LENGTH_SHORT);
+            log(message);
+        }
     }
 
     public static void log(String message) {
