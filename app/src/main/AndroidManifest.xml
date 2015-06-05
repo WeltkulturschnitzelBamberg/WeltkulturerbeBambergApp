@@ -55,6 +55,10 @@
             android:name=".NavigationActivity"
             android:label="@string/title_activity_navigation" >
         </activity>
+        <provider
+            android:authorities="com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.contentprovider.WeltkulturerbeContentProvider"
+            android:name=".contentprovider.WeltkulturerbeContentProvider">
+        </provider>
     </application>
 
 </manifest>

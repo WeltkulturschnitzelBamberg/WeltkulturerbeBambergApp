@@ -5,7 +5,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 /**
- * Diese Klasse händelt die SQL-Database 'Weltkulturebe'
+ * This class helps to manage the database "Weltkulturebe"
  *
  * @author Projekt-Seminar "Schnitzeljagd World-heritage" 2015/2016 des Clavius Gymnasiums Bamberg
  * @version 1.0
@@ -13,7 +13,7 @@ import android.database.sqlite.SQLiteOpenHelper;
  */
 public class WeltkulturerbeDatabaseHelper extends SQLiteOpenHelper{
 
-    /** Name und Version der Datenbank **/
+    /** Name and version of the database **/
     private static final String DATABASE_WELTKULTURERBE = "weltkulturerbe.db";
     private static final int DATABASE_VERSION = 1;
 
@@ -23,8 +23,8 @@ public class WeltkulturerbeDatabaseHelper extends SQLiteOpenHelper{
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        KurzeRouteTable.onCreate(db);
-        LangeRouteTable.onCreate(db);
+        ShortRouteTable.onCreate(db);
+        LongRouteTable.onCreate(db);
     }
 
     @Override
