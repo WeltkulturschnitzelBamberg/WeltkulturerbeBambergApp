@@ -57,7 +57,7 @@ public class InformationActivity extends Activity implements AppCompatCallback {
         Button btn_info_continue = (Button) findViewById(R.id.btn_info_continue);
          btn_info_continue.setOnClickListener(new View.OnClickListener() {
              public void onClick(View v) {
-                 startActivity(new Intent(InformationActivity.this, QuizActivity.class));
+                 startActivity(new Intent(InformationActivity.this, ActivityFrage2.class));
              }
          });
 

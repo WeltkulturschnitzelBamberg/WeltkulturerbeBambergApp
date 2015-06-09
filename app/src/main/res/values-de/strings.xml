@@ -8,6 +8,11 @@
     <string name="title_activity_information">InformationActivity</string>
     <string name="title_activity_navigation">NavigationActivity</string>
     <string name="title_activity_score">ScoreActivity</string>
+    <string name="title_activity_activity_erklaerung">ActivityErklaerung</string>
+    <string name="title_activity_activity_frage1">ActivityFrage1</string>
+    <string name="title_activity_activity_frage2">ActivityFrage2</string>
+    <string name="title_activity_activity_tipp">ActivityTipp</string>
+
 
     <!-- Welcome Page Activity -->
     <string name="tv_welcome_title">Wilkommen!</string>

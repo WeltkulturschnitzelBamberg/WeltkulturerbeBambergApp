@@ -52,14 +52,14 @@ public class WelcomePageActivity extends Activity implements AppCompatCallback {
         Button btn_welcome_start = (Button) findViewById(R.id.btn_welcome_start);
              btn_welcome_start.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
-                startActivity(new Intent(WelcomePageActivity.this, InstructionActivity.class));
+                startActivity(new Intent(WelcomePageActivity.this, ActivityErklaerung.class));
                                             }
                                                                             });
 
         Button btn_welcome_continue = (Button) findViewById(R.id.btn_welcome_continue);
             btn_welcome_continue.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
-                startActivity(new Intent(WelcomePageActivity.this, QuizActivity.class));
+                startActivity(new Intent(WelcomePageActivity.this, ActivityFrage1.class));
                                             }
                                                                              });
 
