@@ -52,6 +52,12 @@
     <string name="tv_score_score">0</string>
     <string name="btn_score_back_to_start">Zur Startseite</string>
 
+    <!-- Für menu_score -->
     <string name="action_score">Punktzahl</string>
     <string name="action_start">Startseite</string>
+
+    <!-- Für menu_navigation -->
+    <string name="waypoint_1">Wegpunkt 1</string>
+    <string name="waypoint_2">Wegpunkt 2</string>
+    <string name="waypoint_3">Wegpunkt 3</string>
 </resources>

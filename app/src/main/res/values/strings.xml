@@ -53,13 +53,14 @@
     <string name="btn_score_back_to_start">Return to Welcome Page</string>
     <string name="title_activity_help">HelpActivity</string>
 
-    <!-- Help Activity -->
-    <string name="help_text">This is a helpful screen!</string>
-    <string name="quizTitle">Keine Station gefunden :(</string>
-
+    <!-- For menu_score -->
     <string name="action_score">Score</string>
     <string name="action_start">start page</string>
 
+    <!-- For menu_navigation -->
+    <string name="waypoint_1">Waypoint 1</string>
+    <string name="waypoint_2">Waypoint 2</string>
+    <string name="waypoint_3">Waypoint 3</string>
 
 
 </resources>
