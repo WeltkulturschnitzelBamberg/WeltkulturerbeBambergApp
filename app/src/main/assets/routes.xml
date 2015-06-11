@@ -1,0 +1,27 @@
+<?xml version="1.0" ?>
+<routes>
+    <route>
+        <name>Long Route</name>
+        <waypoint-id>0</waypoint-id>
+        <waypoint-id>1</waypoint-id>
+        <waypoint-id>2</waypoint-id>
+        <waypoint-id>3</waypoint-id>
+        <waypoint-id>4</waypoint-id>
+        <waypoint-id>5</waypoint-id>
+        <waypoint-id>6</waypoint-id>
+        <waypoint-id>7</waypoint-id>
+        <waypoint-id>8</waypoint-id>
+        <waypoint-id>9</waypoint-id>
+    </route>
+    <route>
+        <name>Short Route</name>
+        <waypoint-id>1</waypoint-id>
+        <waypoint-id>2</waypoint-id>
+        <waypoint-id>3</waypoint-id>
+        <waypoint-id>4</waypoint-id>
+        <waypoint-id>5</waypoint-id>
+        <waypoint-id>6</waypoint-id>
+        <waypoint-id>7</waypoint-id>
+        <waypoint-id>8</waypoint-id>
+    </route>
+</routes>

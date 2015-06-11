@@ -17,25 +17,21 @@ public final class ShortRouteTable {
      * @throws IllegalAccessException
      */
     private ShortRouteTable() throws IllegalAccessException {
-        throw new IllegalAccessException("'ShortRouteTable' should not be instantiated");
+        throw new IllegalAccessException("'" + ShortRouteTable.class.getName() + "' should not be instantiated");
     }
 
     /** Name of the table in the database **/
     public static final String TABLE_SHORT_ROUTE = "kurze_route";
 
     /** Namens of the columns inside the table**/
-    public static final String COLUMN_WAYPOINT_ID = "_id";
-    public static final String COLUMN_NAME = "name";
-    public static final String COLUMN_LONGITUDE = "longitude";
-    public static final String COLUMN_LATITUDE = "latitude";
+    public static final String COLUMN_ID = "_id";
+    public static final String COLUMN_WAYPOINT_ID = "waypoint_id";
 
     /** SQL command to create the table **/
     private static final String SQL_CREATE = "CREATE TABLE " + TABLE_SHORT_ROUTE
             + "("
-            + COLUMN_WAYPOINT_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
-            + COLUMN_NAME + " TEXT NOT NULL,"
-            + COLUMN_LONGITUDE + " FLOAT NOT NULL,"
-            + COLUMN_LATITUDE + " FLOAT NOT NULL"
+            + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
+            + COLUMN_WAYPOINT_ID + " INTEGER NOT NULL"
             + ");";
 
     public static void onCreate(SQLiteDatabase database) {

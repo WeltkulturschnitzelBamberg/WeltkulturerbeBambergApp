@@ -4,6 +4,8 @@ import android.content.Context;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.BuildConfig;
+
 /**
  * This class eases debugging
  *
@@ -13,17 +15,20 @@ import android.widget.Toast;
  */
 public final class DebugUtils {
 
-    public static final boolean debug = true;
     private static final String tag = "DEBUG";
 
     public static void toast(Context context, String message) {
-        if (debug) {
+        if (isDebugMode()) {
             Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
-            log(message);
+            log(">>" + message + "<<");
         }
     }
 
     public static void log(String message) {
-        if (debug) Log.d(tag, message);
+        if (isDebugMode()) Log.d(tag, message);
+    }
+
+    public static boolean isDebugMode() {
+        return BuildConfig.DEBUG;
     }
 }
