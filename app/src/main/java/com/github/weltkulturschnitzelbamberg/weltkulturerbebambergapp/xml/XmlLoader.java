@@ -12,7 +12,11 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
- * Created by michael on 10.06.15.
+ * This class loads Xml files using the {@link XmlPullParser}
+ *
+ * @author Projekt-Seminar "Schnitzeljagd World-heritage" 2015/2016 des Clavius Gymnasiums Bamberg
+ * @version 1.0
+ * @since 2015-06-04
  */
 //TODO add documentation
 public class XmlLoader {
@@ -65,6 +69,29 @@ public class XmlLoader {
 
     public List<String[]> getResults() {
         return foundTags;
+    }
+
+    public List<List<String[]>> getResultsByParentTag() {
+        /** If no tags were found the null gets returned **/
+        if (foundTags.isEmpty()) return null;
+
+        List<List<String[]>> parentTags = new ArrayList<>();
+        List<String[]> parentTag = new ArrayList<>();
+
+        /** ParentID of the current tag. Default value is the ParentID of the first found tag **/
+        int parentID = Integer.parseInt(foundTags.get(0)[INDEX_PARENT_ID]);
+        for (String[] foundTag : foundTags) {
+            if (Integer.parseInt(foundTag[INDEX_PARENT_ID]) == parentID) {
+                parentTag.add(foundTag);
+            } else {
+                parentID = Integer.parseInt(foundTag[INDEX_PARENT_ID]);
+                parentTags.add(parentTag);
+                parentTag = new ArrayList<>();
+                parentTag.add(foundTag);
+            }
+        }
+        parentTags.add(parentTag);
+        return parentTags;
     }
 
     private String getText(XmlPullParser parser) throws XmlPullParserException, IOException{
