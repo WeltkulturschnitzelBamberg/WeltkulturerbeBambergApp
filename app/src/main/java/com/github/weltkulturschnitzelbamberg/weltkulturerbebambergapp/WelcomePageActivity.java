@@ -23,7 +23,7 @@ import android.widget.Button;
  * @version 1.0
  * @since 2015-06-04
  */
-public class WelcomePageActivity extends Activity implements LoaderManager.LoaderCallbacks,AppCompatCallback{
+public class WelcomePageActivity extends Activity implements LoaderManager.LoaderCallbacks, AppCompatCallback{
 
     private static final int ROUTE_LOADER_ID = 0;
     private static final int QUIZZES_LOADER_ID = 1;
