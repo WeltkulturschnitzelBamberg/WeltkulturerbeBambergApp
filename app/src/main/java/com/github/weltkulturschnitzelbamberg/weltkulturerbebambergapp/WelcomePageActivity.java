@@ -4,10 +4,17 @@ import android.app.Activity;
 import android.app.LoaderManager;
 import android.content.Loader;
 import android.os.Bundle;
-
 import com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.Utilities.DebugUtils;
 import com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.loader.QuizzesLoader;
 import com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.loader.RouteLoader;
+import android.content.Intent;
+import android.support.v7.app.AppCompatCallback;
+import android.support.v7.app.AppCompatDelegate;
+import android.support.v7.view.ActionMode;
+import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 
 /**
  * This activity is the launch activity of the World-Heritage-Application
@@ -16,10 +23,21 @@ import com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.loader.Rou
  * @version 1.0
  * @since 2015-06-04
  */
-public class WelcomePageActivity extends Activity implements LoaderManager.LoaderCallbacks{
+public class WelcomePageActivity extends Activity implements LoaderManager.LoaderCallbacks,AppCompatCallback{
 
     private static final int ROUTE_LOADER_ID = 0;
     private static final int QUIZZES_LOADER_ID = 1;
+
+    @Override
+    public void onSupportActionModeStarted(ActionMode mode) {
+        //let's leave this empty, for now
+    }
+
+    @Override
+    public void onSupportActionModeFinished(ActionMode mode) {
+        // let's leave this empty, for now
+    }
+    private AppCompatDelegate delegate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +50,40 @@ public class WelcomePageActivity extends Activity implements LoaderManager.Loade
             getLoaderManager().initLoader(QUIZZES_LOADER_ID, null, this);
             getSharedPreferences("PREFERENCES", MODE_PRIVATE).edit().putBoolean("IS_FIRST_LAUNCH", false).commit();
         }
+
+
+        //let's create the delegate, passing the activity at both arguments (Activity, AppCompatCallback)
+        delegate = AppCompatDelegate.create(this, this);
+        //we need to call the onCreate() of the AppCompatDelegate
+        delegate.onCreate(savedInstanceState);
+
+        //we use the delegate to inflate the layout
+        delegate.setContentView(R.layout.activity_welcome_page_app);
+
+        //Finally, let's add the Toolbar
+        Toolbar toolbar = (Toolbar) findViewById(R.id.welcome_toolbar);
+        delegate.setSupportActionBar(toolbar);
+
+        Button btn_welcome_start = (Button) findViewById(R.id.btn_welcome_start);
+        btn_welcome_start.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                startActivity(new Intent(WelcomePageActivity.this, ActivityErklaerung.class));
+            }
+        });
+
+        Button btn_welcome_continue = (Button) findViewById(R.id.btn_welcome_continue);
+        btn_welcome_continue.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                startActivity(new Intent(WelcomePageActivity.this, ActivityFrage1.class));
+            }
+        });
+
+        Button btn_welcome_score = (Button) findViewById(R.id.btn_welcome_score);
+        btn_welcome_score.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                startActivity(new Intent(WelcomePageActivity.this, ScoreActivity.class));
+            }
+        });
     }
 
     @Override
@@ -65,5 +117,20 @@ public class WelcomePageActivity extends Activity implements LoaderManager.Loade
                 getLoaderManager().destroyLoader(QUIZZES_LOADER_ID);
                 break;
         }
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.action_score) {
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 }

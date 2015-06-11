@@ -28,10 +28,6 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".QuizActivity"
-            android:label="@string/title_activity_quiz" >
-        </activity>
-        <activity
             android:name=".InstructionActivity"
             android:label="@string/title_activity_instructions" >
         </activity>
@@ -43,6 +39,27 @@
             android:name=".ScoreActivity"
             android:label="@string/title_activity_score" >
         </activity>
+
+        <activity
+            android:name=".ActivityFrage1"
+            android:label="@string/title_activity_activity_frage1" >
+        </activity>
+
+        <activity
+            android:name=".ActivityFrage2"
+            android:label="@string/title_activity_activity_frage2" >
+        </activity>
+
+        <activity
+            android:name=".ActivityTipp"
+            android:label="@string/title_activity_activity_tipp" >
+        </activity>
+
+        <activity
+            android:name=".ActivityErklaerung"
+            android:label="@string/title_activity_activity_erklaerung" >
+        </activity>
+
 
         <meta-data
             android:name="com.google.android.gms.version"
