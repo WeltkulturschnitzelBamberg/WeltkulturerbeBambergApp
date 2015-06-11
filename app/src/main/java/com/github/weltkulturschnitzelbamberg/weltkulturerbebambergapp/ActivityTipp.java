@@ -1,7 +1,7 @@
 package com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp;
 
 import android.app.Activity;
-import android.content.Intent;
+import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatCallback;
 import android.support.v7.app.AppCompatDelegate;
@@ -9,17 +9,13 @@ import android.support.v7.view.ActionMode;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
+import android.widget.TextView;
 import android.widget.Button;
+import android.view.View;
+import android.content.Intent;
 
-/**
- * This activity shows the score of the user.
- *
- * @author Projekt-Seminar "Schnitzeljagd World-heritage" 2015/2016 des Clavius Gymnasiums Bamberg
- * @version 1.0
- * @since 2015-06-04
- */
-public class ScoreActivity extends Activity implements AppCompatCallback {
+public class ActivityTipp extends Activity implements AppCompatCallback {
+
     @Override
     public void onSupportActionModeStarted(ActionMode mode) {
         //let's leave this empty, for now
@@ -31,27 +27,30 @@ public class ScoreActivity extends Activity implements AppCompatCallback {
     }
     private AppCompatDelegate delegate;
 
+    private TextView textViewTipp;
+    private Button buttonZurück;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //let's create the delegate, passing the activity at both arguments (Activity, AppCompatCallback)
+//let's create the delegate, passing the activity at both arguments (Activity, AppCompatCallback)
         delegate = AppCompatDelegate.create(this, this);
         //we need to call the onCreate() of the AppCompatDelegate
         delegate.onCreate(savedInstanceState);
 
         //we use the delegate to inflate the layout
-        delegate.setContentView(R.layout.activity_score);
+        delegate.setContentView(R.layout.activity_activity_tipp);
 
         //Finally, let's add the Toolbar
-        Toolbar toolbar = (Toolbar) findViewById(R.id.score_toolbar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.tipp_toolbar);
         delegate.setSupportActionBar(toolbar);
+        textViewTipp = (TextView) findViewById(R.id.textViewTipp);
+        buttonZurück = (Button) findViewById(R.id.buttonZurück);
+    }
 
-        Button btn_score_back_to_start = (Button) findViewById(R.id.btn_score_back_to_start);
-        btn_score_back_to_start.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                startActivity(new Intent(ScoreActivity.this, WelcomePageActivity.class));
-            }
-        });
+    public void ZurückButtonGeklickt(View view)
+    {
+        Intent Frage = new Intent(this, ActivityFrage1.class);
+        startActivity(Frage);
     }
 }

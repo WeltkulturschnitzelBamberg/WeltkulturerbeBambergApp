@@ -1,8 +1,8 @@
 package com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.AppCompatCallback;
 import android.support.v7.app.AppCompatDelegate;
 import android.support.v7.view.ActionMode;
@@ -11,15 +11,11 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
+import android.content.Intent;
 
-/**
- * This activity shows the score of the user.
- *
- * @author Projekt-Seminar "Schnitzeljagd World-heritage" 2015/2016 des Clavius Gymnasiums Bamberg
- * @version 1.0
- * @since 2015-06-04
- */
-public class ScoreActivity extends Activity implements AppCompatCallback {
+public class ActivityErklaerung extends Activity implements AppCompatCallback {
+
     @Override
     public void onSupportActionModeStarted(ActionMode mode) {
         //let's leave this empty, for now
@@ -31,6 +27,10 @@ public class ScoreActivity extends Activity implements AppCompatCallback {
     }
     private AppCompatDelegate delegate;
 
+    //meine Oberflächenelemente
+    private TextView textViewErklärung;
+    private Button buttonKurzeRoute;
+    private Button buttonLangeRoute;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,17 +41,29 @@ public class ScoreActivity extends Activity implements AppCompatCallback {
         delegate.onCreate(savedInstanceState);
 
         //we use the delegate to inflate the layout
-        delegate.setContentView(R.layout.activity_score);
+        delegate.setContentView(R.layout.activity_activity_erklaerung);
 
         //Finally, let's add the Toolbar
-        Toolbar toolbar = (Toolbar) findViewById(R.id.score_toolbar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.erklaerung_toolbar);
         delegate.setSupportActionBar(toolbar);
 
-        Button btn_score_back_to_start = (Button) findViewById(R.id.btn_score_back_to_start);
-        btn_score_back_to_start.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                startActivity(new Intent(ScoreActivity.this, WelcomePageActivity.class));
-            }
-        });
+        buttonKurzeRoute = (Button) findViewById(R.id.buttonKurzeRoute);
+        buttonLangeRoute = (Button) findViewById(R.id.buttonLangeRoute);
+        textViewErklärung = (TextView) findViewById(R.id.textViewErklärung);
+    }
+
+    //Route gewählt
+    public void RouteGewählt(View view)
+    {
+        if(view.getId() == R.id.buttonLangeRoute)
+        {
+            Intent Frage1 = new Intent(this, ActivityFrage1.class);
+            startActivity(Frage1);
+        }
+        else
+        {
+            Intent Frage2 = new Intent(this, ActivityFrage2.class);
+            startActivity(Frage2);
+        }
     }
 }

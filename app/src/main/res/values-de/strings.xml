@@ -8,6 +8,11 @@
     <string name="title_activity_information">InformationActivity</string>
     <string name="title_activity_navigation">NavigationActivity</string>
     <string name="title_activity_score">ScoreActivity</string>
+    <string name="title_activity_activity_erklaerung">ActivityErklaerung</string>
+    <string name="title_activity_activity_frage1">ActivityFrage1</string>
+    <string name="title_activity_activity_frage2">ActivityFrage2</string>
+    <string name="title_activity_activity_tipp">ActivityTipp</string>
+
 
     <!-- Welcome Page Activity -->
     <string name="tv_welcome_title">Wilkommen!</string>
@@ -46,4 +51,13 @@
     <string name="tv_score_title">Deine Punktzahl beträgt</string>
     <string name="tv_score_score">0</string>
     <string name="btn_score_back_to_start">Zur Startseite</string>
+
+    <!-- Für menu_score -->
+    <string name="action_score">Punktzahl</string>
+    <string name="action_start">Startseite</string>
+
+    <!-- Für menu_navigation -->
+    <string name="waypoint_1">Wegpunkt 1</string>
+    <string name="waypoint_2">Wegpunkt 2</string>
+    <string name="waypoint_3">Wegpunkt 3</string>
 </resources>
