@@ -19,7 +19,7 @@ import android.widget.Button;
  * @version 1.0
  * @since 2015-06-04
  */
-public class InstructionActivity extends Activity implements AppCompatCallback {
+public class InstructionsActivity extends Activity implements AppCompatCallback {
     @Override
     public void onSupportActionModeStarted(ActionMode mode) {
         //let's leave this empty, for now

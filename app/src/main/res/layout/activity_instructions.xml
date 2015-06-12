@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     app:contentInsetEnd="0dp"
     app:contentInsetStart="0dp"
-    tools:context="com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.InstructionActivity">
+    tools:context="com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.InstructionsActivity">
 
     <TextView
         android:layout_width="wrap_content"
@@ -32,7 +32,8 @@
         android:text="@string/btn_instruc_short_route"
         android:layout_alignParentBottom="true"
         android:layout_toLeftOf="@+id/tv_instruc_title"
-        android:layout_toStartOf="@+id/tv_instruc_title" />
+        android:layout_toStartOf="@+id/tv_instruc_title"
+        android:onClick="onBtnClickShortRoute" />
 
     <Button
         android:layout_width="wrap_content"
@@ -41,7 +42,8 @@
         android:text="@string/btn_instruc_long_route"
         android:layout_alignParentBottom="true"
         android:layout_toRightOf="@+id/tv_instruc_title"
-        android:layout_toEndOf="@+id/tv_instruc_title" />
+        android:layout_toEndOf="@+id/tv_instruc_title"
+        android:onClick="onBtnClickLongRoute" />
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/instruc_toolbar"
