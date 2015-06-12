@@ -46,21 +46,17 @@ public class InstructionActivity extends Activity implements AppCompatCallback {
         //Finally, let's add the Toolbar
         Toolbar toolbar = (Toolbar) findViewById(R.id.instruc_toolbar);
         delegate.setSupportActionBar(toolbar);
-
-        Button btn_instruc_short_route = (Button) findViewById(R.id.btn_instruc_short_route);
-            btn_instruc_short_route.setOnClickListener(new View.OnClickListener() {
-                public void onClick(View v) {
-                    startActivity(new Intent(InstructionActivity.this, NavigationActivity.class));
-                                            }
-            });
-
-        Button btn_instruc_long_route = (Button) findViewById(R.id.btn_instruc_long_route);
-            btn_instruc_long_route.setOnClickListener(new View.OnClickListener() {
-                public void onClick(View v) {
-                startActivity(new Intent(InstructionActivity.this, NavigationActivity.class));
-                                            }
-            });
     }
 
+    public void onBtnClickShortRoute(View view) {
+        Intent startShortRoute = new Intent(this, NavigationActivity.class);
+        startShortRoute.putExtra(NavigationActivity.ROUTE_CODE, NavigationActivity.CODE_ROUTE_SHORT);
+        startActivity(startShortRoute);
+    }
 
+    public void onBtnClickLongRoute(View view) {
+        Intent startLongRoute = new Intent(this, NavigationActivity.class);
+        startLongRoute.putExtra(NavigationActivity.ROUTE_CODE, NavigationActivity.CODE_ROUTE_LONG);
+        startActivity(startLongRoute);
+    }
 }
