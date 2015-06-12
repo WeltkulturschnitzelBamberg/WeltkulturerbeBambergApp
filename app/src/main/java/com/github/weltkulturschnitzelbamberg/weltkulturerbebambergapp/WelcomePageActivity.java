@@ -63,27 +63,6 @@ public class WelcomePageActivity extends Activity implements LoaderManager.Loade
         //Finally, let's add the Toolbar
         Toolbar toolbar = (Toolbar) findViewById(R.id.welcome_toolbar);
         delegate.setSupportActionBar(toolbar);
-
-        Button btn_welcome_start = (Button) findViewById(R.id.btn_welcome_start);
-        btn_welcome_start.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                startActivity(new Intent(WelcomePageActivity.this, ActivityErklaerung.class));
-            }
-        });
-
-        Button btn_welcome_continue = (Button) findViewById(R.id.btn_welcome_continue);
-        btn_welcome_continue.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                startActivity(new Intent(WelcomePageActivity.this, ActivityFrage1.class));
-            }
-        });
-
-        Button btn_welcome_score = (Button) findViewById(R.id.btn_welcome_score);
-        btn_welcome_score.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                startActivity(new Intent(WelcomePageActivity.this, ScoreActivity.class));
-            }
-        });
     }
 
     @Override
@@ -132,5 +111,19 @@ public class WelcomePageActivity extends Activity implements LoaderManager.Loade
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void onBtnClickScore(View view) {
+        Intent startScoreActivity = new Intent(this, ScoreActivity.class);
+        startActivity(startScoreActivity);
+    }
+
+    public void onBtnClickStart(View view) {
+        Intent startInstructionActivity = new Intent(this, InstructionsActivity.class);
+        startActivity(startInstructionActivity);
+    }
+
+    public void onBtnClickContinue(View view) {
+        //TODO start navigation activity from last waypoint
     }
 }
