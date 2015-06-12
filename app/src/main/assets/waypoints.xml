@@ -3,61 +3,61 @@
     <waypoint>
         <id>0</id>
         <name>Gärtner- und Häckermuseum</name>
-        <longitude>49.899380</longitude>
-        <latitude>10.892761</latitude>
+        <latitude>49.899380</latitude>
+        <longitude>10.892761</longitude>
     </waypoint>
     <waypoint>
         <id>1</id>
         <name>Linker Regnitzarm</name>
-        <longitude>49.894137</longitude>
-        <latitude>10.882387</latitude>
+        <latitude>49.894137</latitude>
+        <longitude>10.882387</longitude>
     </waypoint>
     <waypoint>
         <id>2</id>
         <name>Otto-Friedrich-Universität Bamberg</name>
-        <longitude>49.893815</longitude>
-        <latitude>10.885937</latitude>
+        <latitude>49.893815</latitude>
+        <longitude>10.885937</longitude>
     </waypoint>
     <waypoint>
         <id>3</id>
         <name>St. Martin</name>
-        <longitude>49.893274</longitude>
-        <latitude>10.888598</latitude>
+        <latitude>49.893274</latitude>
+        <longitude>10.888598</longitude>
     </waypoint>
     <waypoint>
         <id>4</id>
         <name>Obere Brücke</name>
-        <longitude>49.891626</longitude>
-        <latitude>10.887468</latitude>
+        <latitude>49.891626</latitude>
+        <longitude>10.887468</longitude>
     </waypoint>
     <waypoint>
         <id>5</id>
         <name>St. Elisabeth</name>
-        <longitude>49.892849</longitude>
-        <latitude>10.882882</latitude>
+        <latitude>49.892849</latitude>
+        <longitude>10.882882</longitude>
     </waypoint>
     <waypoint>
         <id>6</id>
         <name>Bamberger Dom</name>
-        <longitude>49.891154</longitude>
-        <latitude>10.882907</latitude>
+        <latitude>49.891154</latitude>
+        <longitude>10.882907</longitude>
     </waypoint>
     <waypoint>
         <id>7</id>
         <name>Neue Residenz</name>
-        <longitude>49.891561</longitude>
-        <latitude>10.882456</latitude>
+        <latitude>49.891561</latitude>
+        <longitude>10.882456</longitude>
     </waypoint>
     <waypoint>
         <id>8</id>
         <name>Alte Hofhaltung</name>
-        <longitude>49.891077</longitude>
-        <latitude>10.881412</latitude>
+        <latitude>49.891077</latitude>
+        <longitude>10.881412</longitude>
     </waypoint>
     <waypoint>
         <id>9</id>
         <name>St. Getreu</name>
-        <longitude>49.892689</longitude>
-        <latitude>10.872340</latitude>
+        <latitude>49.892689</latitude>
+        <longitude>10.872340</longitude>
     </waypoint>
 </waypoints>
