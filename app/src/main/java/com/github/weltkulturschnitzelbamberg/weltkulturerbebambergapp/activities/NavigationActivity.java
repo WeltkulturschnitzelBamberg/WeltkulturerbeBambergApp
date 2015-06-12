@@ -1,7 +1,9 @@
-package com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp;
+package com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.activities;
 
+import android.app.PendingIntent;
 import android.content.Intent;
 import android.database.Cursor;
+import android.location.LocationManager;
 import android.net.Uri;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
@@ -12,10 +14,13 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.contentprovider.WeltkulturerbeContentProvider;
-import com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.database.LongRouteTable;
-import com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.database.ShortRouteTable;
-import com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.database.WaypointsTable;
+import com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.R;
+import com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.contentproviders.WeltkulturerbeContentProvider;
+import com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.databases.LongRouteTable;
+import com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.databases.ShortRouteTable;
+import com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.databases.WaypointsTable;
+import com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.utilities.DebugUtils;
+import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
@@ -31,9 +36,13 @@ import com.google.android.gms.maps.model.MarkerOptions;
 
 public class NavigationActivity extends FragmentActivity implements AppCompatCallback {
 
-    private AppCompatDelegate delegate;
+    private AppCompatDelegate mDelegate;
 
     private GoogleMap mMap; // Might be null if Google Play services APK is not available.
+
+    private static final LatLng BAMBERG = new LatLng(49.898814, 10.890764);
+
+    private static final int CAMERA_ANIMATION_DURATION = 8000;
 
     public static final String ROUTE_CODE = "route_code";
     public static final int CODE_ROUTE_ERROR = -1;
@@ -43,17 +52,19 @@ public class NavigationActivity extends FragmentActivity implements AppCompatCal
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        //TODO cohesion
         //let's create the delegate, passing the activity at both arguments (Activity, AppCompatCallback)
-        delegate = AppCompatDelegate.create(this, this);
+        mDelegate = AppCompatDelegate.create(this, this);
         //we need to call the onCreate() of the AppCompatDelegate
-        delegate.onCreate(savedInstanceState);
+        mDelegate.onCreate(savedInstanceState);
 
         //we use the delegate to inflate the layout
-        delegate.setContentView(R.layout.activity_navigation);
+        mDelegate.setContentView(R.layout.activity_navigation);
 
         //Finally, let's add the Toolbar
         Toolbar toolbar = (Toolbar) findViewById(R.id.navigation_toolbar);
-        delegate.setSupportActionBar(toolbar);
+        mDelegate.setSupportActionBar(toolbar);
 
         setUpMapIfNeeded();
     }
@@ -92,17 +103,20 @@ public class NavigationActivity extends FragmentActivity implements AppCompatCal
         }
     }
 
+    //TODO Dont animate camera on onResume()
     /**
-     * This is where we can add markers or lines, add listeners or move the camera. In this case, we
-     * just add a marker near Africa.
-     * <p/>
-     * This should only be called once and when we are sure that {@link #mMap} is not null.
+     * This function sets up the GoogleMaps v2 Map
      */
     private void setUpMap() {
+        /** Animate Camera to Bamberg in a certain time **/
+        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(BAMBERG, 13), CAMERA_ANIMATION_DURATION, null);
+        mMap.setMyLocationEnabled(true);
         loadRoute(getIntent().getIntExtra(ROUTE_CODE, CODE_ROUTE_ERROR));
     }
 
+    //TODO Documentation
     private void loadRoute(int routeCode) {
+        LocationManager locManager = (LocationManager) getSystemService(LOCATION_SERVICE);
         String[] projection;
         Uri tableUri;
         switch (routeCode) {
@@ -126,11 +140,19 @@ public class NavigationActivity extends FragmentActivity implements AppCompatCal
             Cursor waypoint = getContentResolver().query(WeltkulturerbeContentProvider.URI_TABLE_WAYPOINTS,
                     projection, selection, selectionArgs, null);
             while (waypoint.moveToNext()) {
+                Float latitude = waypoint.getFloat(waypoint.getColumnIndex(WaypointsTable.COLUMN_LATITUDE));
+                Float longitude = waypoint.getFloat(waypoint.getColumnIndex(WaypointsTable.COLUMN_LONGITUDE));
                 MarkerOptions marker = new MarkerOptions()
                         .title(waypoint.getString(waypoint.getColumnIndex(WaypointsTable.COLUMN_NAME)))
-                        .position(new LatLng(waypoint.getFloat(waypoint.getColumnIndex(WaypointsTable.COLUMN_LATITUDE)),
-                                waypoint.getFloat(waypoint.getColumnIndex(WaypointsTable.COLUMN_LONGITUDE))));
+                        .position(new LatLng(latitude, longitude));
                 mMap.addMarker(marker);
+                Intent intent = new Intent();
+                intent.setAction("com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.PROXIMITY_ALERT");
+                intent.putExtra("name", waypoint.getString(waypoint.getColumnIndex(WaypointsTable.COLUMN_NAME)));
+                intent.putExtra("lat", latitude);
+                intent.putExtra("lng", longitude);
+                PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+                locManager.addProximityAlert(latitude, longitude, 100, -1, pendingIntent);
             }
         }
     }

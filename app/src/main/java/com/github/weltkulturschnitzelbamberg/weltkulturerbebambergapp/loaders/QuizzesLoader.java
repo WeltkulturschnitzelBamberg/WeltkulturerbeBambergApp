@@ -1,11 +1,11 @@
-package com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.loader;
+package com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.loaders;
 
 import android.content.AsyncTaskLoader;
 import android.content.ContentValues;
 import android.content.Context;
 
-import com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.contentprovider.WeltkulturerbeContentProvider;
-import com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.database.QuizzesTable;
+import com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.contentproviders.WeltkulturerbeContentProvider;
+import com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.databases.QuizzesTable;
 import com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.xml.XmlLoader;
 
 import org.xmlpull.v1.XmlPullParserException;
@@ -14,7 +14,7 @@ import java.io.IOException;
 import java.util.List;
 
 /**
- * This Loader loads the quizzes into the {@link com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.database.WeltkulturerbeDatabaseHelper}
+ * This Loader loads the quizzes into the {@link com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.databases.WeltkulturerbeDatabaseHelper}
  *
  * @author Projekt-Seminar "Schnitzeljagd World-heritage" 2015/2016 des Clavius Gymnasiums Bamberg
  * @version 1.0

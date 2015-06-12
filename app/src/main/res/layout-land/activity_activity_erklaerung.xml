@@ -5,7 +5,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     app:contentInsetEnd="0dp"
     app:contentInsetStart="0dp"
-    tools:context="com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.ActivityErklaerung">
+    tools:context="com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.activities.ActivityErklaerung">
 
 
     <TextView

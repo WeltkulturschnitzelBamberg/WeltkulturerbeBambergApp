@@ -1,4 +1,4 @@
-package com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.contentprovider;
+package com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.contentproviders;
 
 import android.content.ContentProvider;
 import android.content.ContentValues;
@@ -8,11 +8,11 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteQueryBuilder;
 import android.net.Uri;
 
-import com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.database.QuizzesTable;
-import com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.database.ShortRouteTable;
-import com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.database.LongRouteTable;
-import com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.database.WaypointsTable;
-import com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.database.WeltkulturerbeDatabaseHelper;
+import com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.databases.QuizzesTable;
+import com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.databases.ShortRouteTable;
+import com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.databases.LongRouteTable;
+import com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.databases.WaypointsTable;
+import com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.databases.WeltkulturerbeDatabaseHelper;
 
 /**
  * This class provides access to the "Weltkulturerbe" database
@@ -25,7 +25,7 @@ public class WeltkulturerbeContentProvider extends ContentProvider {
     // Weltkulturerbe Datenbank die vom ContentProvider erreichbar gemacht wird
     private static WeltkulturerbeDatabaseHelper sDatabaseHelper;
 
-    private static final String AUTHORITY = "com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.contentprovider.WeltkulturerbeContentProvider";
+    private static final String AUTHORITY = WeltkulturerbeContentProvider.class.getName();
 
     public static final Uri URI_TABLE_LONG_ROUTE = Uri.parse("content://" + AUTHORITY + "/" + LongRouteTable.TABLE_LONG_ROUTE);
     private static final int CODE_TABLE_LONG_ROUTE = 1;

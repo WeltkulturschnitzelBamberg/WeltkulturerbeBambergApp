@@ -1,18 +1,17 @@
-package com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp;
+package com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.activities;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.AppCompatCallback;
 import android.support.v7.app.AppCompatDelegate;
 import android.support.v7.view.ActionMode;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.content.Intent;
+
+import com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.R;
 
 public class ActivityErklaerung extends Activity implements AppCompatCallback {
 

@@ -1,12 +1,14 @@
-package com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp;
+package com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.activities;
 
 import android.app.Activity;
 import android.app.LoaderManager;
 import android.content.Loader;
 import android.os.Bundle;
-import com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.Utilities.DebugUtils;
-import com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.loader.QuizzesLoader;
-import com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.loader.RouteLoader;
+
+import com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.R;
+import com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.utilities.DebugUtils;
+import com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.loaders.QuizzesLoader;
+import com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.loaders.RouteLoader;
 import android.content.Intent;
 import android.support.v7.app.AppCompatCallback;
 import android.support.v7.app.AppCompatDelegate;
@@ -14,7 +16,6 @@ import android.support.v7.view.ActionMode;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 
 /**
  * This activity is the launch activity of the World-Heritage-Application
@@ -44,6 +45,7 @@ public class WelcomePageActivity extends Activity implements LoaderManager.Loade
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome_page_app);
 
+        //TODO cohesion
         /** On first launch waypoints and routes are getting loaded into the Database via the {@link RouteLoader} **/
         if (getSharedPreferences("PREFERENCES", MODE_PRIVATE).getBoolean("IS_FIRST_LAUNCH", true)) {
             getLoaderManager().initLoader(ROUTE_LOADER_ID, null, this);
@@ -51,7 +53,7 @@ public class WelcomePageActivity extends Activity implements LoaderManager.Loade
             getSharedPreferences("PREFERENCES", MODE_PRIVATE).edit().putBoolean("IS_FIRST_LAUNCH", false).commit();
         }
 
-
+        //TODO cohesion
         //let's create the delegate, passing the activity at both arguments (Activity, AppCompatCallback)
         delegate = AppCompatDelegate.create(this, this);
         //we need to call the onCreate() of the AppCompatDelegate
@@ -113,16 +115,19 @@ public class WelcomePageActivity extends Activity implements LoaderManager.Loade
         return super.onOptionsItemSelected(item);
     }
 
+    //TODO Documentation
     public void onBtnClickScore(View view) {
         Intent startScoreActivity = new Intent(this, ScoreActivity.class);
         startActivity(startScoreActivity);
     }
 
+    //TODO Documentation
     public void onBtnClickStart(View view) {
         Intent startInstructionActivity = new Intent(this, InstructionsActivity.class);
         startActivity(startInstructionActivity);
     }
 
+    //TODO Documentation
     public void onBtnClickContinue(View view) {
         //TODO start navigation activity from last waypoint
     }

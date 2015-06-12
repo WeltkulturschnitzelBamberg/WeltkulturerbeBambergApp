@@ -1,9 +1,7 @@
-package com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp;
+package com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.activities;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.graphics.Color;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatCallback;
 import android.support.v7.app.AppCompatDelegate;
@@ -14,9 +12,12 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.content.Intent;
+
+import com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.R;
 
 
-public class ActivityFrage2 extends Activity implements AppCompatCallback {
+public class ActivityFrage1 extends Activity implements AppCompatCallback {
 
     @Override
     public void onSupportActionModeStarted(ActionMode mode) {
@@ -29,10 +30,11 @@ public class ActivityFrage2 extends Activity implements AppCompatCallback {
     }
     private AppCompatDelegate delegate;
     //meine Oberflächenelemente
+    private TextView textViewFrage1;
     private Button buttonRichtigeAntwort;
     private Button buttonFalscheAntwortEins;
     private Button buttonWeiter;
-    private TextView textViewFrage2;
+    private Button buttonHilfe;
 
 
     @Override
@@ -44,18 +46,17 @@ public class ActivityFrage2 extends Activity implements AppCompatCallback {
         delegate.onCreate(savedInstanceState);
 
         //we use the delegate to inflate the layout
-        delegate.setContentView(R.layout.activity_activity_frage2);
+        delegate.setContentView(R.layout.activity_activity_frage1);
 
         //Finally, let's add the Toolbar
-        Toolbar toolbar = (Toolbar) findViewById(R.id.frage2_toolbar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.frage1_toolbar);
         delegate.setSupportActionBar(toolbar);
-
         //Oberflächenelemente definieren
-        buttonFalscheAntwortEins = (Button) findViewById(R.id.buttonFalscheAntwortEins);
+        textViewFrage1 = (TextView) findViewById(R.id.textViewFrage1);
         buttonRichtigeAntwort = (Button) findViewById(R.id.buttonRichtigeAntwort);
+        buttonFalscheAntwortEins = (Button) findViewById(R.id.buttonFalscheAntwortEins);
         buttonWeiter = (Button) findViewById(R.id.buttonWeiter);
-        textViewFrage2 = (TextView) findViewById(R.id.textViewFrage2);
-
+        buttonHilfe = (Button) findViewById(R.id.buttonHilfe);
     }
 
     @Override
@@ -72,12 +73,12 @@ public class ActivityFrage2 extends Activity implements AppCompatCallback {
             case R.id.action_score:
                 if (item.isChecked()) item.setChecked(false);
                 else item.setChecked(true);
-                startActivity(new Intent(ActivityFrage2.this, ScoreActivity.class));
+                startActivity(new Intent(ActivityFrage1.this, ScoreActivity.class));
                 return true;
             case R.id.action_start:
                 if (item.isChecked()) item.setChecked(false);
                 else item.setChecked(true);
-                startActivity(new Intent(ActivityFrage2.this, WelcomePageActivity.class));
+                startActivity(new Intent(ActivityFrage1.this, WelcomePageActivity.class));
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -105,4 +106,16 @@ public class ActivityFrage2 extends Activity implements AppCompatCallback {
         buttonWeiter.setVisibility(View.VISIBLE);
     }
 
+    public void naechsteFrage(View view)
+    {
+        Intent Frage2 = new Intent(this, InformationActivity.class);
+        startActivity(Frage2);
+
+    }
+
+    public void TippAufrufen(View view)
+    {
+        Intent Tipp = new Intent(this, ActivityTipp.class);
+        startActivity(Tipp);
+    }
 }

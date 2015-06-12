@@ -60,4 +60,10 @@
         <latitude>49.892689</latitude>
         <longitude>10.872340</longitude>
     </waypoint>
+    <waypoint>
+        <id>10</id>
+        <name>Michi Home</name>
+        <latitude>49.899616</latitude>
+        <longitude>10.881246</longitude>
+    </waypoint>
 </waypoints>
