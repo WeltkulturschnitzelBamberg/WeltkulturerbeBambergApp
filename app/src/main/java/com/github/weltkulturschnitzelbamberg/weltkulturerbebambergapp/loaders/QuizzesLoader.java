@@ -8,10 +8,19 @@ import com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.contentpro
 import com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.databases.QuizzesTable;
 import com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.xml.XmlLoader;
 
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.NodeList;
+import org.xml.sax.InputSource;
+import org.xml.sax.SAXException;
 import org.xmlpull.v1.XmlPullParserException;
 
 import java.io.IOException;
 import java.util.List;
+
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
 
 /**
  * This AsyncTaskLoader loads the quizzes into the Weltkulturschnitzel Database
@@ -36,42 +45,48 @@ public class QuizzesLoader extends AsyncTaskLoader {
     @Override
     public Object loadInBackground() {
         try {
-            loadQuizzesInDatase();
+            writeQuizzesToDatabase();
         } catch (Exception e) {
             e.printStackTrace();
         }
         return null;
     }
 
-    private void loadQuizzesInDatase() throws XmlPullParserException, IOException{
-        XmlLoader xmlLoader = new XmlLoader().setParentTag("quiz")
-                .setSearchedTags("quiz-id", "question", "solution", "wrong-answer1", "wrong-answer2", "wrong-answer3")
-                .load(getContext(), "quizzes.xml");
-        for (List<String[]> quizTag : xmlLoader.getResultsByParentTag()) {
+    private void writeQuizzesToDatabase() throws IOException, ParserConfigurationException, SAXException {
+        Document doc = loadFile();
+
+        NodeList quizzesList = doc.getElementsByTagName(Quizzes.TAG_QUIZ);
+        for (int i = 0; i < quizzesList.getLength(); i++) {
+            Element quiz = (Element) quizzesList.item(i);
             ContentValues values = new ContentValues();
-            for (String[] childTag : quizTag) {
-                switch (childTag[XmlLoader.INDEX_TAG_NAME]) {
-                    case "quiz-id":
-                        values.put(QuizzesTable.COLUMN_QUIZ_ID, Integer.parseInt(childTag[XmlLoader.INDEX_TEXT]));
-                        break;
-                    case "question":
-                        values.put(QuizzesTable.COLUMN_QUESTION, childTag[XmlLoader.INDEX_TEXT]);
-                        break;
-                    case "solution":
-                        values.put(QuizzesTable.COLUMN_SOLUTION, childTag[XmlLoader.INDEX_TEXT]);
-                        break;
-                    case "wrong-answer1":
-                        values.put(QuizzesTable.COLUMN_WRONG_ANSWER_1, childTag[XmlLoader.INDEX_TEXT]);
-                        break;
-                    case "wrong-answer2":
-                        values.put(QuizzesTable.COLUMN_WRONG_ANSWER_2, childTag[XmlLoader.INDEX_TEXT]);
-                        break;
-                    case "wrong-answer3":
-                        values.put(QuizzesTable.COLUMN_WRONG_ANSWER_3, childTag[XmlLoader.INDEX_TEXT]);
-                        break;
-                }
-            }
+            values.put(QuizzesTable.COLUMN_QUIZ_ID, quiz.getElementsByTagName(Quizzes.TAG_QUIZ_ID).item(0).getTextContent());
+            values.put(QuizzesTable.COLUMN_QUESTION, quiz.getElementsByTagName(Quizzes.TAG_QUESTION).item(0).getTextContent());
+            values.put(QuizzesTable.COLUMN_SOLUTION, quiz.getElementsByTagName(Quizzes.TAG_SOLUTION).item(0).getTextContent());
+            values.put(QuizzesTable.COLUMN_WRONG_ANSWER_1, quiz.getElementsByTagName(Quizzes.TAG_WRONG_ANSWER_1).item(0).getTextContent());
+            values.put(QuizzesTable.COLUMN_WRONG_ANSWER_2, quiz.getElementsByTagName(Quizzes.TAG_WRONG_ANSWER_2).item(0).getTextContent());
+            values.put(QuizzesTable.COLUMN_WRONG_ANSWER_3, quiz.getElementsByTagName(Quizzes.TAG_WRONG_ANSWER_3).item(0).getTextContent());
             getContext().getContentResolver().insert(WeltkulturerbeContentProvider.URI_TABLE_QUIZZES, values);
         }
+    }
+
+    private Document loadFile() throws IOException, ParserConfigurationException, SAXException {
+        DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+        DocumentBuilder docBuilder = dbFactory.newDocumentBuilder();
+        InputSource inputSource = new InputSource(getContext().getAssets().open(Quizzes.FILENAME));
+        Document doc = docBuilder.parse(inputSource);
+        doc.getDocumentElement().normalize();
+        return doc;
+    }
+
+    private static class Quizzes {
+
+        private static final String FILENAME = "quizzes.xml";
+        private static final String TAG_QUIZ = "quiz";
+        private static final String TAG_QUIZ_ID = "quiz-id";
+        private static final String TAG_QUESTION = "question";
+        private static final String TAG_SOLUTION = "solution";
+        private static final String TAG_WRONG_ANSWER_1 = "wrong-answer1";
+        private static final String TAG_WRONG_ANSWER_2 = "wrong-answer2";
+        private static final String TAG_WRONG_ANSWER_3 = "wrong-answer3";
     }
 }
