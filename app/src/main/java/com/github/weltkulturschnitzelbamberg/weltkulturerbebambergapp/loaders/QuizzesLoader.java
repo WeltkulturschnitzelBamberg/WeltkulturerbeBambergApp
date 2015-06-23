@@ -14,13 +14,15 @@ import java.io.IOException;
 import java.util.List;
 
 /**
- * This Loader loads the quizzes into the {@link com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.databases.WeltkulturerbeDatabaseHelper}
+ * This AsyncTaskLoader loads the quizzes into the Weltkulturschnitzel Database
  *
  * @author Projekt-Seminar "Schnitzeljagd World-heritage" 2015/2016 des Clavius Gymnasiums Bamberg
  * @version 1.0
  * @since 2015-06-04
  */
 public class QuizzesLoader extends AsyncTaskLoader {
+
+    public static final int LOADER_ID = 2;
 
     public QuizzesLoader(Context context) {
         super(context);

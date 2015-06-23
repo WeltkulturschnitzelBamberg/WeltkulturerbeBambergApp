@@ -6,23 +6,37 @@ import android.content.Context;
 
 import com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.contentproviders.WeltkulturerbeContentProvider;
 import com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.databases.LongRouteTable;
+import com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.databases.RoutesTable;
 import com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.databases.ShortRouteTable;
 import com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.databases.WaypointsTable;
+import com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.utilities.DebugUtils;
 import com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.xml.XmlLoader;
 
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
+import org.xml.sax.InputSource;
+import org.xml.sax.SAXException;
 import org.xmlpull.v1.XmlPullParserException;
 
 import java.io.IOException;
 import java.util.List;
 
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+
 /**
- * This Loader loads the waypoints and routes into the {@link com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.databases.WeltkulturerbeDatabaseHelper}
+ * This AsyncTaskLoader loads the routes into the Weltkulturschnitzel Database
  *
  * @author Projekt-Seminar "Schnitzeljagd World-heritage" 2015/2016 des Clavius Gymnasiums Bamberg
  * @version 1.0
  * @since 2015-06-04
  */
 public class RouteLoader extends AsyncTaskLoader {
+
+    public static final int LOADER_ID = 1;
 
     public RouteLoader(Context context) {
         super(context);
@@ -36,63 +50,48 @@ public class RouteLoader extends AsyncTaskLoader {
     @Override
     public Object loadInBackground() {
         try {
-            loadWaypointsInDatabase();
-            loadRoutesInDatabase();
+            writeRoutesToDatabase();
         } catch (Exception e) {
             e.printStackTrace();
         }
         return null;
     }
 
-    private void loadWaypointsInDatabase() throws XmlPullParserException, IOException {
-        XmlLoader xmlLoader = new XmlLoader().setParentTag("waypoint").setSearchedTags("id", "name", "longitude", "latitude")
-                .load(getContext(), "waypoints.xml");
-        for (List<String[]> waypointTag : xmlLoader.getResultsByParentTag()) {
-            ContentValues values = new ContentValues();
-            for (String[] childTag : waypointTag) {
-                switch (childTag[XmlLoader.INDEX_TAG_NAME]) {
-                    case "id":
-                        values.put(WaypointsTable.COLUMN_WAYPOINT_ID, childTag[XmlLoader.INDEX_TEXT]);
-                        break;
-                    case "name":
-                        values.put(WaypointsTable.COLUMN_NAME, childTag[XmlLoader.INDEX_TEXT]);
-                        break;
-                    case "longitude":
-                        values.put(WaypointsTable.COLUMN_LONGITUDE, Float.parseFloat(childTag[XmlLoader.INDEX_TEXT]));
-                        break;
-                    case "latitude":
-                        values.put(WaypointsTable.COLUMN_LATITUDE, Float.parseFloat(childTag[XmlLoader.INDEX_TEXT]));
-                        break;
+    private void writeRoutesToDatabase() throws IOException, ParserConfigurationException, SAXException {
+        Document doc = loadFile();
+
+        NodeList routesList = doc.getElementsByTagName(Routes.TAG_ROUTE);
+        for (int i = 0; i < routesList.getLength(); i++) {
+            Node routeNode = routesList.item(i);
+            if (routeNode.getNodeType() == Node.ELEMENT_NODE) {
+                Element route = (Element) routeNode;
+                String routeName = route.getElementsByTagName(Routes.TAG_NAME).item(0).getTextContent();
+                NodeList waypointIDList = route.getElementsByTagName(Routes.TAG_WAYPOINT_ID);
+                for (int k = 0; k < waypointIDList.getLength(); k++) {
+                    ContentValues values = new ContentValues();
+                    DebugUtils.log(routeName);
+                    values.put(RoutesTable.COLUMN_ROUTE_NAME, routeName);
+                    values.put(RoutesTable.COLUMN_WAYPOINT_ID, waypointIDList.item(k).getTextContent());
+                    getContext().getContentResolver().insert(WeltkulturerbeContentProvider.URI_TABLE_ROUTES, values);
                 }
             }
-            getContext().getContentResolver().insert(WeltkulturerbeContentProvider.URI_TABLE_WAYPOINTS, values);
         }
     }
 
-    private void loadRoutesInDatabase() throws XmlPullParserException, IOException{
-        XmlLoader xmlLoader = new XmlLoader().setParentTag("route").setSearchedTags("name", "waypoint-id").load(getContext(), "routes.xml");
-        for (List<String[]> routeTag : xmlLoader.getResultsByParentTag()) {
-            String routeName = "";
-            for (String[] childTag : routeTag) {
-                switch (childTag[XmlLoader.INDEX_TAG_NAME]) {
-                    case "name":
-                        routeName = childTag[XmlLoader.INDEX_TEXT];
-                        break;
-                    case "waypoint-id":
-                        ContentValues values = new ContentValues();
-                        switch (routeName) {
-                            case "Long Route":
-                                values.put(LongRouteTable.COLUMN_WAYPOINT_ID, Integer.parseInt(childTag[XmlLoader.INDEX_TEXT]));
-                                getContext().getContentResolver().insert(WeltkulturerbeContentProvider.URI_TABLE_LONG_ROUTE, values);
-                                break;
-                            case "Short Route":
-                                values.put(ShortRouteTable.COLUMN_WAYPOINT_ID, Integer.parseInt(childTag[XmlLoader.INDEX_TEXT]));
-                                getContext().getContentResolver().insert(WeltkulturerbeContentProvider.URI_TABLE_SHORT_ROUTE, values);
-                                break;
-                        }
-                        break;
-                }
-            }
-        }
+    private Document loadFile() throws IOException, ParserConfigurationException, SAXException{
+        DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+        DocumentBuilder docBuilder = dbFactory.newDocumentBuilder();
+        InputSource inputSource = new InputSource(getContext().getAssets().open(Routes.FILENAME));
+        Document doc = docBuilder.parse(inputSource);
+        doc.getDocumentElement().normalize();
+        return doc;
+    }
+
+    private static class Routes {
+
+        private static final String FILENAME = "routes.xml";
+        private static final String TAG_ROUTE = "route";
+        private static final String TAG_NAME = "name";
+        private static final String TAG_WAYPOINT_ID = "waypoint-id";
     }
 }
