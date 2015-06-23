@@ -6,10 +6,12 @@ import android.content.Loader;
 import android.os.Bundle;
 
 import com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.R;
+import com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.loaders.WaypointsLoader;
 import com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.utilities.DebugUtils;
 import com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.loaders.QuizzesLoader;
 import com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.loaders.RouteLoader;
 import android.content.Intent;
+import android.os.Debug;
 import android.support.v7.app.AppCompatCallback;
 import android.support.v7.app.AppCompatDelegate;
 import android.support.v7.view.ActionMode;
@@ -25,9 +27,6 @@ import android.view.View;
  * @since 2015-06-04
  */
 public class WelcomePageActivity extends Activity implements LoaderManager.LoaderCallbacks, AppCompatCallback{
-
-    private static final int ROUTE_LOADER_ID = 0;
-    private static final int QUIZZES_LOADER_ID = 1;
 
     @Override
     public void onSupportActionModeStarted(ActionMode mode) {
@@ -45,13 +44,7 @@ public class WelcomePageActivity extends Activity implements LoaderManager.Loade
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome_page_app);
 
-        //TODO cohesion
-        /** On first launch waypoints and routes are getting loaded into the Database via the {@link RouteLoader} **/
-        if (getSharedPreferences("PREFERENCES", MODE_PRIVATE).getBoolean("IS_FIRST_LAUNCH", true)) {
-            getLoaderManager().initLoader(ROUTE_LOADER_ID, null, this);
-            getLoaderManager().initLoader(QUIZZES_LOADER_ID, null, this);
-            getSharedPreferences("PREFERENCES", MODE_PRIVATE).edit().putBoolean("IS_FIRST_LAUNCH", false).commit();
-        }
+        onFirstLaunch();
 
         //TODO cohesion
         //let's create the delegate, passing the activity at both arguments (Activity, AppCompatCallback)
@@ -67,16 +60,37 @@ public class WelcomePageActivity extends Activity implements LoaderManager.Loade
         delegate.setSupportActionBar(toolbar);
     }
 
+    /**
+     * This methode executes only on the first start of the Application
+     */
+    private void onFirstLaunch() {
+        // Check if this is the first launch of the Application
+        if (getSharedPreferences("PREFERENCES", MODE_PRIVATE).getBoolean("IS_FIRST_LAUNCH", true)) {
+            // Initialise Loaders
+            getLoaderManager().initLoader(WaypointsLoader.LOADER_ID, null, this);
+            getLoaderManager().initLoader(RouteLoader.LOADER_ID, null, this);
+            getLoaderManager().initLoader(QuizzesLoader.LOADER_ID, null, this);
+            getSharedPreferences("PREFERENCES", MODE_PRIVATE).edit().putBoolean("IS_FIRST_LAUNCH", false).commit();
+        }
+    }
+
     @Override
     public Loader onCreateLoader(int id, Bundle args) {
         switch (id) {
-            case ROUTE_LOADER_ID:
-                DebugUtils.toast(this, "Loading Routes for first Launch ...");
+            case RouteLoader.LOADER_ID:
+                // Return new RouteLoader to load routes in the database
+                DebugUtils.toast(this, "Loading Routes in Database ...");
                 return new RouteLoader(this);
-            case QUIZZES_LOADER_ID:
-                DebugUtils.toast(this, "Loading Quizzes for first Launch ...");
+            case QuizzesLoader.LOADER_ID:
+                // Return new QuizzesLoader to load quizzes in the database
+                DebugUtils.toast(this, "Loading Quizzes in Database ...");
                 return new QuizzesLoader(this);
+            case WaypointsLoader.LOADER_ID:
+                // Return new WaypointsLoader to load waypoints in the database
+                DebugUtils.toast(this, "Loading Waypoints in Database ...");
+                return new WaypointsLoader(this);
             default:
+                // There is no such Loader ID -> throw Exception
                 throw new IllegalArgumentException("Loader not found. ID: " + id);
         }
     }
@@ -89,13 +103,17 @@ public class WelcomePageActivity extends Activity implements LoaderManager.Loade
     @Override
     public void onLoadFinished(Loader loader, Object data) {
         switch (loader.getId()) {
-            case ROUTE_LOADER_ID:
+            case RouteLoader.LOADER_ID:
                 DebugUtils.toast(this, "Routes loaded");
-                getLoaderManager().destroyLoader(ROUTE_LOADER_ID);
+                getLoaderManager().destroyLoader(RouteLoader.LOADER_ID);
                 break;
-            case QUIZZES_LOADER_ID:
-                DebugUtils.toast(this, "Quizzes Loaded");
-                getLoaderManager().destroyLoader(QUIZZES_LOADER_ID);
+            case QuizzesLoader.LOADER_ID:
+                DebugUtils.toast(this, "Quizzes loaded");
+                getLoaderManager().destroyLoader(QuizzesLoader.LOADER_ID);
+                break;
+            case WaypointsLoader.LOADER_ID:
+                DebugUtils.toast(this, "Waypoints loaded");
+                getLoaderManager().destroyLoader(WaypointsLoader.LOADER_ID);
                 break;
         }
     }
