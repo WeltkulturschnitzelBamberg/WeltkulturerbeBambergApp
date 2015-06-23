@@ -6,7 +6,6 @@ import android.content.Context;
 
 import com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.contentproviders.WeltkulturerbeContentProvider;
 import com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.databases.RoutesTable;
-import com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.databases.ShortRouteTable;
 import com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.utilities.DebugUtils;
 
 import org.w3c.dom.Document;
