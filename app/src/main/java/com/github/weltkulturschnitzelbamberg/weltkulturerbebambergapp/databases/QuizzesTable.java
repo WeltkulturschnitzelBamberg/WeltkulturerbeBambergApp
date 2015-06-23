@@ -3,8 +3,8 @@ package com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.databases
 import android.database.sqlite.SQLiteDatabase;
 
 /**
- * This class describes the table "quizzes" in the Database
- * {@link WeltkulturerbeDatabaseHelper}
+ * This class describes the table "quizzes" in the Database {@link WeltkulturerbeDatabaseHelper}.
+ * In this Table all quizzes are saved
  *
  * @author Project-Seminar "Schnitzeljagd World-heritage" 2015/2016 des Clavius Gymnasiums Bamberg
  * @version 1.0

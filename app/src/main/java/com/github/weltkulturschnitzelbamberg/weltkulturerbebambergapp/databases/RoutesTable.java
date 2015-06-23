@@ -3,8 +3,7 @@ package com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.databases
 import android.database.sqlite.SQLiteDatabase;
 
 /**
- * This class describes the table "long_route" in the Database
- * {@link WeltkulturerbeDatabaseHelper}
+ * This class describes the table "routes" in the Database {@link WeltkulturerbeDatabaseHelper}. In this Table all routes are saved
  *
  * @author Project-Seminar "Schnitzeljagd World-heritage" 2015/2016 des Clavius Gymnasiums Bamberg
  * @version 1.0
@@ -21,7 +20,7 @@ public final class RoutesTable {
     }
 
     /** Name of the table in the database **/
-    public static final String TABLE_LONG_ROUTE = "lange_route";
+    public static final String TABLE_LONG_ROUTE = "routes";
 
     /** Names of the columns inside the table **/
     public static final String COLUMN_ID = "_id";
