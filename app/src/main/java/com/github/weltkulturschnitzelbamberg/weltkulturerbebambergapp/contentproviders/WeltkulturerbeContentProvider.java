@@ -9,8 +9,7 @@ import android.database.sqlite.SQLiteQueryBuilder;
 import android.net.Uri;
 
 import com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.databases.QuizzesTable;
-import com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.databases.ShortRouteTable;
-import com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.databases.LongRouteTable;
+import com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.databases.RoutesTable;
 import com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.databases.WaypointsTable;
 import com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.databases.WeltkulturerbeDatabaseHelper;
 
@@ -27,14 +26,6 @@ public class WeltkulturerbeContentProvider extends ContentProvider {
 
     private static final String AUTHORITY = WeltkulturerbeContentProvider.class.getName();
 
-    public static final Uri URI_TABLE_LONG_ROUTE = Uri.parse("content://" + AUTHORITY + "/" + LongRouteTable.TABLE_LONG_ROUTE);
-    private static final int CODE_TABLE_LONG_ROUTE = 1;
-    private static final int CODE_TABLE_LONG_ROUTE_ROW = 2;
-
-    public static final Uri URI_TABLE_SHORT_ROUTE = Uri.parse("content://" + AUTHORITY + "/" + ShortRouteTable.TABLE_SHORT_ROUTE);
-    private static final int CODE_TABLE_SHORT_ROUTE = 3;
-    private static final int CODE_TABLE_SHORT_ROUTE_ROW = 4;
-
     public static final Uri URI_TABLE_WAYPOINTS = Uri.parse("content://" + AUTHORITY + "/" + WaypointsTable.TABLE_WAYPOINTS);
     private static final int CODE_TABLE_WAYPOINTS = 5;
     private static final int CODE_TABLE_WAYPOINTS_ROW = 6;
@@ -43,24 +34,25 @@ public class WeltkulturerbeContentProvider extends ContentProvider {
     private static final int CODE_TABLE_QUIZZES = 7;
     private static final int CODE_TABLE_QUIZZES_ROW = 8;
 
-    /** UriMatcher that returns NO_MATCH if it matches the root URI **/
+    public static final Uri URI_TABLE_ROUTES = Uri.parse("content://" + AUTHORITY + "/" + RoutesTable.TABLE_ROUTES);
+    private static final int CODE_TABLE_ROUTES = 9;
+    private static final int CODE_TABLE_ROUTES_ROW = 10;
+
+    // UriMatcher that returns NO_MATCH if it matches the root URI
     private static final UriMatcher sUriMatcher = new UriMatcher(UriMatcher.NO_MATCH);
     static {
-        /** Add URI for the table "long_route" and for its rows **/
-        sUriMatcher.addURI(AUTHORITY, LongRouteTable.TABLE_LONG_ROUTE, CODE_TABLE_LONG_ROUTE);
-        sUriMatcher.addURI(AUTHORITY, LongRouteTable.TABLE_LONG_ROUTE + "/#", CODE_TABLE_LONG_ROUTE_ROW);
-
-        /** Add URI for the table "short_route" and for its rows **/
-        sUriMatcher.addURI(AUTHORITY, ShortRouteTable.TABLE_SHORT_ROUTE, CODE_TABLE_SHORT_ROUTE);
-        sUriMatcher.addURI(AUTHORITY, ShortRouteTable.TABLE_SHORT_ROUTE + "/#", CODE_TABLE_SHORT_ROUTE_ROW);
-
-        /** Add URI for the table "waypoints" and for its rows **/
+        // Add URI for the table "waypoints" and for its rows
         sUriMatcher.addURI(AUTHORITY, WaypointsTable.TABLE_WAYPOINTS, CODE_TABLE_WAYPOINTS);
         sUriMatcher.addURI(AUTHORITY, WaypointsTable.TABLE_WAYPOINTS + "/#", CODE_TABLE_WAYPOINTS_ROW);
 
-        /** Add URI for the table "quizzes.xml" and for its rows **/
+        // Add URI for the table "quizzes" and for its rows
         sUriMatcher.addURI(AUTHORITY, QuizzesTable.TABLE_QUIZZES, CODE_TABLE_QUIZZES);
         sUriMatcher.addURI(AUTHORITY, QuizzesTable.TABLE_QUIZZES + "/#", CODE_TABLE_QUIZZES_ROW);
+
+        // Add URI for the table "routes" and for its rows
+        sUriMatcher.addURI(AUTHORITY, RoutesTable.TABLE_ROUTES, CODE_TABLE_ROUTES);
+        sUriMatcher.addURI(AUTHORITY, RoutesTable.TABLE_ROUTES + "/#" , CODE_TABLE_ROUTES_ROW);
+
     }
 
     @Override
@@ -76,20 +68,6 @@ public class WeltkulturerbeContentProvider extends ContentProvider {
 
         int uriType = sUriMatcher.match(uri);
         switch (uriType) {
-            case CODE_TABLE_LONG_ROUTE:
-                queryBuilder.setTables(LongRouteTable.TABLE_LONG_ROUTE);
-                break;
-            case CODE_TABLE_LONG_ROUTE_ROW:
-                queryBuilder.setTables(LongRouteTable.TABLE_LONG_ROUTE);
-                queryBuilder.appendWhere(LongRouteTable.COLUMN_ID + "=" + uri.getLastPathSegment());
-                break;
-            case CODE_TABLE_SHORT_ROUTE:
-                queryBuilder.setTables(ShortRouteTable.TABLE_SHORT_ROUTE);
-                break;
-            case CODE_TABLE_SHORT_ROUTE_ROW:
-                queryBuilder.setTables(ShortRouteTable.TABLE_SHORT_ROUTE);
-                queryBuilder.appendWhere(ShortRouteTable.COLUMN_ID + "=" + uri.getLastPathSegment());
-                break;
             case CODE_TABLE_WAYPOINTS:
                 queryBuilder.setTables(WaypointsTable.TABLE_WAYPOINTS);
                 break;
@@ -103,6 +81,13 @@ public class WeltkulturerbeContentProvider extends ContentProvider {
             case CODE_TABLE_QUIZZES_ROW:
                 queryBuilder.setTables(QuizzesTable.TABLE_QUIZZES);
                 queryBuilder.appendWhere(QuizzesTable.COLUMN_ID + "=" + uri.getLastPathSegment());
+                break;
+            case CODE_TABLE_ROUTES:
+                queryBuilder.setTables(RoutesTable.TABLE_ROUTES);
+                break;
+            case CODE_TABLE_ROUTES_ROW:
+                queryBuilder.setTables(RoutesTable.TABLE_ROUTES);
+                queryBuilder.appendWhere(RoutesTable.COLUMN_ID + "=" + uri.getLastPathSegment());
                 break;
             default:
                 throw new IllegalArgumentException("Unkown URI: " + uri);
@@ -120,17 +105,14 @@ public class WeltkulturerbeContentProvider extends ContentProvider {
         SQLiteDatabase database = sDatabaseHelper.getWritableDatabase();
         long rowID;
         switch (uriType) {
-            case CODE_TABLE_LONG_ROUTE:
-                rowID = database.insert(LongRouteTable.TABLE_LONG_ROUTE, null, values);
-                break;
-            case CODE_TABLE_SHORT_ROUTE:
-                rowID = database.insert(ShortRouteTable.TABLE_SHORT_ROUTE, null, values);
-                break;
             case CODE_TABLE_WAYPOINTS:
                 rowID = database.insert(WaypointsTable.TABLE_WAYPOINTS, null, values);
                 break;
             case CODE_TABLE_QUIZZES:
                 rowID = database.insert(QuizzesTable.TABLE_QUIZZES, null, values);
+                break;
+            case CODE_TABLE_ROUTES:
+                rowID = database.insert(RoutesTable.TABLE_ROUTES, null, values);
                 break;
             default:
                 throw new IllegalArgumentException("Unknown URI: " + uri);
@@ -139,7 +121,7 @@ public class WeltkulturerbeContentProvider extends ContentProvider {
         return Uri.parse(AUTHORITY + "/" + rowID);
     }
 
-    /** Functions delete(), update() and getType() aren't needed in this project **/
+    // Functions delete(), update() and getType() aren't needed in this project
     @Override
     public int delete(Uri uri, String selection, String[] selectionArgs) {
         return 0;

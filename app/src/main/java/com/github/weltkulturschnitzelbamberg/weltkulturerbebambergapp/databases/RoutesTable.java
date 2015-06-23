@@ -20,16 +20,18 @@ public final class RoutesTable {
     }
 
     /** Name of the table in the database **/
-    public static final String TABLE_LONG_ROUTE = "routes";
+    public static final String TABLE_ROUTES = "routes";
 
     /** Names of the columns inside the table **/
     public static final String COLUMN_ID = "_id";
+    public static final String COLUMN_ROUTE_NAME = "route_name";
     public static final String COLUMN_WAYPOINT_ID = "waypoint_id";
 
     /** SQL command to create the table **/
-    private static final String SQL_CREATE = "CREATE TABLE " + TABLE_LONG_ROUTE
+    private static final String SQL_CREATE = "CREATE TABLE " + TABLE_ROUTES
             + "("
             + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
+            + COLUMN_ROUTE_NAME + " TEXT NOT NULL,"
             + COLUMN_WAYPOINT_ID + " INTEGER NOT NULL"
             + ");";
 

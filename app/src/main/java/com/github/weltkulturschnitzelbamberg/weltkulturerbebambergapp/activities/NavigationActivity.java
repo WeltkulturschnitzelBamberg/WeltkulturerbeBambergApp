@@ -4,7 +4,6 @@ import android.app.PendingIntent;
 import android.content.Intent;
 import android.database.Cursor;
 import android.location.LocationManager;
-import android.net.Uri;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatCallback;
@@ -16,10 +15,8 @@ import android.view.MenuItem;
 
 import com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.R;
 import com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.contentproviders.WeltkulturerbeContentProvider;
-import com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.databases.LongRouteTable;
-import com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.databases.ShortRouteTable;
+import com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.databases.RoutesTable;
 import com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.databases.WaypointsTable;
-import com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.utilities.DebugUtils;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.SupportMapFragment;
@@ -117,28 +114,28 @@ public class NavigationActivity extends FragmentActivity implements AppCompatCal
     //TODO Documentation
     private void loadRoute(int routeCode) {
         LocationManager locManager = (LocationManager) getSystemService(LOCATION_SERVICE);
-        String[] projection;
-        Uri tableUri;
+        String[] projection = {RoutesTable.COLUMN_WAYPOINT_ID};
+        String selection = RoutesTable.COLUMN_ROUTE_NAME + "=?";
+        String[] selectionArgs;
         switch (routeCode) {
             case CODE_ROUTE_SHORT:
-                projection = new String[]{ShortRouteTable.COLUMN_WAYPOINT_ID};
-                tableUri = WeltkulturerbeContentProvider.URI_TABLE_SHORT_ROUTE;
+                selectionArgs = new String[]{"Short Route"};
                 break;
             case CODE_ROUTE_LONG:
-                projection = new String[]{LongRouteTable.COLUMN_WAYPOINT_ID};
-                tableUri = WeltkulturerbeContentProvider.URI_TABLE_LONG_ROUTE;
+                selectionArgs = new String[]{"Long Route"};
                 break;
             default:
                 throw new IllegalArgumentException("No such Route found. Route Code: " + routeCode);
         }
 
-        Cursor waypointIDs = getContentResolver().query(tableUri, projection, null, null, null);
+        Cursor waypointIDs = getContentResolver().query(WeltkulturerbeContentProvider.URI_TABLE_ROUTES,
+                projection, selection, selectionArgs, null);
         while (waypointIDs.moveToNext()) {
-            projection = new String[]{WaypointsTable.COLUMN_NAME, WaypointsTable.COLUMN_LONGITUDE, WaypointsTable.COLUMN_LATITUDE};
-            String selection = WaypointsTable.COLUMN_WAYPOINT_ID + "=?";
-            String[] selectionArgs = {Integer.toString(waypointIDs.getInt(waypointIDs.getColumnIndex(ShortRouteTable.COLUMN_WAYPOINT_ID)))};
+            String[] projection2 = new String[]{WaypointsTable.COLUMN_NAME, WaypointsTable.COLUMN_LONGITUDE, WaypointsTable.COLUMN_LATITUDE};
+            String selection2 = WaypointsTable.COLUMN_WAYPOINT_ID + "=?";
+            String[] selectionArgs2 = {Integer.toString(waypointIDs.getInt(waypointIDs.getColumnIndex(RoutesTable.COLUMN_WAYPOINT_ID)))};
             Cursor waypoint = getContentResolver().query(WeltkulturerbeContentProvider.URI_TABLE_WAYPOINTS,
-                    projection, selection, selectionArgs, null);
+                    projection2, selection2, selectionArgs2, null);
             while (waypoint.moveToNext()) {
                 Float latitude = waypoint.getFloat(waypoint.getColumnIndex(WaypointsTable.COLUMN_LATITUDE));
                 Float longitude = waypoint.getFloat(waypoint.getColumnIndex(WaypointsTable.COLUMN_LONGITUDE));
@@ -152,7 +149,7 @@ public class NavigationActivity extends FragmentActivity implements AppCompatCal
                 intent.putExtra("lat", latitude);
                 intent.putExtra("lng", longitude);
                 PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
-                locManager.addProximityAlert(latitude, longitude, 100, -1, pendingIntent);
+                locManager.addProximityAlert(latitude, longitude, 40, -1, pendingIntent);
             }
         }
     }
@@ -166,7 +163,6 @@ public class NavigationActivity extends FragmentActivity implements AppCompatCal
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-
         switch (item.getItemId()) {
             case R.id.action_score:
                 if (item.isChecked()) item.setChecked(false);
@@ -181,7 +177,6 @@ public class NavigationActivity extends FragmentActivity implements AppCompatCal
             default:
                 return super.onOptionsItemSelected(item);
         }
-
     }
 
     @Override
