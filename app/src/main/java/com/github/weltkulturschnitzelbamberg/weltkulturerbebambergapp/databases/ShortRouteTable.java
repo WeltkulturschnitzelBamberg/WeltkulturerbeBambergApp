@@ -17,7 +17,7 @@ public final class ShortRouteTable {
      * @throws IllegalAccessException
      */
     private ShortRouteTable() throws IllegalAccessException {
-        throw new IllegalAccessException("'" + ShortRouteTable.class.getName() + "' should not be instantiated");
+        throw new IllegalAccessException("'" + this.getClass().getName() + "' should not be instantiated");
     }
 
     /** Name of the table in the database **/

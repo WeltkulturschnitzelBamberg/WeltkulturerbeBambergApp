@@ -17,7 +17,7 @@ public final class QuizzesTable {
      * @throws IllegalAccessException
      */
     private QuizzesTable() throws IllegalAccessException {
-        throw new IllegalAccessException("'" + QuizzesTable.class.getName() + "' should not be instantiated");
+        throw new IllegalAccessException("'" + this.getClass().getName() + "' should not be instantiated");
     }
 
     /** Name of the table in the database **/

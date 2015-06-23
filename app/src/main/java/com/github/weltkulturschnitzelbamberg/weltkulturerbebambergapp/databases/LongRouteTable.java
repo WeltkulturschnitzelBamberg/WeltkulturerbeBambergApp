@@ -17,7 +17,7 @@ public final class LongRouteTable {
      * @throws IllegalAccessException
      */
     private LongRouteTable() throws IllegalAccessException {
-        throw new IllegalAccessException("'" + LongRouteTable.class.getName() + "' should not be instantiated");
+        throw new IllegalAccessException("'" + this.getClass().getName() + "' should not be instantiated");
     }
 
     /** Name of the table in the database **/

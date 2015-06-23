@@ -17,7 +17,7 @@ public final class WaypointsTable {
      * @throws IllegalAccessException
      */
     private WaypointsTable() throws IllegalAccessException {
-        throw new IllegalAccessException("'" + WaypointsTable.class.getName() + "' should not be instantiated");
+        throw new IllegalAccessException("'" + this.getClass().getName() + "' should not be instantiated");
     }
 
     /** Name of the table in the database **/
