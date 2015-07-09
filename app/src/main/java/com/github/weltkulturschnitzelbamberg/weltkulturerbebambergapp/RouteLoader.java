@@ -1,4 +1,4 @@
-package com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.loaders;
+package com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp;
 
 import android.content.AsyncTaskLoader;
 import android.content.ContentValues;

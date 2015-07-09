@@ -6,10 +6,10 @@ import android.content.Loader;
 import android.os.Bundle;
 
 import com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.R;
-import com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.loaders.WaypointsLoader;
+import com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.WaypointsLoader;
 import com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.utilities.DebugUtils;
-import com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.loaders.QuizzesLoader;
-import com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.loaders.RouteLoader;
+import com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.QuizzesLoader;
+import com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.RouteLoader;
 import android.content.Intent;
 import android.support.v7.app.AppCompatCallback;
 import android.support.v7.app.AppCompatDelegate;
