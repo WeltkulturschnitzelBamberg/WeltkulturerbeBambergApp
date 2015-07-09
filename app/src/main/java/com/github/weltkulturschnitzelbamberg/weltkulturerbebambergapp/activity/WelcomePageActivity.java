@@ -6,10 +6,11 @@ import android.content.Loader;
 import android.os.Bundle;
 
 import com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.R;
+import com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.RouteAsyncTaskLoader;
 import com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.WaypointsLoader;
 import com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.utilities.DebugUtils;
 import com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.QuizzesAsyncTaskLoader;
-import com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.RouteLoader;
+
 import android.content.Intent;
 import android.support.v7.app.AppCompatCallback;
 import android.support.v7.app.AppCompatDelegate;
@@ -67,7 +68,7 @@ public class WelcomePageActivity extends Activity implements LoaderManager.Loade
         if (getSharedPreferences("PREFERENCES", MODE_PRIVATE).getBoolean("IS_FIRST_LAUNCH", true)) {
             // Initialise Loaders
             getLoaderManager().initLoader(WaypointsLoader.LOADER_ID, null, this);
-            getLoaderManager().initLoader(RouteLoader.LOADER_ID, null, this);
+            getLoaderManager().initLoader(RouteAsyncTaskLoader.LOADER_ID, null, this);
             getLoaderManager().initLoader(QuizzesAsyncTaskLoader.LOADER_ID, null, this);
             getSharedPreferences("PREFERENCES", MODE_PRIVATE).edit().putBoolean("IS_FIRST_LAUNCH", false).commit();
         }
@@ -76,10 +77,10 @@ public class WelcomePageActivity extends Activity implements LoaderManager.Loade
     @Override
     public Loader onCreateLoader(int id, Bundle args) {
         switch (id) {
-            case RouteLoader.LOADER_ID:
-                // Return new RouteLoader to load routes in the database
+            case RouteAsyncTaskLoader.LOADER_ID:
+                // Return new RouteAsyncTaskLoader to load routes in the database
                 DebugUtils.toast(this, "Loading Routes in Database ...");
-                return new RouteLoader(this);
+                return new RouteAsyncTaskLoader(this);
             case QuizzesAsyncTaskLoader.LOADER_ID:
                 // Return new QuizzesAsyncTaskLoader to load quizzes in the database
                 DebugUtils.toast(this, "Loading Quizzes in Database ...");
@@ -102,9 +103,9 @@ public class WelcomePageActivity extends Activity implements LoaderManager.Loade
     @Override
     public void onLoadFinished(Loader loader, Object data) {
         switch (loader.getId()) {
-            case RouteLoader.LOADER_ID:
+            case RouteAsyncTaskLoader.LOADER_ID:
                 DebugUtils.toast(this, "Routes loaded");
-                getLoaderManager().destroyLoader(RouteLoader.LOADER_ID);
+                getLoaderManager().destroyLoader(RouteAsyncTaskLoader.LOADER_ID);
                 break;
             case QuizzesAsyncTaskLoader.LOADER_ID:
                 DebugUtils.toast(this, "Quizzes loaded");

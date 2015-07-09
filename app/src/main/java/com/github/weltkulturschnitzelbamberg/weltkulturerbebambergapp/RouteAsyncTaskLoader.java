@@ -28,11 +28,11 @@ import javax.xml.parsers.ParserConfigurationException;
  * @version 1.0
  * @since 2015-06-04
  */
-public class RouteLoader extends AsyncTaskLoader {
+public class RouteAsyncTaskLoader extends AsyncTaskLoader {
 
     public static final int LOADER_ID = 1;
 
-    public RouteLoader(Context context) {
+    public RouteAsyncTaskLoader(Context context) {
         super(context);
     }
 
