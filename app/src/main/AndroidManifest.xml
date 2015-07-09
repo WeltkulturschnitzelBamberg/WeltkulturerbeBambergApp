@@ -47,10 +47,6 @@
             android:label="@string/title_activity_score" >
         </activity>
         <activity
-            android:name=".activities.ActivityFrage2"
-            android:label="@string/title_activity_activity_frage2" >
-        </activity>
-        <activity
             android:name=".activities.NavigationActivity"
             android:label="@string/title_activity_navigation" >
         </activity>
