@@ -1,4 +1,4 @@
-package com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.activities;
+package com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.activity;
 
 import android.app.Activity;
 import android.app.LoaderManager;
@@ -11,7 +11,6 @@ import com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.utilities.
 import com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.loaders.QuizzesLoader;
 import com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.loaders.RouteLoader;
 import android.content.Intent;
-import android.os.Debug;
 import android.support.v7.app.AppCompatCallback;
 import android.support.v7.app.AppCompatDelegate;
 import android.support.v7.view.ActionMode;

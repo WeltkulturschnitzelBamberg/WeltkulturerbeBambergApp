@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     app:contentInsetEnd="0dp"
     app:contentInsetStart="0dp"
-    tools:context="com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.activities.InstructionsActivity">
+    tools:context="com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.activity.InstructionsActivity">
 
     <TextView
         android:layout_width="wrap_content"
