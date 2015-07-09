@@ -1,11 +1,11 @@
-package com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.loaders;
+package com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp;
 
 import android.content.AsyncTaskLoader;
 import android.content.ContentValues;
 import android.content.Context;
 
-import com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.contentproviders.WeltkulturerbeContentProvider;
-import com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.databases.QuizzesTable;
+import com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.contentprovider.WeltkulturerbeContentProvider;
+import com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.database.QuizzesTable;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -26,11 +26,11 @@ import javax.xml.parsers.ParserConfigurationException;
  * @version 1.0
  * @since 2015-06-04
  */
-public class QuizzesLoader extends AsyncTaskLoader {
+public class QuizzesAsyncTaskLoader extends AsyncTaskLoader {
 
     public static final int LOADER_ID = 2;
 
-    public QuizzesLoader(Context context) {
+    public QuizzesAsyncTaskLoader(Context context) {
         super(context);
     }
 

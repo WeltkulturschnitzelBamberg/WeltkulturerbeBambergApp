@@ -26,7 +26,7 @@
             android:value="@string/google_maps_key" />
 
         <activity
-            android:name=".activities.WelcomePageActivity"
+            android:name=".activity.WelcomePageActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -35,41 +35,25 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".activities.InstructionsActivity"
+            android:name=".activity.InstructionsActivity"
             android:label="@string/title_activity_instructions" >
         </activity>
         <activity
-            android:name=".activities.InformationActivity"
+            android:name=".activity.InformationActivity"
             android:label="@string/title_activity_information" >
         </activity>
         <activity
-            android:name=".activities.ScoreActivity"
+            android:name=".activity.ScoreActivity"
             android:label="@string/title_activity_score" >
         </activity>
         <activity
-            android:name=".activities.ActivityFrage1"
-            android:label="@string/title_activity_activity_frage1" >
-        </activity>
-        <activity
-            android:name=".activities.ActivityFrage2"
-            android:label="@string/title_activity_activity_frage2" >
-        </activity>
-        <activity
-            android:name=".activities.ActivityTipp"
-            android:label="@string/title_activity_activity_tipp" >
-        </activity>
-        <activity
-            android:name=".activities.ActivityErklaerung"
-            android:label="@string/title_activity_activity_erklaerung" >
-        </activity>
-        <activity
-            android:name=".activities.NavigationActivity"
+            android:name=".activity.NavigationActivity"
             android:label="@string/title_activity_navigation" >
         </activity>
 
         <provider
-            android:authorities="com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.contentproviders.WeltkulturerbeContentProvider"
-            android:name=".contentproviders.WeltkulturerbeContentProvider">
+            android:authorities="com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.contentprovider.WeltkulturerbeContentProvider"
+            android:name=".contentprovider.WeltkulturerbeContentProvider">
         </provider>
         <receiver
             android:name=".ProximityAlertReceiver"

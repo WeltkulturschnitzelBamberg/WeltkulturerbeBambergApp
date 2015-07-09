@@ -1,4 +1,4 @@
-package com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.contentproviders;
+package com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.contentprovider;
 
 import android.content.ContentProvider;
 import android.content.ContentValues;
@@ -8,10 +8,10 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteQueryBuilder;
 import android.net.Uri;
 
-import com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.databases.QuizzesTable;
-import com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.databases.RoutesTable;
-import com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.databases.WaypointsTable;
-import com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.databases.WeltkulturerbeDatabaseHelper;
+import com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.database.QuizzesTable;
+import com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.database.RoutesTable;
+import com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.database.WaypointsTable;
+import com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.database.WeltkulturerbeDatabaseHelper;
 
 /**
  * This class provides access to the "Weltkulturerbe" database

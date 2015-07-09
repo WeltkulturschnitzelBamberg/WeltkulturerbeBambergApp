@@ -1,11 +1,11 @@
-package com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.loaders;
+package com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp;
 
 import android.content.AsyncTaskLoader;
 import android.content.ContentValues;
 import android.content.Context;
 
-import com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.contentproviders.WeltkulturerbeContentProvider;
-import com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.databases.WaypointsTable;
+import com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.contentprovider.WeltkulturerbeContentProvider;
+import com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.database.WaypointsTable;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -27,11 +27,11 @@ import javax.xml.parsers.ParserConfigurationException;
  * @version 1.0
  * @since 2015-06-04
  */
-public class WaypointsLoader extends AsyncTaskLoader{
+public class WaypointsAsyncTaskLoader extends AsyncTaskLoader{
 
     public static final int LOADER_ID = 0;
 
-    public WaypointsLoader(Context context) {
+    public WaypointsAsyncTaskLoader(Context context) {
         super(context);
     }
 

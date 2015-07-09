@@ -1,4 +1,4 @@
-package com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.activities;
+package com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.activity;
 
 import android.app.Activity;
 import android.app.LoaderManager;
@@ -6,12 +6,12 @@ import android.content.Loader;
 import android.os.Bundle;
 
 import com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.R;
-import com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.loaders.WaypointsLoader;
+import com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.RouteAsyncTaskLoader;
+import com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.WaypointsAsyncTaskLoader;
 import com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.utilities.DebugUtils;
-import com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.loaders.QuizzesLoader;
-import com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.loaders.RouteLoader;
+import com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.QuizzesAsyncTaskLoader;
+
 import android.content.Intent;
-import android.os.Debug;
 import android.support.v7.app.AppCompatCallback;
 import android.support.v7.app.AppCompatDelegate;
 import android.support.v7.view.ActionMode;
@@ -67,9 +67,9 @@ public class WelcomePageActivity extends Activity implements LoaderManager.Loade
         // Check if this is the first launch of the Application
         if (getSharedPreferences("PREFERENCES", MODE_PRIVATE).getBoolean("IS_FIRST_LAUNCH", true)) {
             // Initialise Loaders
-            getLoaderManager().initLoader(WaypointsLoader.LOADER_ID, null, this);
-            getLoaderManager().initLoader(RouteLoader.LOADER_ID, null, this);
-            getLoaderManager().initLoader(QuizzesLoader.LOADER_ID, null, this);
+            getLoaderManager().initLoader(WaypointsAsyncTaskLoader.LOADER_ID, null, this);
+            getLoaderManager().initLoader(RouteAsyncTaskLoader.LOADER_ID, null, this);
+            getLoaderManager().initLoader(QuizzesAsyncTaskLoader.LOADER_ID, null, this);
             getSharedPreferences("PREFERENCES", MODE_PRIVATE).edit().putBoolean("IS_FIRST_LAUNCH", false).commit();
         }
     }
@@ -77,18 +77,18 @@ public class WelcomePageActivity extends Activity implements LoaderManager.Loade
     @Override
     public Loader onCreateLoader(int id, Bundle args) {
         switch (id) {
-            case RouteLoader.LOADER_ID:
-                // Return new RouteLoader to load routes in the database
+            case RouteAsyncTaskLoader.LOADER_ID:
+                // Return new RouteAsyncTaskLoader to load routes in the database
                 DebugUtils.toast(this, "Loading Routes in Database ...");
-                return new RouteLoader(this);
-            case QuizzesLoader.LOADER_ID:
-                // Return new QuizzesLoader to load quizzes in the database
+                return new RouteAsyncTaskLoader(this);
+            case QuizzesAsyncTaskLoader.LOADER_ID:
+                // Return new QuizzesAsyncTaskLoader to load quizzes in the database
                 DebugUtils.toast(this, "Loading Quizzes in Database ...");
-                return new QuizzesLoader(this);
-            case WaypointsLoader.LOADER_ID:
-                // Return new WaypointsLoader to load waypoints in the database
+                return new QuizzesAsyncTaskLoader(this);
+            case WaypointsAsyncTaskLoader.LOADER_ID:
+                // Return new WaypointsAsyncTaskLoader to load waypoints in the database
                 DebugUtils.toast(this, "Loading Waypoints in Database ...");
-                return new WaypointsLoader(this);
+                return new WaypointsAsyncTaskLoader(this);
             default:
                 // There is no such Loader ID -> throw Exception
                 throw new IllegalArgumentException("Loader not found. ID: " + id);
@@ -103,17 +103,17 @@ public class WelcomePageActivity extends Activity implements LoaderManager.Loade
     @Override
     public void onLoadFinished(Loader loader, Object data) {
         switch (loader.getId()) {
-            case RouteLoader.LOADER_ID:
+            case RouteAsyncTaskLoader.LOADER_ID:
                 DebugUtils.toast(this, "Routes loaded");
-                getLoaderManager().destroyLoader(RouteLoader.LOADER_ID);
+                getLoaderManager().destroyLoader(RouteAsyncTaskLoader.LOADER_ID);
                 break;
-            case QuizzesLoader.LOADER_ID:
+            case QuizzesAsyncTaskLoader.LOADER_ID:
                 DebugUtils.toast(this, "Quizzes loaded");
-                getLoaderManager().destroyLoader(QuizzesLoader.LOADER_ID);
+                getLoaderManager().destroyLoader(QuizzesAsyncTaskLoader.LOADER_ID);
                 break;
-            case WaypointsLoader.LOADER_ID:
+            case WaypointsAsyncTaskLoader.LOADER_ID:
                 DebugUtils.toast(this, "Waypoints loaded");
-                getLoaderManager().destroyLoader(WaypointsLoader.LOADER_ID);
+                getLoaderManager().destroyLoader(WaypointsAsyncTaskLoader.LOADER_ID);
                 break;
         }
     }

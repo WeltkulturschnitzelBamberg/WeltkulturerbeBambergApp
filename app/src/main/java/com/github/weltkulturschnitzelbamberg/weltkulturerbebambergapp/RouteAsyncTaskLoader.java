@@ -1,11 +1,11 @@
-package com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.loaders;
+package com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp;
 
 import android.content.AsyncTaskLoader;
 import android.content.ContentValues;
 import android.content.Context;
 
-import com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.contentproviders.WeltkulturerbeContentProvider;
-import com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.databases.RoutesTable;
+import com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.contentprovider.WeltkulturerbeContentProvider;
+import com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.database.RoutesTable;
 import com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.utilities.DebugUtils;
 
 import org.w3c.dom.Document;
@@ -28,11 +28,11 @@ import javax.xml.parsers.ParserConfigurationException;
  * @version 1.0
  * @since 2015-06-04
  */
-public class RouteLoader extends AsyncTaskLoader {
+public class RouteAsyncTaskLoader extends AsyncTaskLoader {
 
     public static final int LOADER_ID = 1;
 
-    public RouteLoader(Context context) {
+    public RouteAsyncTaskLoader(Context context) {
         super(context);
     }
 
