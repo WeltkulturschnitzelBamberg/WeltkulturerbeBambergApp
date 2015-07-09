@@ -1,4 +1,4 @@
-package com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.contentproviders;
+package com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.contentprovider;
 
 import android.content.ContentProvider;
 import android.content.ContentValues;

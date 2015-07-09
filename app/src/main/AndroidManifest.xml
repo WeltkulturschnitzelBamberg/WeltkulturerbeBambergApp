@@ -52,8 +52,8 @@
         </activity>
 
         <provider
-            android:authorities="com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.contentproviders.WeltkulturerbeContentProvider"
-            android:name=".contentproviders.WeltkulturerbeContentProvider">
+            android:authorities="com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.contentprovider.WeltkulturerbeContentProvider"
+            android:name=".contentprovider.WeltkulturerbeContentProvider">
         </provider>
         <receiver
             android:name=".ProximityAlertReceiver"
