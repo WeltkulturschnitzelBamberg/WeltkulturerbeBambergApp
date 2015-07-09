@@ -59,10 +59,6 @@
             android:label="@string/title_activity_activity_tipp" >
         </activity>
         <activity
-            android:name=".activities.ActivityErklaerung"
-            android:label="@string/title_activity_activity_erklaerung" >
-        </activity>
-        <activity
             android:name=".activities.NavigationActivity"
             android:label="@string/title_activity_navigation" >
         </activity>
