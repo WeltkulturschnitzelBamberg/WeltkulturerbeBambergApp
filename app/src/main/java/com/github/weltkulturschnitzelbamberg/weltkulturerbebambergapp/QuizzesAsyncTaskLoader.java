@@ -26,11 +26,11 @@ import javax.xml.parsers.ParserConfigurationException;
  * @version 1.0
  * @since 2015-06-04
  */
-public class QuizzesLoader extends AsyncTaskLoader {
+public class QuizzesAsyncTaskLoader extends AsyncTaskLoader {
 
     public static final int LOADER_ID = 2;
 
-    public QuizzesLoader(Context context) {
+    public QuizzesAsyncTaskLoader(Context context) {
         super(context);
     }
 

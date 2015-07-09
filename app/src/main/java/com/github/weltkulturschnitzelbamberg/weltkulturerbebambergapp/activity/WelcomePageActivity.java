@@ -8,7 +8,7 @@ import android.os.Bundle;
 import com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.R;
 import com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.WaypointsLoader;
 import com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.utilities.DebugUtils;
-import com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.QuizzesLoader;
+import com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.QuizzesAsyncTaskLoader;
 import com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.RouteLoader;
 import android.content.Intent;
 import android.support.v7.app.AppCompatCallback;
@@ -68,7 +68,7 @@ public class WelcomePageActivity extends Activity implements LoaderManager.Loade
             // Initialise Loaders
             getLoaderManager().initLoader(WaypointsLoader.LOADER_ID, null, this);
             getLoaderManager().initLoader(RouteLoader.LOADER_ID, null, this);
-            getLoaderManager().initLoader(QuizzesLoader.LOADER_ID, null, this);
+            getLoaderManager().initLoader(QuizzesAsyncTaskLoader.LOADER_ID, null, this);
             getSharedPreferences("PREFERENCES", MODE_PRIVATE).edit().putBoolean("IS_FIRST_LAUNCH", false).commit();
         }
     }
@@ -80,10 +80,10 @@ public class WelcomePageActivity extends Activity implements LoaderManager.Loade
                 // Return new RouteLoader to load routes in the database
                 DebugUtils.toast(this, "Loading Routes in Database ...");
                 return new RouteLoader(this);
-            case QuizzesLoader.LOADER_ID:
-                // Return new QuizzesLoader to load quizzes in the database
+            case QuizzesAsyncTaskLoader.LOADER_ID:
+                // Return new QuizzesAsyncTaskLoader to load quizzes in the database
                 DebugUtils.toast(this, "Loading Quizzes in Database ...");
-                return new QuizzesLoader(this);
+                return new QuizzesAsyncTaskLoader(this);
             case WaypointsLoader.LOADER_ID:
                 // Return new WaypointsLoader to load waypoints in the database
                 DebugUtils.toast(this, "Loading Waypoints in Database ...");
@@ -106,9 +106,9 @@ public class WelcomePageActivity extends Activity implements LoaderManager.Loade
                 DebugUtils.toast(this, "Routes loaded");
                 getLoaderManager().destroyLoader(RouteLoader.LOADER_ID);
                 break;
-            case QuizzesLoader.LOADER_ID:
+            case QuizzesAsyncTaskLoader.LOADER_ID:
                 DebugUtils.toast(this, "Quizzes loaded");
-                getLoaderManager().destroyLoader(QuizzesLoader.LOADER_ID);
+                getLoaderManager().destroyLoader(QuizzesAsyncTaskLoader.LOADER_ID);
                 break;
             case WaypointsLoader.LOADER_ID:
                 DebugUtils.toast(this, "Waypoints loaded");
