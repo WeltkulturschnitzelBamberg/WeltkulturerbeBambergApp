@@ -7,7 +7,7 @@ import android.os.Bundle;
 
 import com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.R;
 import com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.RouteAsyncTaskLoader;
-import com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.WaypointsLoader;
+import com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.WaypointsAsyncTaskLoader;
 import com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.utilities.DebugUtils;
 import com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.QuizzesAsyncTaskLoader;
 
@@ -67,7 +67,7 @@ public class WelcomePageActivity extends Activity implements LoaderManager.Loade
         // Check if this is the first launch of the Application
         if (getSharedPreferences("PREFERENCES", MODE_PRIVATE).getBoolean("IS_FIRST_LAUNCH", true)) {
             // Initialise Loaders
-            getLoaderManager().initLoader(WaypointsLoader.LOADER_ID, null, this);
+            getLoaderManager().initLoader(WaypointsAsyncTaskLoader.LOADER_ID, null, this);
             getLoaderManager().initLoader(RouteAsyncTaskLoader.LOADER_ID, null, this);
             getLoaderManager().initLoader(QuizzesAsyncTaskLoader.LOADER_ID, null, this);
             getSharedPreferences("PREFERENCES", MODE_PRIVATE).edit().putBoolean("IS_FIRST_LAUNCH", false).commit();
@@ -85,10 +85,10 @@ public class WelcomePageActivity extends Activity implements LoaderManager.Loade
                 // Return new QuizzesAsyncTaskLoader to load quizzes in the database
                 DebugUtils.toast(this, "Loading Quizzes in Database ...");
                 return new QuizzesAsyncTaskLoader(this);
-            case WaypointsLoader.LOADER_ID:
-                // Return new WaypointsLoader to load waypoints in the database
+            case WaypointsAsyncTaskLoader.LOADER_ID:
+                // Return new WaypointsAsyncTaskLoader to load waypoints in the database
                 DebugUtils.toast(this, "Loading Waypoints in Database ...");
-                return new WaypointsLoader(this);
+                return new WaypointsAsyncTaskLoader(this);
             default:
                 // There is no such Loader ID -> throw Exception
                 throw new IllegalArgumentException("Loader not found. ID: " + id);
@@ -111,9 +111,9 @@ public class WelcomePageActivity extends Activity implements LoaderManager.Loade
                 DebugUtils.toast(this, "Quizzes loaded");
                 getLoaderManager().destroyLoader(QuizzesAsyncTaskLoader.LOADER_ID);
                 break;
-            case WaypointsLoader.LOADER_ID:
+            case WaypointsAsyncTaskLoader.LOADER_ID:
                 DebugUtils.toast(this, "Waypoints loaded");
-                getLoaderManager().destroyLoader(WaypointsLoader.LOADER_ID);
+                getLoaderManager().destroyLoader(WaypointsAsyncTaskLoader.LOADER_ID);
                 break;
         }
     }
