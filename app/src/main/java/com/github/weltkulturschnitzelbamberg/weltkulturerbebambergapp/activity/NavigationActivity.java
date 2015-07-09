@@ -15,8 +15,8 @@ import android.view.MenuItem;
 
 import com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.R;
 import com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.contentprovider.WeltkulturerbeContentProvider;
-import com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.databases.RoutesTable;
-import com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.databases.WaypointsTable;
+import com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.database.RoutesTable;
+import com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.database.WaypointsTable;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.SupportMapFragment;

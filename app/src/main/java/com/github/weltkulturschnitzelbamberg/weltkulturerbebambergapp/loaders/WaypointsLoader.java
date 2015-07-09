@@ -5,7 +5,7 @@ import android.content.ContentValues;
 import android.content.Context;
 
 import com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.contentprovider.WeltkulturerbeContentProvider;
-import com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.databases.WaypointsTable;
+import com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.database.WaypointsTable;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
