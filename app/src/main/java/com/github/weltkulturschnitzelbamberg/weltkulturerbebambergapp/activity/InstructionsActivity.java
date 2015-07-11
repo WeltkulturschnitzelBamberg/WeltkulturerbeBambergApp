@@ -1,4 +1,4 @@
-package com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp;
+package com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.activity;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -7,10 +7,9 @@ import android.support.v7.app.AppCompatCallback;
 import android.support.v7.app.AppCompatDelegate;
 import android.support.v7.view.ActionMode;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
+
+import com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.R;
 
 /**
  * This activity shows a greeting and instructions how to use the World-heritage-Application.
@@ -19,22 +18,15 @@ import android.widget.Button;
  * @version 1.0
  * @since 2015-06-04
  */
-public class InstructionActivity extends Activity implements AppCompatCallback {
-    @Override
-    public void onSupportActionModeStarted(ActionMode mode) {
-        //let's leave this empty, for now
-    }
+public class InstructionsActivity extends Activity implements AppCompatCallback {
 
-    @Override
-    public void onSupportActionModeFinished(ActionMode mode) {
-        // let's leave this empty, for now
-    }
     private AppCompatDelegate delegate;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        //TODO cohesion
         //let's create the delegate, passing the activity at both arguments (Activity, AppCompatCallback)
         delegate = AppCompatDelegate.create(this, this);
         //we need to call the onCreate() of the AppCompatDelegate
@@ -46,21 +38,29 @@ public class InstructionActivity extends Activity implements AppCompatCallback {
         //Finally, let's add the Toolbar
         Toolbar toolbar = (Toolbar) findViewById(R.id.instruc_toolbar);
         delegate.setSupportActionBar(toolbar);
-
-        Button btn_instruc_short_route = (Button) findViewById(R.id.btn_instruc_short_route);
-            btn_instruc_short_route.setOnClickListener(new View.OnClickListener() {
-                public void onClick(View v) {
-                    startActivity(new Intent(InstructionActivity.this, NavigationActivity.class));
-                                            }
-            });
-
-        Button btn_instruc_long_route = (Button) findViewById(R.id.btn_instruc_long_route);
-            btn_instruc_long_route.setOnClickListener(new View.OnClickListener() {
-                public void onClick(View v) {
-                startActivity(new Intent(InstructionActivity.this, NavigationActivity.class));
-                                            }
-            });
     }
 
+    //TODO Documentation
+    public void onBtnClickShortRoute(View view) {
+        Intent startShortRoute = new Intent(this, NavigationActivity.class);
+        startShortRoute.putExtra(NavigationActivity.ROUTE_CODE, NavigationActivity.CODE_ROUTE_SHORT);
+        startActivity(startShortRoute);
+    }
 
+    //TODO Documentation
+    public void onBtnClickLongRoute(View view) {
+        Intent startLongRoute = new Intent(this, NavigationActivity.class);
+        startLongRoute.putExtra(NavigationActivity.ROUTE_CODE, NavigationActivity.CODE_ROUTE_LONG);
+        startActivity(startLongRoute);
+    }
+
+    @Override
+    public void onSupportActionModeStarted(ActionMode mode) {
+        //let's leave this empty, for now
+    }
+
+    @Override
+    public void onSupportActionModeFinished(ActionMode mode) {
+        // let's leave this empty, for now
+    }
 }

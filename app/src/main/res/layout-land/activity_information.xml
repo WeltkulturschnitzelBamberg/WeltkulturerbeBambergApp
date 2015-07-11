@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     app:contentInsetEnd="0dp"
     app:contentInsetStart="0dp"
-    tools:context="com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.InformationActivity">
+    tools:context="com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.activity.InformationActivity">
 
     <ImageView
         android:layout_width="fill_parent"

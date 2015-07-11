@@ -1,4 +1,4 @@
-package com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.Utilities;
+package com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.utilities;
 
 import android.content.Context;
 import android.util.Log;

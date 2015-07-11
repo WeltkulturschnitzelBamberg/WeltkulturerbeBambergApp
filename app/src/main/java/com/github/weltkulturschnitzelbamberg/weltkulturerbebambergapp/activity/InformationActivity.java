@@ -1,4 +1,4 @@
-package com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp;
+package com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.activity;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -9,8 +9,8 @@ import android.support.v7.view.ActionMode;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
+
+import com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.R;
 
 /**
  * This activity shows information about a world-heritage.
@@ -21,15 +21,7 @@ import android.widget.Button;
  * @since 2015-06-04
  */
 public class InformationActivity extends Activity implements AppCompatCallback {
-    @Override
-    public void onSupportActionModeStarted(ActionMode mode) {
-        //let's leave this empty, for now
-    }
 
-    @Override
-    public void onSupportActionModeFinished(ActionMode mode) {
-        // let's leave this empty, for now
-    }
     private AppCompatDelegate delegate;
 
     @Override
@@ -42,6 +34,8 @@ public class InformationActivity extends Activity implements AppCompatCallback {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        //TODO cohesion
         //let's create the delegate, passing the activity at both arguments (Activity, AppCompatCallback)
         delegate = AppCompatDelegate.create(this, this);
         //we need to call the onCreate() of the AppCompatDelegate
@@ -53,14 +47,6 @@ public class InformationActivity extends Activity implements AppCompatCallback {
         //Finally, let's add the Toolbar
         Toolbar toolbar = (Toolbar) findViewById(R.id.info_toolbar);
         delegate.setSupportActionBar(toolbar);
-
-        Button btn_info_continue = (Button) findViewById(R.id.btn_info_continue);
-         btn_info_continue.setOnClickListener(new View.OnClickListener() {
-             public void onClick(View v) {
-                 startActivity(new Intent(InformationActivity.this, ActivityFrage2.class));
-             }
-         });
-
     }
 
     @Override
@@ -80,6 +66,15 @@ public class InformationActivity extends Activity implements AppCompatCallback {
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
 
+    @Override
+    public void onSupportActionModeStarted(ActionMode mode) {
+        //let's leave this empty, for now
+    }
+
+    @Override
+    public void onSupportActionModeFinished(ActionMode mode) {
+        // let's leave this empty, for now
     }
 }

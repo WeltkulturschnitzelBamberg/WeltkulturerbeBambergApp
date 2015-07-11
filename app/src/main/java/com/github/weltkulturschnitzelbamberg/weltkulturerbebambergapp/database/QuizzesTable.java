@@ -3,8 +3,8 @@ package com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.database;
 import android.database.sqlite.SQLiteDatabase;
 
 /**
- * This class describes the table "quizzes" in the Database
- * {@link WeltkulturerbeDatabaseHelper}
+ * This class describes the table "quizzes" in the Database {@link WeltkulturerbeDatabaseHelper}.
+ * In this Table all quizzes are saved
  *
  * @author Project-Seminar "Schnitzeljagd World-heritage" 2015/2016 des Clavius Gymnasiums Bamberg
  * @version 1.0
@@ -17,7 +17,7 @@ public final class QuizzesTable {
      * @throws IllegalAccessException
      */
     private QuizzesTable() throws IllegalAccessException {
-        throw new IllegalAccessException("'" + QuizzesTable.class.getName() + "' should not be instantiated");
+        throw new IllegalAccessException("'" + this.getClass().getName() + "' should not be instantiated");
     }
 
     /** Name of the table in the database **/
