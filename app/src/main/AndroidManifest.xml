@@ -52,17 +52,23 @@
         </activity>
 
         <provider
-            android:authorities="com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.contentprovider.WeltkulturerbeContentProvider"
-            android:name=".contentprovider.WeltkulturerbeContentProvider">
+            android:name=".contentprovider.WeltkulturerbeContentProvider"
+            android:authorities="com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.contentprovider.WeltkulturerbeContentProvider" >
         </provider>
+
         <receiver
             android:name=".ProximityAlertReceiver"
             android:enabled="true"
-            android:exported="true">
+            android:exported="true" >
             <intent-filter>
-                <action android:name="com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.PROXIMITY_ALERT"/>
+                <action android:name="com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.PROXIMITY_ALERT" />
             </intent-filter>
         </receiver>
+
+        <activity
+            android:name=".activity.QuizActivity"
+            android:label="@string/title_activity_quiz" >
+        </activity>
     </application>
 
 </manifest>
