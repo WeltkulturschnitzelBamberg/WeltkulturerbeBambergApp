@@ -21,7 +21,9 @@ import java.util.List;
  */
 public class QuizActivity extends Activity {
 
-    public static final String TAG_QUIZ_ID = "quiz_id";
+    // Definition of the Tags used in Intents send to this Activity
+    public static final String TAG_PACKAGE = QuizActivity.class.getPackage().getName();
+    public static final String TAG_QUIZ_ID = TAG_PACKAGE + "quiz_id";
     public static final int TAG_QUIZ_ID_DEFAULT = -1;
 
     @Override
