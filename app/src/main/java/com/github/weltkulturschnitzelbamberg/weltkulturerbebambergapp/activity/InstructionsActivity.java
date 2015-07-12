@@ -43,14 +43,14 @@ public class InstructionsActivity extends Activity implements AppCompatCallback 
     //TODO Documentation
     public void onBtnClickShortRoute(View view) {
         Intent startShortRoute = new Intent(this, NavigationActivity.class);
-        startShortRoute.putExtra(NavigationActivity.ROUTE_CODE, NavigationActivity.CODE_ROUTE_SHORT);
+        startShortRoute.putExtra(NavigationActivity.TAG_ROUTE_CODE, NavigationActivity.FLAG_ROUTE_CODE_SHORT);
         startActivity(startShortRoute);
     }
 
     //TODO Documentation
     public void onBtnClickLongRoute(View view) {
         Intent startLongRoute = new Intent(this, NavigationActivity.class);
-        startLongRoute.putExtra(NavigationActivity.ROUTE_CODE, NavigationActivity.CODE_ROUTE_LONG);
+        startLongRoute.putExtra(NavigationActivity.TAG_ROUTE_CODE, NavigationActivity.FLAG_ROUTE_CODE_LONG);
         startActivity(startLongRoute);
     }
 
