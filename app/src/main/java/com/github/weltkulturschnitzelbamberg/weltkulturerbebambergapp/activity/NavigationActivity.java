@@ -35,16 +35,22 @@ public class NavigationActivity extends FragmentActivity implements AppCompatCal
 
     private AppCompatDelegate mDelegate;
 
-    private GoogleMap mMap; // Might be null if Google Play services APK is not available.
+    private GoogleMap mMap;
 
     private static final LatLng BAMBERG = new LatLng(49.898814, 10.890764);
 
     private static final int CAMERA_ANIMATION_DURATION = 8000;
 
-    public static final String ROUTE_CODE = "route_code";
-    public static final int CODE_ROUTE_ERROR = -1;
-    public static final int CODE_ROUTE_SHORT = 0;
-    public static final int CODE_ROUTE_LONG = 1;
+    // Definition of the Tags used in Intents send to this Activity
+    public static final String TAG_PACKAGE = NavigationActivity.class.getPackage().getName();
+    /** This TAG tags the CODE for the Route which is to be loaded within an Intent send to this Activity. Use {@link NavigationActivity#FLAG_ROUTE_CODE_ERROR} to indicate an error occurred or the route doesn't exist */
+    public static final String TAG_ROUTE_CODE = TAG_PACKAGE + "route_code";
+    /** FLAG for the Route code within an Intent send to this Activity, tagged with {@link NavigationActivity#TAG_ROUTE_CODE}, which indicates the Route doesn't exist*/
+    public static final int FLAG_ROUTE_CODE_ERROR = -1;
+    /** FLAG for the Route code within an Intent send to this Activity, tagged with {@link NavigationActivity#TAG_ROUTE_CODE}, which indicates the short Route is to be loaded*/
+    public static final int FLAG_ROUTE_CODE_SHORT = 0;
+    /** FLAG for the Route code within an Intent send to this Activity, tagged with {@link NavigationActivity#TAG_ROUTE_CODE}, which indicates the long Route is to be loaded*/
+    public static final int FLAG_ROUTE_CODE_LONG = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -108,7 +114,7 @@ public class NavigationActivity extends FragmentActivity implements AppCompatCal
         /** Animate Camera to Bamberg in a certain time **/
         mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(BAMBERG, 13), CAMERA_ANIMATION_DURATION, null);
         mMap.setMyLocationEnabled(true);
-        loadRoute(getIntent().getIntExtra(ROUTE_CODE, CODE_ROUTE_ERROR));
+        loadRoute(getIntent().getIntExtra(TAG_ROUTE_CODE, FLAG_ROUTE_CODE_ERROR));
     }
 
     //TODO Documentation
@@ -118,10 +124,10 @@ public class NavigationActivity extends FragmentActivity implements AppCompatCal
         String selection = RoutesTable.COLUMN_ROUTE_NAME + "=?";
         String[] selectionArgs;
         switch (routeCode) {
-            case CODE_ROUTE_SHORT:
+            case FLAG_ROUTE_CODE_SHORT:
                 selectionArgs = new String[]{"Short Route"};
                 break;
-            case CODE_ROUTE_LONG:
+            case FLAG_ROUTE_CODE_LONG:
                 selectionArgs = new String[]{"Long Route"};
                 break;
             default:
