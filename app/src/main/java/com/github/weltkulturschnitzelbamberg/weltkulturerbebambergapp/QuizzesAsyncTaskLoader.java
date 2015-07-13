@@ -56,12 +56,27 @@ public class QuizzesAsyncTaskLoader extends AsyncTaskLoader {
         for (int i = 0; i < quizzesList.getLength(); i++) {
             Element quiz = (Element) quizzesList.item(i);
             ContentValues values = new ContentValues();
-            values.put(QuizzesTable.COLUMN_QUIZ_ID, quiz.getElementsByTagName(Quizzes.TAG_QUIZ_ID).item(0).getTextContent());
-            values.put(QuizzesTable.COLUMN_QUESTION, quiz.getElementsByTagName(Quizzes.TAG_QUESTION).item(0).getTextContent());
-            values.put(QuizzesTable.COLUMN_SOLUTION, quiz.getElementsByTagName(Quizzes.TAG_SOLUTION).item(0).getTextContent());
-            values.put(QuizzesTable.COLUMN_WRONG_ANSWER_1, quiz.getElementsByTagName(Quizzes.TAG_WRONG_ANSWER_1).item(0).getTextContent());
-            values.put(QuizzesTable.COLUMN_WRONG_ANSWER_2, quiz.getElementsByTagName(Quizzes.TAG_WRONG_ANSWER_2).item(0).getTextContent());
-            values.put(QuizzesTable.COLUMN_WRONG_ANSWER_3, quiz.getElementsByTagName(Quizzes.TAG_WRONG_ANSWER_3).item(0).getTextContent());
+
+            String quizID = null;
+            String question = null;
+            String solution = null;
+            String wrongAnswer1 = null;
+            String wrongAnswer2 = null;
+            String wrongAnswer3 = null;
+
+            if (quiz.getElementsByTagName(Quizzes.TAG_QUIZ_ID).getLength() > 0) quizID = quiz.getElementsByTagName(Quizzes.TAG_QUIZ_ID).item(0).getTextContent();
+            if (quiz.getElementsByTagName(Quizzes.TAG_QUESTION).getLength() > 0) question = quiz.getElementsByTagName(Quizzes.TAG_QUESTION).item(0).getTextContent();
+            if (quiz.getElementsByTagName(Quizzes.TAG_SOLUTION).getLength() > 0) solution = quiz.getElementsByTagName(Quizzes.TAG_SOLUTION).item(0).getTextContent();
+            if (quiz.getElementsByTagName(Quizzes.TAG_WRONG_ANSWER_1).getLength() > 0) wrongAnswer1 = quiz.getElementsByTagName(Quizzes.TAG_WRONG_ANSWER_1).item(0).getTextContent();
+            if (quiz.getElementsByTagName(Quizzes.TAG_WRONG_ANSWER_2).getLength() > 0) wrongAnswer2 = quiz.getElementsByTagName(Quizzes.TAG_WRONG_ANSWER_2).item(0).getTextContent();
+            if (quiz.getElementsByTagName(Quizzes.TAG_WRONG_ANSWER_3).getLength() > 0) wrongAnswer3 = quiz.getElementsByTagName(Quizzes.TAG_WRONG_ANSWER_3).item(0).getTextContent();
+
+            values.put(QuizzesTable.COLUMN_QUIZ_ID, quizID);
+            values.put(QuizzesTable.COLUMN_QUESTION, question);
+            values.put(QuizzesTable.COLUMN_SOLUTION, solution);
+            values.put(QuizzesTable.COLUMN_WRONG_ANSWER_1, wrongAnswer1);
+            values.put(QuizzesTable.COLUMN_WRONG_ANSWER_2, wrongAnswer2);
+            values.put(QuizzesTable.COLUMN_WRONG_ANSWER_3, wrongAnswer3);
             getContext().getContentResolver().insert(WeltkulturerbeContentProvider.URI_TABLE_QUIZZES, values);
         }
     }
