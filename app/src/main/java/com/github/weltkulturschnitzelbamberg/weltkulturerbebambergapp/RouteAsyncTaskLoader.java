@@ -59,13 +59,20 @@ public class RouteAsyncTaskLoader extends AsyncTaskLoader {
             Node routeNode = routesList.item(i);
             if (routeNode.getNodeType() == Node.ELEMENT_NODE) {
                 Element route = (Element) routeNode;
-                String routeName = route.getElementsByTagName(Routes.TAG_NAME).item(0).getTextContent();
+
+                String routeName = null;
+                if (route.getElementsByTagName(Routes.TAG_NAME).getLength() > 0) routeName = route.getElementsByTagName(Routes.TAG_NAME).item(0).getTextContent();
+
                 NodeList waypointIDList = route.getElementsByTagName(Routes.TAG_WAYPOINT_ID);
                 for (int k = 0; k < waypointIDList.getLength(); k++) {
                     ContentValues values = new ContentValues();
                     DebugUtils.log(routeName);
+
+                    String waypointID = null;
+                    if (waypointIDList.getLength() > 0) waypointID = waypointIDList.item(k).getTextContent();
+
                     values.put(RoutesTable.COLUMN_ROUTE_NAME, routeName);
-                    values.put(RoutesTable.COLUMN_WAYPOINT_ID, waypointIDList.item(k).getTextContent());
+                    values.put(RoutesTable.COLUMN_WAYPOINT_ID, waypointID);
                     getContext().getContentResolver().insert(WeltkulturerbeContentProvider.URI_TABLE_ROUTES, values);
                 }
             }
