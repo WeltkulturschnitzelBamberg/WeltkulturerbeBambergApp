@@ -39,7 +39,7 @@ public final class WaypointsTable {
             + COLUMN_NAME + " TEXT NOT NULL,"
             + COLUMN_LONGITUDE + " REAL NOT NULL,"
             + COLUMN_LATITUDE + " REAL NOT NULL,"
-            + COLUMN_WAYPOINT_ID + " INTEGER"
+            + COLUMN_QUIZ_ID + " INTEGER"
             + ");";
 
     public static void onCreate(SQLiteDatabase database) {
