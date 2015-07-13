@@ -12,7 +12,6 @@ import android.support.v7.view.ActionMode;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-
 import com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.R;
 import com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.contentprovider.WeltkulturerbeContentProvider;
 import com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.database.RoutesTable;
@@ -38,8 +37,6 @@ public class NavigationActivity extends FragmentActivity implements AppCompatCal
     private GoogleMap mMap;
 
     private static final LatLng BAMBERG = new LatLng(49.898814, 10.890764);
-
-    private static final int CAMERA_ANIMATION_DURATION = 8000;
 
     // Definition of the Tags used in Intents send to this Activity
     public static final String TAG_PACKAGE = NavigationActivity.class.getPackage().getName();
@@ -68,7 +65,6 @@ public class NavigationActivity extends FragmentActivity implements AppCompatCal
         //Finally, let's add the Toolbar
         Toolbar toolbar = (Toolbar) findViewById(R.id.navigation_toolbar);
         mDelegate.setSupportActionBar(toolbar);
-
         setUpMapIfNeeded();
     }
 
@@ -111,8 +107,8 @@ public class NavigationActivity extends FragmentActivity implements AppCompatCal
      * This function sets up the GoogleMaps v2 Map
      */
     private void setUpMap() {
-        /** Animate Camera to Bamberg in a certain time **/
-        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(BAMBERG, 13), CAMERA_ANIMATION_DURATION, null);
+        // Move Camera to Bamberg
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(BAMBERG, 12f));
         mMap.setMyLocationEnabled(true);
         loadRoute(getIntent().getIntExtra(TAG_ROUTE_CODE, FLAG_ROUTE_CODE_ERROR));
     }
