@@ -25,6 +25,7 @@ public final class RoutesTable {
     /** Names of the columns inside the table **/
     public static final String COLUMN_ID = "_id";
     public static final String COLUMN_ROUTE_NAME = "route_name";
+    public static final String COLUMN_WAYPOINT_POSITION = "waypoint_position";
     public static final String COLUMN_WAYPOINT_ID = "waypoint_id";
 
     /** SQL command to create the table **/
@@ -32,6 +33,7 @@ public final class RoutesTable {
             + "("
             + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
             + COLUMN_ROUTE_NAME + " TEXT NOT NULL,"
+            + COLUMN_WAYPOINT_POSITION + " INTEGER NOT NULL,"
             + COLUMN_WAYPOINT_ID + " INTEGER NOT NULL"
             + ");";
 
