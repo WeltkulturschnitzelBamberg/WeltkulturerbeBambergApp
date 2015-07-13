@@ -1,7 +1,8 @@
 <?xml version="1.0" ?>
 <quizzes>
     <quiz>
-        <quiz-id>0</quiz-id>
+        <id>0</id>
+        <location>Kloster Michaelsberg</location>
         <question>In welchen Stil ist die Fassade gebaut?</question>
         <solution>Barock</solution>
         <wrong-answer1>Romantik</wrong-answer1>
@@ -9,7 +10,8 @@
         <wrong-answer3>Gotik</wrong-answer3>
     </quiz>
     <quiz>
-        <quiz-id>1</quiz-id>
+        <id>1</id>
+        <location>Neue Residenz</location>
         <question>Aus welchem Material besteht der Boden in der Einfahrt?</question>
         <solution>Holz</solution>
         <wrong-answer1>Stein</wrong-answer1>
@@ -17,7 +19,8 @@
         <wrong-answer3>Metall</wrong-answer3>
     </quiz>
     <quiz>
-        <quiz-id>2</quiz-id>
+        <id>2</id>
+        <location>St. Getreu</location>
         <question>Was ist in dem Gebäude noch untergebracht?</question>
         <solution>Nervenklinik</solution>
         <wrong-answer1>Schule</wrong-answer1>
@@ -25,7 +28,8 @@
         <wrong-answer3>Kindergarten</wrong-answer3>
     </quiz>
     <quiz>
-        <quiz-id>3</quiz-id>
+        <id>3</id>
+        <location>Markusbrücke</location>
         <question>Was sehen sie am Ufer?</question>
         <solution>kleines Venedig</solution>
         <wrong-answer1>kleines Istanbul</wrong-answer1>
@@ -33,7 +37,8 @@
         <wrong-answer3>kleines Tokyo</wrong-answer3>
     </quiz>
     <quiz>
-        <quiz-id>4</quiz-id>
+        <id>4</id>
+        <location>St.Elisabeth</location>
         <question>Welche Szene wird auf dem linken Pfosten der Tafel vor der Kirche dargestellt?</question>
         <solution>Hand wird abgehackt</solution>
         <wrong-answer1>Taufe</wrong-answer1>
@@ -41,7 +46,8 @@
         <wrong-answer3>Teufelsanbetung</wrong-answer3>
     </quiz>
     <quiz>
-        <quiz-id>5</quiz-id>
+        <id>5</id>
+        <location>Dom</location>
         <question>Was befindet sich außergewöhnliches in der vorderen Krypta? </question>
         <solution>Brunnen</solution>
         <wrong-answer1>Geheime Tunnel</wrong-answer1>
@@ -49,7 +55,8 @@
         <wrong-answer3>Waffenkammer</wrong-answer3>
     </quiz>
     <quiz>
-        <quiz-id>6</quiz-id>
+        <id>6</id>
+        <location>Alte Hofhaltung</location>
         <question>Wie viele kleine Figuren sind auf dem Prachttor zu sehen?</question>
         <solution>8</solution>
         <wrong-answer1>7</wrong-answer1>
@@ -57,7 +64,8 @@
         <wrong-answer3>42</wrong-answer3>
     </quiz>
     <quiz>
-        <quiz-id>7</quiz-id>
+        <id>7</id>
+        <location>Altes Rathaus</location>
         <question>Welches Körperteil befindet sich am alten Rathaus? </question>
         <solution>Bein</solution>
         <wrong-answer1>Hand</wrong-answer1>
@@ -65,7 +73,8 @@
         <wrong-answer3>Torso</wrong-answer3>
     </quiz>
     <quiz>
-        <quiz-id>8</quiz-id>
+        <id>8</id>
+        <location>Universität</location>
         <question>Welches Tier ist auf dem Wappen über der Tür zu sehen?</question>
         <solution>Schwan</solution>
         <wrong-answer1>Hund</wrong-answer1>
@@ -73,7 +82,8 @@
         <wrong-answer3>Stier</wrong-answer3>
     </quiz>
     <quiz>
-        <quiz-id>9</quiz-id>
+        <id>9</id>
+        <location>St. Martin</location>
         <question>Wie heißt die Heiligenstatue links oben?</question>
         <solution>Ignatius</solution>
         <wrong-answer1>Martin</wrong-answer1>
