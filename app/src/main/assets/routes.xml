@@ -4,78 +4,78 @@
         <name>Long Route</name>
         <waypoint>
             <position>0</position>
-            <waypoint-id>0</waypoint-id>
+            <id>0</id>
         </waypoint>
         <waypoint>
             <position>1</position>
-            <waypoint-id>1</waypoint-id>
+            <id>1</id>
         </waypoint>
         <waypoint>
             <position>2</position>
-            <waypoint-id>2</waypoint-id>
+            <id>2</id>
         </waypoint>
         <waypoint>
             <position>3</position>
-            <waypoint-id>3</waypoint-id>
+            <id>3</id>
         </waypoint>
         <waypoint>
             <position>4</position>
-            <waypoint-id>4</waypoint-id>
+            <id>4</id>
         </waypoint>
         <waypoint>
             <position>5</position>
-            <waypoint-id>5</waypoint-id>
+            <id>5</id>
         </waypoint>
         <waypoint>
             <position>6</position>
-            <waypoint-id>6</waypoint-id>
+            <id>6</id>
         </waypoint>
         <waypoint>
             <position>7</position>
-            <waypoint-id>7</waypoint-id>
+            <id>7</id>
         </waypoint>
         <waypoint>
             <position>8</position>
-            <waypoint-id>8</waypoint-id>
+            <id>8</id>
         </waypoint>
         <waypoint>
             <position>9</position>
-            <waypoint-id>9</waypoint-id>
+            <id>9</id>
         </waypoint>
     </route>
     <route>
         <name>Short Route</name>
         <waypoint>
             <position>0</position>
-            <waypoint-id>1</waypoint-id>
+            <id>1</id>
         </waypoint>
         <waypoint>
             <position>1</position>
-            <waypoint-id>2</waypoint-id>
+            <id>2</id>
         </waypoint>
         <waypoint>
             <position>2</position>
-            <waypoint-id>3</waypoint-id>
+            <id>3</id>
         </waypoint>
         <waypoint>
             <position>3</position>
-            <waypoint-id>4</waypoint-id>
+            <id>4</id>
         </waypoint>
         <waypoint>
             <position>4</position>
-            <waypoint-id>5</waypoint-id>
+            <id>5</id>
         </waypoint>
         <waypoint>
             <position>5</position>
-            <waypoint-id>6</waypoint-id>
+            <id>6</id>
         </waypoint>
         <waypoint>
             <position>6</position>
-            <waypoint-id>7</waypoint-id>
+            <id>7</id>
         </waypoint>
         <waypoint>
             <position>7</position>
-            <waypoint-id>8</waypoint-id>
+            <id>8</id>
         </waypoint>
     </route>
 </routes>
