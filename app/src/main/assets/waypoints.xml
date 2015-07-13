@@ -5,7 +5,7 @@
         <name>Gärtner- und Häckermuseum</name>
         <latitude>49.899380</latitude>
         <longitude>10.892761</longitude>
-        <quiz-id>-1</quiz-id>
+        <!-- No Quiz -->
     </waypoint>
     <waypoint>
         <id>1</id>

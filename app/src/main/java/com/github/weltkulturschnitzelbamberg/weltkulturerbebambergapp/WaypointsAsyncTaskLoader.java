@@ -30,6 +30,8 @@ import javax.xml.parsers.ParserConfigurationException;
 public class WaypointsAsyncTaskLoader extends AsyncTaskLoader{
 
     public static final int LOADER_ID = 0;
+    private static final String PACKAGE = WaypointsAsyncTaskLoader.class.getPackage().getName();
+    private static final String INT_NOT_DEFINED = "" + -1;
 
     public WaypointsAsyncTaskLoader(Context context) {
         super(context);
@@ -60,7 +62,7 @@ public class WaypointsAsyncTaskLoader extends AsyncTaskLoader{
                 Element element = (Element) node;
                 ContentValues values = new ContentValues();
 
-                String waypointID = null;
+                String waypointID = INT_NOT_DEFINED;
                 String name = null;
                 String latitude = null;
                 String longitude = null;
