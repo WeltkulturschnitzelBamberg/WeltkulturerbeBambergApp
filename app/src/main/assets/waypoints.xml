@@ -11,59 +11,69 @@
         <name>Linker Regnitzarm</name>
         <latitude>49.894137</latitude>
         <longitude>10.882387</longitude>
+        <quiz-id>3</quiz-id>
     </waypoint>
     <waypoint>
         <id>2</id>
         <name>Otto-Friedrich-Universität Bamberg</name>
         <latitude>49.893815</latitude>
         <longitude>10.885937</longitude>
+        <quiz-id>8</quiz-id>
     </waypoint>
     <waypoint>
         <id>3</id>
         <name>St. Martin</name>
         <latitude>49.893274</latitude>
         <longitude>10.888598</longitude>
+        <quiz-id>9</quiz-id>
     </waypoint>
     <waypoint>
         <id>4</id>
         <name>Obere Brücke</name>
         <latitude>49.891626</latitude>
         <longitude>10.887468</longitude>
+        <quiz-id>7</quiz-id>
     </waypoint>
     <waypoint>
         <id>5</id>
         <name>St. Elisabeth</name>
         <latitude>49.892849</latitude>
         <longitude>10.882882</longitude>
+        <quiz-id>4</quiz-id>
     </waypoint>
     <waypoint>
         <id>6</id>
         <name>Bamberger Dom</name>
         <latitude>49.891154</latitude>
         <longitude>10.882907</longitude>
+        <quiz-id>5</quiz-id>
     </waypoint>
     <waypoint>
         <id>7</id>
         <name>Neue Residenz</name>
         <latitude>49.891561</latitude>
         <longitude>10.882456</longitude>
+        <quiz-id>1</quiz-id>
     </waypoint>
     <waypoint>
         <id>8</id>
         <name>Alte Hofhaltung</name>
         <latitude>49.891077</latitude>
         <longitude>10.881412</longitude>
+        <quiz-id>6</quiz-id>
     </waypoint>
     <waypoint>
         <id>9</id>
         <name>St. Getreu</name>
         <latitude>49.892689</latitude>
         <longitude>10.872340</longitude>
+        <quiz-id>2</quiz-id>
     </waypoint>
     <waypoint>
         <id>10</id>
         <name>Michi Home</name>
         <latitude>49.899616</latitude>
         <longitude>10.881246</longitude>
+        <quiz-id>9</quiz-id>
     </waypoint>
 </waypoints>
