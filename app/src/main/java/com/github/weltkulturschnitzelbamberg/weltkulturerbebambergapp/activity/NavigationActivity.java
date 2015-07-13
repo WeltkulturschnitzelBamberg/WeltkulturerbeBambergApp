@@ -22,6 +22,9 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * This activity shows a GoogleMaps map on which a route between to waypoints is shown.
  *
@@ -37,6 +40,9 @@ public class NavigationActivity extends FragmentActivity implements AppCompatCal
     private GoogleMap mMap;
 
     private static final LatLng BAMBERG = new LatLng(49.898814, 10.890764);
+
+    // This Object contains the current Route with all its Waypoints
+    private Route mRoute;
 
     // Definition of the Tags used in Intents send to this Activity
     public static final String TAG_PACKAGE = NavigationActivity.class.getPackage().getName();
@@ -111,20 +117,23 @@ public class NavigationActivity extends FragmentActivity implements AppCompatCal
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(BAMBERG, 12f));
         mMap.setMyLocationEnabled(true);
         loadRoute(getIntent().getIntExtra(TAG_ROUTE_CODE, FLAG_ROUTE_CODE_ERROR));
+        addMarkers();
+        addProximityAlerts();
     }
 
     //TODO Documentation
     private void loadRoute(int routeCode) {
-        LocationManager locManager = (LocationManager) getSystemService(LOCATION_SERVICE);
         String[] projection = {RoutesTable.COLUMN_WAYPOINT_ID};
         String selection = RoutesTable.COLUMN_ROUTE_NAME + "=?";
         String[] selectionArgs;
         switch (routeCode) {
             case FLAG_ROUTE_CODE_SHORT:
                 selectionArgs = new String[]{"Short Route"};
+                mRoute = new Route("Short Route");
                 break;
             case FLAG_ROUTE_CODE_LONG:
                 selectionArgs = new String[]{"Long Route"};
+                mRoute = new Route("Long Route");
                 break;
             default:
                 throw new IllegalArgumentException("No such Route found. Route Code: " + routeCode);
@@ -141,18 +150,32 @@ public class NavigationActivity extends FragmentActivity implements AppCompatCal
             while (waypoint.moveToNext()) {
                 Float latitude = waypoint.getFloat(waypoint.getColumnIndex(WaypointsTable.COLUMN_LATITUDE));
                 Float longitude = waypoint.getFloat(waypoint.getColumnIndex(WaypointsTable.COLUMN_LONGITUDE));
-                MarkerOptions marker = new MarkerOptions()
-                        .title(waypoint.getString(waypoint.getColumnIndex(WaypointsTable.COLUMN_NAME)))
-                        .position(new LatLng(latitude, longitude));
-                mMap.addMarker(marker);
-                Intent intent = new Intent();
-                intent.setAction("com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.PROXIMITY_ALERT");
-                intent.putExtra("name", waypoint.getString(waypoint.getColumnIndex(WaypointsTable.COLUMN_NAME)));
-                intent.putExtra("lat", latitude);
-                intent.putExtra("lng", longitude);
-                PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
-                locManager.addProximityAlert(latitude, longitude, 40, -1, pendingIntent);
+                String title = waypoint.getString(waypoint.getColumnIndex(WaypointsTable.COLUMN_NAME));
+                mRoute.addWaypoint(latitude, longitude, title);
             }
+        }
+    }
+
+    // TODO Documentation
+    private void addMarkers() {
+        for (Route.Waypoint waypoint : mRoute.getWaypoints()) {
+            MarkerOptions marker = new MarkerOptions()
+                    .title(waypoint.getTitle())
+                    .position(new LatLng(waypoint.getLatitude(), waypoint.getLongitude()));
+            mMap.addMarker(marker);
+        }
+    }
+
+    private void addProximityAlerts() {
+        LocationManager locManager = (LocationManager) getSystemService(LOCATION_SERVICE);
+        for (Route.Waypoint waypoint : mRoute.getWaypoints()) {
+            Intent intent = new Intent();
+            intent.setAction("com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.PROXIMITY_ALERT");
+            intent.putExtra("name", waypoint.getTitle());
+            intent.putExtra("lat", waypoint.getLatitude());
+            intent.putExtra("lng", waypoint.getLongitude());
+            PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+            locManager.addProximityAlert(waypoint.getLatitude(), waypoint.getLongitude(), 40, -1, pendingIntent);
         }
     }
 
@@ -189,5 +212,49 @@ public class NavigationActivity extends FragmentActivity implements AppCompatCal
     @Override
     public void onSupportActionModeFinished(ActionMode mode) {
         // let's leave this empty, for now
+    }
+
+    private class Route {
+
+        private final String name;
+        private final List<Waypoint> waypoints;
+
+        public Route(String name) {
+            this.name = name;
+            this.waypoints = new ArrayList<>();
+        }
+
+        public void addWaypoint(Float latitude, Float longitude, String title) {
+            waypoints.add(new Waypoint(latitude, longitude, title));
+        }
+
+        public List<Waypoint> getWaypoints() {
+            return this.waypoints;
+        }
+
+        private class Waypoint {
+
+            private final float latitude;
+            private final float longitude;
+            private final String title;
+
+            public Waypoint(Float latitude, Float longitude, String title) {
+                this.latitude = latitude;
+                this.longitude = longitude;
+                this.title = title;
+            }
+
+            public Float getLatitude() {
+                return latitude;
+            }
+
+            public Float getLongitude() {
+                return longitude;
+            }
+
+            public String getTitle() {
+                return title;
+            }
+        }
     }
 }
