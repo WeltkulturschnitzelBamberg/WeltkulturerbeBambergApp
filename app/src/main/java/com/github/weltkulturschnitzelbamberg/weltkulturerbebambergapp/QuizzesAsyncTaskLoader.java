@@ -59,12 +59,14 @@ public class QuizzesAsyncTaskLoader extends AsyncTaskLoader {
 
             String quizID = null;
             String question = null;
+            String location = null;
             String solution = null;
             String wrongAnswer1 = null;
             String wrongAnswer2 = null;
             String wrongAnswer3 = null;
 
             if (quiz.getElementsByTagName(Quizzes.TAG_QUIZ_ID).getLength() > 0) quizID = quiz.getElementsByTagName(Quizzes.TAG_QUIZ_ID).item(0).getTextContent();
+            if (quiz.getElementsByTagName(Quizzes.TAG_LOCATION).getLength() > 0) location = quiz.getElementsByTagName(Quizzes.TAG_LOCATION).item(0).getTextContent();
             if (quiz.getElementsByTagName(Quizzes.TAG_QUESTION).getLength() > 0) question = quiz.getElementsByTagName(Quizzes.TAG_QUESTION).item(0).getTextContent();
             if (quiz.getElementsByTagName(Quizzes.TAG_SOLUTION).getLength() > 0) solution = quiz.getElementsByTagName(Quizzes.TAG_SOLUTION).item(0).getTextContent();
             if (quiz.getElementsByTagName(Quizzes.TAG_WRONG_ANSWER_1).getLength() > 0) wrongAnswer1 = quiz.getElementsByTagName(Quizzes.TAG_WRONG_ANSWER_1).item(0).getTextContent();
@@ -72,6 +74,7 @@ public class QuizzesAsyncTaskLoader extends AsyncTaskLoader {
             if (quiz.getElementsByTagName(Quizzes.TAG_WRONG_ANSWER_3).getLength() > 0) wrongAnswer3 = quiz.getElementsByTagName(Quizzes.TAG_WRONG_ANSWER_3).item(0).getTextContent();
 
             values.put(QuizzesTable.COLUMN_QUIZ_ID, quizID);
+            values.put(QuizzesTable.COLUMN_LOCATION, location);
             values.put(QuizzesTable.COLUMN_QUESTION, question);
             values.put(QuizzesTable.COLUMN_SOLUTION, solution);
             values.put(QuizzesTable.COLUMN_WRONG_ANSWER_1, wrongAnswer1);
@@ -94,7 +97,8 @@ public class QuizzesAsyncTaskLoader extends AsyncTaskLoader {
 
         private static final String FILENAME = "quizzes.xml";
         private static final String TAG_QUIZ = "quiz";
-        private static final String TAG_QUIZ_ID = "quiz-id";
+        private static final String TAG_QUIZ_ID = "id";
+        private static final String TAG_LOCATION = "location";
         private static final String TAG_QUESTION = "question";
         private static final String TAG_SOLUTION = "solution";
         private static final String TAG_WRONG_ANSWER_1 = "wrong-answer1";
