@@ -40,14 +40,16 @@
                 android:layout_height="wrap_content"
                 android:text="---"
                 android:id="@+id/btn_quiz_answer1"
-                android:layout_column="0" />
+                android:layout_column="0"
+                android:onClick="onClickAnswer"/>
 
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="---"
                 android:id="@+id/btn_quiz_answer2"
-                android:layout_column="1" />
+                android:layout_column="1"
+                android:onClick="onClickAnswer"/>
         </TableRow>
 
         <TableRow
@@ -59,14 +61,16 @@
                 android:layout_height="wrap_content"
                 android:text="---"
                 android:id="@+id/btn_quiz_answer3"
-                android:layout_column="0" />
+                android:layout_column="0"
+                android:onClick="onClickAnswer"/>
 
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="---"
                 android:id="@+id/btn_quiz_answer4"
-                android:layout_column="1" />
+                android:layout_column="1"
+                android:onClick="onClickAnswer"/>
         </TableRow>
     </TableLayout>
 
@@ -76,6 +80,19 @@
         android:text="---"
         android:id="@+id/btn_quiz_help"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:onClick="onClickHelp"/>
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="---"
+        android:id="@+id/btn_quiz_next"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:visibility="invisible"
+        android:onClick="onClickNext"
+        android:clickable="false"/>
 
 </RelativeLayout>

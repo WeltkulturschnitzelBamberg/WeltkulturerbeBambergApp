@@ -2,10 +2,15 @@ package com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.activity;
 
 import android.app.Activity;
 import android.database.Cursor;
+import android.graphics.Color;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
+import android.widget.TextView;
+import android.view.View;
+import android.content.Intent;
 
 import com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.R;
 import com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.contentprovider.WeltkulturerbeContentProvider;
@@ -15,11 +20,29 @@ import com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.utilities.
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.ArrayList;
 
 /**
  *
  */
 public class QuizActivity extends Activity {
+
+    //Definition von Komponenten
+    private Button btn_quiz_answer1;
+    private Button btn_quiz_answer2;
+    private Button btn_quiz_answer3;
+    private Button btn_quiz_answer4;
+
+    private Button btn_quiz_solution;
+    private Button btn_quiz_wrongAnswer1;
+    private Button btn_quiz_wrongAnswer2;
+    private Button btn_quiz_wrongAnswer3;
+    private Button btn_quiz_next;
+
+    private TextView tv_quiz_station;
+    private TextView tv_quiz_question;
+
+    private Quiz currentQuiz;
 
     // Definition of the Tags used in Intents send to this Activity
     public static final String TAG_PACKAGE = QuizActivity.class.getPackage().getName();
@@ -33,14 +56,39 @@ public class QuizActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz);
         setUpQuiz();
+        //eventuell Komponenten zuordnen
     }
 
     /**
      * This Method sets up the Quiz Activity. The Quiz depends on the committed QuizID in the starting Intent
      */
     private void setUpQuiz(){
-        Quiz quiz = getQuizByID(getQuizIDFromIntent());
-        DebugUtils.log(quiz.getQuizId() + "-" + quiz.getQuestion());
+        Quiz currnetQuiz = getQuizByID(getQuizIDFromIntent());
+        //Frage zuordnen
+        tv_quiz_question = currentQuiz.getQuestion();
+
+        //Liste mit falschen Antworten ausgeben
+        List<String> WrongAnswers = currentQuiz.getWrongAnswers();
+
+        //richtige Antwort ausgeben
+        String solution = currentQuiz.getSolution();
+
+        //Buttons in Feld einfügen, Feld mischen
+        List<Integer> btnIds = new ArrayList<Integer>();
+        btnIds.add(R.id.btn_quiz_answer1);
+        btnIds.add(R.id.btn_quiz_answer2);
+        btnIds.add(R.id.btn_quiz_answer3);
+        btnIds.add(R.id.btn_quiz_answer4);
+        Collections.shuffle(btnIds);
+
+        //Positionen zuordnen
+        Button btn_quiz_solution = (Button) findViewById(btnIds.remove(0));
+        Button btn_quiz_wrongAnswer1 = (Button) findViewById(btnIds.remove(0));
+        Button btn_quiz_wrongAnswer2 = (Button) findViewById(btnIds.remove(0));
+        Button btn_quiz_wrongAnswer3 = (Button) findViewById(btnIds.remove(0));
+
+
+
     }
 
     /**
@@ -73,6 +121,39 @@ public class QuizActivity extends Activity {
         String wrongAnswer3 = cursor.getString(cursor.getColumnIndex(QuizzesTable.COLUMN_WRONG_ANSWER_3));
 
         return new Quiz(quizID, question, solution, wrongAnswer1, wrongAnswer2, wrongAnswer3);
+    }
+
+    public void onClickAnswer(View view)
+    {
+        String answer = ((Button)view).getText().toString();
+        if(currentQuiz.getSolution().compareTo(answer)==0)
+        {
+            btn_quiz_solution.setBackgroundColor(Color.GREEN);
+        }
+        else
+        {
+            btn_quiz_solution.setBackgroundColor(Color.GREEN);
+            ((Button)view).setBackgroundColor(Color.RED);
+        }
+
+        btn_quiz_solution.setClickable(false);
+        btn_quiz_wrongAnswer1.setClickable(false);
+        btn_quiz_wrongAnswer2.setClickable(false);
+        btn_quiz_wrongAnswer3.setClickable(false);
+
+        btn_quiz_next.setClickable(true);
+        btn_quiz_next.setVisibility(true);
+    }
+
+    public void onClickNext(View view)
+    {
+        Intent i = new Intent(this, InformationActivity.class);
+        startActivity(i);
+    }
+
+    public void onClickHelp(View view)
+    {
+        //Popup mit Tipp
     }
 
     /**
