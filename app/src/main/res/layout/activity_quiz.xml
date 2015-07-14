@@ -37,16 +37,15 @@
         android:onClick="onBtnClickTipp"/>
 
     <Button
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:text="Next"
         android:id="@+id/btn_quiz_next"
         android:visibility="invisible"
         android:onClick="onBtnClickNext"
         android:clickable="false"
-        android:layout_above="@+id/linearLayout2"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="64dp" />
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
 
     <LinearLayout
         android:orientation="horizontal"

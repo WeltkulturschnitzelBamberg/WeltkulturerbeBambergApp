@@ -141,12 +141,11 @@ public class QuizActivity extends Activity {
     {
         if(view.getId() == mBtn_quiz_solution.getId())
         {
-            mBtn_quiz_solution.setBackgroundColor(Color.GREEN);
+            mBtn_quiz_solution.setBackgroundColor(getResources().getColor(R.color.PrimaryColor));
         }
         else
         {
-            mBtn_quiz_solution.setBackgroundColor(Color.GREEN);
-            ((Button)view).setBackgroundColor(Color.RED);
+            mBtn_quiz_solution.setBackgroundColor(getResources().getColor(R.color.PrimaryColorLighter));
         }
 
         mBtn_quiz_solution.setClickable(false);
