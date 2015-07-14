@@ -4,6 +4,7 @@
     <color name="PrimaryColor">@color/light_blue</color>
     <color name="PrimaryColorDarker">@color/light_blue_darker</color>
     <color name="PrimaryColorDarkest">@color/light_blue_darkest</color>
+    <color name="PrimaryColorLighter">@color/light_blue_lighter</color>
 
     <!-- Secondary Color -->
     <color name="SecondaryColor">@color/white</color>
@@ -12,6 +13,7 @@
     <color name="light_blue">#2196f3</color>
     <color name="light_blue_darker">#1e88e5</color>
     <color name="light_blue_darkest">#0d47a1</color>
+    <color name="light_blue_lighter">#42a5f5</color>
 
     <color name="white">#ffffff</color>
     <color name="red">#f44336</color>
