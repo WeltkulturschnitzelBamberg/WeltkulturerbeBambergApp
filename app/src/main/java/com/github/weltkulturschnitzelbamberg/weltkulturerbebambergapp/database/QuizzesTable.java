@@ -26,6 +26,7 @@ public final class QuizzesTable {
     /** Names of the columns inside the table **/
     public static final String COLUMN_ID = "_id";
     public static final String COLUMN_QUIZ_ID = "quiz_id";
+    public static final String COLUMN_LOCATION = "location";
     public static final String COLUMN_QUESTION = "question";
     public static final String COLUMN_SOLUTION = "solution";
     public static final String COLUMN_WRONG_ANSWER_1 = "wrong_answer1";
@@ -37,6 +38,7 @@ public final class QuizzesTable {
             + "("
             + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
             + COLUMN_QUIZ_ID + " INTEGER NOT NULL,"
+            + COLUMN_LOCATION + " TEXT NOT NULL,"
             + COLUMN_QUESTION + " TEXT NOT NULL,"
             + COLUMN_SOLUTION + " TEXT NOT NULL,"
             + COLUMN_WRONG_ANSWER_1 + " TEXT NOT NULL,"

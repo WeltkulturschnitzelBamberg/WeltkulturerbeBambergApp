@@ -30,6 +30,8 @@ import javax.xml.parsers.ParserConfigurationException;
 public class WaypointsAsyncTaskLoader extends AsyncTaskLoader{
 
     public static final int LOADER_ID = 0;
+    private static final String PACKAGE = WaypointsAsyncTaskLoader.class.getPackage().getName();
+    private static final String INT_NOT_DEFINED = "" + -1;
 
     public WaypointsAsyncTaskLoader(Context context) {
         super(context);
@@ -59,10 +61,24 @@ public class WaypointsAsyncTaskLoader extends AsyncTaskLoader{
             if (node.getNodeType() == Node.ELEMENT_NODE) {
                 Element element = (Element) node;
                 ContentValues values = new ContentValues();
-                values.put(WaypointsTable.COLUMN_WAYPOINT_ID, element.getElementsByTagName(Waypoints.TAG_ID).item(0).getTextContent());
-                values.put(WaypointsTable.COLUMN_NAME, element.getElementsByTagName(Waypoints.TAG_NAME).item(0).getTextContent());
-                values.put(WaypointsTable.COLUMN_LATITUDE, element.getElementsByTagName(Waypoints.TAG_LATITUDE).item(0).getTextContent());
-                values.put(WaypointsTable.COLUMN_LONGITUDE, element.getElementsByTagName(Waypoints.TAG_LONGITUDE).item(0).getTextContent());
+
+                String waypointID = INT_NOT_DEFINED;
+                String name = null;
+                String latitude = null;
+                String longitude = null;
+                String quizID = null;
+
+                if (element.getElementsByTagName(Waypoints.TAG_ID).getLength() > 0) waypointID = element.getElementsByTagName(Waypoints.TAG_ID).item(0).getTextContent();
+                if (element.getElementsByTagName(Waypoints.TAG_NAME).getLength() > 0) name = element.getElementsByTagName(Waypoints.TAG_NAME).item(0).getTextContent();
+                if (element.getElementsByTagName(Waypoints.TAG_LATITUDE).getLength() > 0) latitude = element.getElementsByTagName(Waypoints.TAG_LATITUDE).item(0).getTextContent();
+                if (element.getElementsByTagName(Waypoints.TAG_LONGITUDE).getLength() > 0) longitude = element.getElementsByTagName(Waypoints.TAG_LONGITUDE).item(0).getTextContent();
+                if (element.getElementsByTagName(Waypoints.TAG_QUIZ_ID).getLength() > 0) quizID = element.getElementsByTagName(Waypoints.TAG_QUIZ_ID).item(0).getTextContent();
+
+                values.put(WaypointsTable.COLUMN_WAYPOINT_ID, waypointID);
+                values.put(WaypointsTable.COLUMN_NAME, name);
+                values.put(WaypointsTable.COLUMN_LATITUDE, latitude);
+                values.put(WaypointsTable.COLUMN_LONGITUDE, longitude);
+                values.put(WaypointsTable.COLUMN_QUIZ_ID, quizID);
 
                 getContext().getContentResolver().insert(WeltkulturerbeContentProvider.URI_TABLE_WAYPOINTS, values);
             }
@@ -86,5 +102,6 @@ public class WaypointsAsyncTaskLoader extends AsyncTaskLoader{
         private static final String TAG_NAME = "name";
         private static final String TAG_LATITUDE = "latitude";
         private static final String TAG_LONGITUDE = "longitude";
+        private static final String TAG_QUIZ_ID = "quiz-id";
     }
 }

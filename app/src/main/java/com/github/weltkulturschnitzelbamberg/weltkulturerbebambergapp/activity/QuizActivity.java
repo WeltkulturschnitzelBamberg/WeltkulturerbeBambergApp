@@ -21,8 +21,12 @@ import java.util.List;
  */
 public class QuizActivity extends Activity {
 
-    public static final String TAG_QUIZ_ID = "quiz_id";
-    public static final int TAG_QUIZ_ID_DEFAULT = -1;
+    // Definition of the Tags used in Intents send to this Activity
+    public static final String TAG_PACKAGE = QuizActivity.class.getPackage().getName();
+    /** This TAG tags the ID of the Quiz which is to be loaded within an Intent send to this Activity*/
+    public static final String TAG_QUIZ_ID = TAG_PACKAGE + "quiz_id";
+    /** FLAG for the Quiz ID within an Intent send to this Activity, tagged with the TAG {@link QuizActivity#TAG_QUIZ_ID}, which indicates a Quiz with this ID doesn't exist*/
+    public static final int FLAG_QUIZ_ID_ERROR = -1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,7 +48,7 @@ public class QuizActivity extends Activity {
      * @return returns IntExtra with the Quiz ID from the starting Intent
      */
     private int getQuizIDFromIntent(){
-        return getIntent().getIntExtra(TAG_QUIZ_ID, TAG_QUIZ_ID_DEFAULT);
+        return getIntent().getIntExtra(TAG_QUIZ_ID, FLAG_QUIZ_ID_ERROR);
     }
 
     /**
@@ -61,6 +65,7 @@ public class QuizActivity extends Activity {
         Cursor cursor = getContentResolver().query(WeltkulturerbeContentProvider.URI_TABLE_QUIZZES, projection, selection, selectionArgs, sortOrder);
 
         if (cursor.isBeforeFirst()) cursor.moveToNext();
+        String location = cursor.getString(cursor.getColumnIndex(QuizzesTable.COLUMN_LOCATION));
         String question = cursor.getString(cursor.getColumnIndex(QuizzesTable.COLUMN_QUESTION));
         String solution = cursor.getString(cursor.getColumnIndex(QuizzesTable.COLUMN_SOLUTION));
         String wrongAnswer1 = cursor.getString(cursor.getColumnIndex(QuizzesTable.COLUMN_WRONG_ANSWER_1));
@@ -76,12 +81,14 @@ public class QuizActivity extends Activity {
     private class Quiz {
 
         private int quizID;
+        private final String location;
         private final String question;
         private final String solution;
         private final List<String> wrongAnswers;
 
-        public Quiz(int quizID, String question, String solution, String... wrong_answers){
+        public Quiz(int quizID, String location, String question, String solution, String... wrong_answers){
             this.quizID = quizID;
+            this.location = location;
             this.question = question;
             this.solution = solution;
             this.wrongAnswers = Arrays.asList(wrong_answers);
@@ -89,6 +96,10 @@ public class QuizActivity extends Activity {
 
         public int getQuizId(){
             return this.quizID;
+        }
+
+        public String getLocation() {
+            return this.location;
         }
 
         public String getQuestion(){

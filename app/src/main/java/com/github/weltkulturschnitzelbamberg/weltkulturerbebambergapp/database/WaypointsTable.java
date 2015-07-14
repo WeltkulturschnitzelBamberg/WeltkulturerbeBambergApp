@@ -29,6 +29,7 @@ public final class WaypointsTable {
     public static final String COLUMN_NAME = "name";
     public static final String COLUMN_LONGITUDE = "longitude";
     public static final String COLUMN_LATITUDE = "latitude";
+    public static final String COLUMN_QUIZ_ID = "quizID";
 
     /** SQL command to create the table **/
     private static final String SQL_CREATE = "CREATE TABLE " + TABLE_WAYPOINTS
@@ -37,7 +38,8 @@ public final class WaypointsTable {
             + COLUMN_WAYPOINT_ID + " INTEGER NOT NULL,"
             + COLUMN_NAME + " TEXT NOT NULL,"
             + COLUMN_LONGITUDE + " REAL NOT NULL,"
-            + COLUMN_LATITUDE + " REAL NOT NULL"
+            + COLUMN_LATITUDE + " REAL NOT NULL,"
+            + COLUMN_QUIZ_ID + " INTEGER"
             + ");";
 
     public static void onCreate(SQLiteDatabase database) {
