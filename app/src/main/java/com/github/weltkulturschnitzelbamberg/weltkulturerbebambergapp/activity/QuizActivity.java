@@ -65,6 +65,7 @@ public class QuizActivity extends Activity {
         Cursor cursor = getContentResolver().query(WeltkulturerbeContentProvider.URI_TABLE_QUIZZES, projection, selection, selectionArgs, sortOrder);
 
         if (cursor.isBeforeFirst()) cursor.moveToNext();
+        String location = cursor.getString(cursor.getColumnIndex(QuizzesTable.COLUMN_LOCATION));
         String question = cursor.getString(cursor.getColumnIndex(QuizzesTable.COLUMN_QUESTION));
         String solution = cursor.getString(cursor.getColumnIndex(QuizzesTable.COLUMN_SOLUTION));
         String wrongAnswer1 = cursor.getString(cursor.getColumnIndex(QuizzesTable.COLUMN_WRONG_ANSWER_1));
@@ -80,12 +81,14 @@ public class QuizActivity extends Activity {
     private class Quiz {
 
         private int quizID;
+        private final String location;
         private final String question;
         private final String solution;
         private final List<String> wrongAnswers;
 
-        public Quiz(int quizID, String question, String solution, String... wrong_answers){
+        public Quiz(int quizID, String location, String question, String solution, String... wrong_answers){
             this.quizID = quizID;
+            this.location = location;
             this.question = question;
             this.solution = solution;
             this.wrongAnswers = Arrays.asList(wrong_answers);
@@ -93,6 +96,10 @@ public class QuizActivity extends Activity {
 
         public int getQuizId(){
             return this.quizID;
+        }
+
+        public String getLocation() {
+            return this.location;
         }
 
         public String getQuestion(){
