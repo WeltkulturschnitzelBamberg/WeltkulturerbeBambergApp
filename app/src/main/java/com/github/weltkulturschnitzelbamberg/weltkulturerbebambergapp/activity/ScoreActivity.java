@@ -25,13 +25,9 @@ public class ScoreActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_score);
+    }
 
-        //TODO Remvove onClickListener
-        Button btn_score_back_to_start = (Button) findViewById(R.id.btn_score_back_to_start);
-        btn_score_back_to_start.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                startActivity(new Intent(ScoreActivity.this, WelcomePageActivity.class));
-            }
-        });
+    public void onBtnClickBackToStart(View view) {
+        startActivity(new Intent(ScoreActivity.this, WelcomePageActivity.class));
     }
 }
