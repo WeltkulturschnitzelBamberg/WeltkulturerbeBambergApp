@@ -24,6 +24,7 @@ public class ScoreActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_score);
 
         //TODO Remvove onClickListener
         Button btn_score_back_to_start = (Button) findViewById(R.id.btn_score_back_to_start);
