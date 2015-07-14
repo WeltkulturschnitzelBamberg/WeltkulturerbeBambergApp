@@ -12,11 +12,6 @@ import com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.utilities.
 import com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.QuizzesAsyncTaskLoader;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatCallback;
-import android.support.v7.app.AppCompatDelegate;
-import android.support.v7.view.ActionMode;
-import android.support.v7.widget.Toolbar;
-import android.view.MenuItem;
 import android.view.View;
 
 /**
