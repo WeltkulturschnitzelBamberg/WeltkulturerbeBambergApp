@@ -145,7 +145,7 @@ public class QuizActivity extends Activity {
         }
         else
         {
-            mBtn_quiz_solution.setBackgroundColor(getResources().getColor(R.color.PrimaryColorLighter));
+            mBtn_quiz_solution.setBackgroundColor(getResources().getColor(R.color.PrimaryColor));
         }
 
         mBtn_quiz_solution.setClickable(false);
