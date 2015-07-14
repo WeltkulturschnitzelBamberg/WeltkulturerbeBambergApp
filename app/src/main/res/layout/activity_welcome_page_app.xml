@@ -6,7 +6,8 @@
     android:layout_height="match_parent"
     app:contentInsetEnd="0dp"
     app:contentInsetStart="0dp"
-    tools:context=".WelcomePageApp">
+    tools:context=".WelcomePageApp"
+    android:clickable="false">
 
     <TextView
         android:layout_width="wrap_content"
@@ -16,33 +17,36 @@
         android:id="@+id/tv_welcome_title"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="138dp" />
+        android:layout_marginTop="127dp" />
 
     <Button
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:text="@string/btn_welcome_continue"
         android:id="@+id/btn_welcome_continue"
-        android:layout_below="@+id/tv_welcome_title"
+        android:onClick="onBtnClickContinue"
+        android:clickable="false"
+        android:layout_centerVertical="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:onClick="onBtnClickContinue" />
+        android:layout_alignParentStart="true" />
 
     <Button
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:text="@string/btn_welcome_start"
         android:id="@+id/btn_welcome_start"
+        android:onClick="onBtnClickStart"
         android:layout_below="@+id/btn_welcome_continue"
-        android:layout_centerHorizontal="true"
-        android:onClick="onBtnClickStart" />
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
     <Button
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:text="@string/btn_welcome_score"
         android:id="@+id/btn_welcome_score"
+        android:onClick="onBtnClickScore"
         android:layout_below="@+id/btn_welcome_start"
-        android:layout_centerHorizontal="true"
-        android:onClick="onBtnClickScore" />
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 </RelativeLayout>
