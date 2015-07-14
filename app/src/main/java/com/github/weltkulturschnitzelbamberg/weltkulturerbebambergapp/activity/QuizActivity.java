@@ -27,22 +27,20 @@ import java.util.ArrayList;
  */
 public class QuizActivity extends Activity {
 
-    //Definition von Komponenten
-    private Button btn_quiz_answer1;
-    private Button btn_quiz_answer2;
-    private Button btn_quiz_answer3;
-    private Button btn_quiz_answer4;
+    // Current Quiz used in this Activity
+    private Quiz mCurrentQuiz;
 
-    private Button btn_quiz_solution;
-    private Button btn_quiz_wrongAnswer1;
-    private Button btn_quiz_wrongAnswer2;
-    private Button btn_quiz_wrongAnswer3;
-    private Button btn_quiz_next;
+    // Definition of the different Views represented inside the Layout
+    private TextView mTv_quiz_station;
+    private TextView mTv_quiz_question;
+    private Button mBtn_quiz_next;
 
-    private TextView tv_quiz_station;
-    private TextView tv_quiz_question;
+    // Definition of the Buttons of the Quiz. These Buttons are not represented inside the Layout
+    private Button mBtn_quiz_solution;
+    private Button mBtn_quiz_wrongAnswer1;
+    private Button mBtn_quiz_wrongAnswer2;
+    private Button mBtn_quiz_wrongAnswer3;
 
-    private Quiz currentQuiz;
 
     // Definition of the Tags used in Intents send to this Activity
     public static final String TAG_PACKAGE = QuizActivity.class.getPackage().getName();
@@ -55,40 +53,55 @@ public class QuizActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz);
+
+        // Initialise the Views
+        mTv_quiz_station = (TextView) findViewById(R.id.tv_quiz_station);
+        mTv_quiz_question = (TextView) findViewById(R.id.tv_quiz_question);
+        mBtn_quiz_next = (Button) findViewById(R.id.btn_quiz_next);
+
+        // Set up the Quiz
         setUpQuiz();
-        //eventuell Komponenten zuordnen
     }
 
     /**
      * This Method sets up the Quiz Activity. The Quiz depends on the committed QuizID in the starting Intent
      */
     private void setUpQuiz(){
-        Quiz currnetQuiz = getQuizByID(getQuizIDFromIntent());
-        //Frage zuordnen
-        tv_quiz_question = currentQuiz.getQuestion();
+        // Load the current Quiz from the SQL Database
+        mCurrentQuiz = getQuizByID(getQuizIDFromIntent());
 
-        //Liste mit falschen Antworten ausgeben
-        List<String> WrongAnswers = currentQuiz.getWrongAnswers();
+        // Set the Text of the Station to the location of the current Quiz
+        mTv_quiz_station.setText(mCurrentQuiz.getLocation());
 
-        //richtige Antwort ausgeben
-        String solution = currentQuiz.getSolution();
+        //Set the Text of the Question TextView to the question of the current Quiz
+        mTv_quiz_question.setText(mCurrentQuiz.getQuestion());
 
-        //Buttons in Feld einfügen, Feld mischen
-        List<Integer> btnIds = new ArrayList<Integer>();
+        //Get the List of all wrong answers to the current Quiz and shuffle them
+        List<String> wrongAnswers = mCurrentQuiz.getWrongAnswers();
+        Collections.shuffle(wrongAnswers);
+
+        // Get the solution of the current Quiz
+        String solution = mCurrentQuiz.getSolution();
+
+        // Shuffel the Button IDs of the Quiz Buttons
+        List<Integer> btnIds = new ArrayList<>();
         btnIds.add(R.id.btn_quiz_answer1);
         btnIds.add(R.id.btn_quiz_answer2);
         btnIds.add(R.id.btn_quiz_answer3);
         btnIds.add(R.id.btn_quiz_answer4);
         Collections.shuffle(btnIds);
 
-        //Positionen zuordnen
-        Button btn_quiz_solution = (Button) findViewById(btnIds.remove(0));
-        Button btn_quiz_wrongAnswer1 = (Button) findViewById(btnIds.remove(0));
-        Button btn_quiz_wrongAnswer2 = (Button) findViewById(btnIds.remove(0));
-        Button btn_quiz_wrongAnswer3 = (Button) findViewById(btnIds.remove(0));
+        // Assign the Quiz Buttonsin the Layout to their representations in the Activity
+        mBtn_quiz_solution = (Button) findViewById(btnIds.remove(0));
+        mBtn_quiz_wrongAnswer1 = (Button) findViewById(btnIds.remove(0));
+        mBtn_quiz_wrongAnswer2 = (Button) findViewById(btnIds.remove(0));
+        mBtn_quiz_wrongAnswer3 = (Button) findViewById(btnIds.remove(0));
 
-
-
+        // Set the Texts of the Buttons to the different answers to the current Quiz
+        mBtn_quiz_solution.setText(solution);
+        mBtn_quiz_wrongAnswer1.setText(wrongAnswers.remove(0));
+        mBtn_quiz_wrongAnswer2.setText(wrongAnswers.remove(0));
+        mBtn_quiz_wrongAnswer3.setText(wrongAnswers.remove(0));
     }
 
     /**
@@ -123,26 +136,26 @@ public class QuizActivity extends Activity {
         return new Quiz(quizID, location, question, solution, new String[]{wrongAnswer1, wrongAnswer2, wrongAnswer3});
     }
 
+    // TODO Documentation
     public void onClickAnswer(View view)
     {
-        String answer = ((Button)view).getText().toString();
-        if(currentQuiz.getSolution().compareTo(answer)==0)
+        if(view.getId() == mBtn_quiz_solution.getId())
         {
-            btn_quiz_solution.setBackgroundColor(Color.GREEN);
+            mBtn_quiz_solution.setBackgroundColor(Color.GREEN);
         }
         else
         {
-            btn_quiz_solution.setBackgroundColor(Color.GREEN);
+            mBtn_quiz_solution.setBackgroundColor(Color.GREEN);
             ((Button)view).setBackgroundColor(Color.RED);
         }
 
-        btn_quiz_solution.setClickable(false);
-        btn_quiz_wrongAnswer1.setClickable(false);
-        btn_quiz_wrongAnswer2.setClickable(false);
-        btn_quiz_wrongAnswer3.setClickable(false);
+        mBtn_quiz_solution.setClickable(false);
+        mBtn_quiz_wrongAnswer1.setClickable(false);
+        mBtn_quiz_wrongAnswer2.setClickable(false);
+        mBtn_quiz_wrongAnswer3.setClickable(false);
 
-        btn_quiz_next.setClickable(true);
-        btn_quiz_next.setVisibility(true);
+        mBtn_quiz_next.setClickable(true);
+        mBtn_quiz_next.setVisibility(View.VISIBLE);
     }
 
     public void onClickNext(View view)
