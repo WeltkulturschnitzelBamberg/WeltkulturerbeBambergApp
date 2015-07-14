@@ -1,12 +1,27 @@
 <resources>
 
-    <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
-    <!-- colorPrimary is used for coloring the Toolbar -->
-    <item name="colorPrimary">@android:color/background_light</item>
-    <!-- colorAccent is used as the default value for colorControlActivated
-     which is used to tint widgets -->
-    <item name="colorAccent">#FFAB40</item>
+    <!-- Theme of the Application. -->
+    <style name="WeltkulturerbeBambergAppTheme" parent="android:Theme.Holo.Light">
+        <item name="android:actionBarStyle">@style/WeltkulturerbeBambergAppTheme.ActionBar</item>
+    </style>
+
+    <!--- Style of the ActionBar -->
+    <style name="WeltkulturerbeBambergAppTheme.ActionBar" parent="android:Widget.Holo.Light.ActionBar">
+        <item name="android:background">@color/PrimaryColor</item>
+        <item name="android:displayOptions">showTitle</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:titleTextStyle">@style/WeltkulturerbeBambergAppTheme.ActionBar.TitleText</item>
+    </style>
+
+    <!-- Style of the Title Text of the ActionBar -->
+    <style name="WeltkulturerbeBambergAppTheme.ActionBar.TitleText" parent="android:TextAppearance.Holo.Widget.ActionBar.Title">
+        <item name="android:textColor">@color/SecondaryColor</item>
+    </style>
+
+    <!-- Style of the Buttons -->
+    <style name="WeltkulturerbeBambergAppTheme.Button">
+        <item name="android:background">@color/PrimaryColor</item>
+        <item name="android:textColor">@color/SecondaryColor</item>
     </style>
 
 </resources>
