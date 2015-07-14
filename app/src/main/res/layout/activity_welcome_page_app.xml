@@ -1,4 +1,5 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
@@ -44,12 +45,4 @@
         android:layout_below="@+id/btn_welcome_start"
         android:layout_centerHorizontal="true"
         android:onClick="onBtnClickScore" />
-
-
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/welcome_toolbar"
-        android:layout_height="wrap_content"
-        android:layout_width="match_parent"
-        android:minHeight="@dimen/abc_action_bar_default_height_material"
-        android:background="?attr/colorPrimary" />
 </RelativeLayout>

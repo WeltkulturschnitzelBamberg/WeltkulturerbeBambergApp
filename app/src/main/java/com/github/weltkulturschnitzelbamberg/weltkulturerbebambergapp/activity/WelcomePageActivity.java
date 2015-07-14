@@ -26,18 +26,7 @@ import android.view.View;
  * @version 1.0
  * @since 2015-06-04
  */
-public class WelcomePageActivity extends Activity implements LoaderManager.LoaderCallbacks, AppCompatCallback{
-
-    @Override
-    public void onSupportActionModeStarted(ActionMode mode) {
-        //let's leave this empty, for now
-    }
-
-    @Override
-    public void onSupportActionModeFinished(ActionMode mode) {
-        // let's leave this empty, for now
-    }
-    private AppCompatDelegate delegate;
+public class WelcomePageActivity extends Activity implements LoaderManager.LoaderCallbacks{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,19 +34,6 @@ public class WelcomePageActivity extends Activity implements LoaderManager.Loade
         setContentView(R.layout.activity_welcome_page_app);
 
         onFirstLaunch();
-
-        //TODO cohesion
-        //let's create the delegate, passing the activity at both arguments (Activity, AppCompatCallback)
-        delegate = AppCompatDelegate.create(this, this);
-        //we need to call the onCreate() of the AppCompatDelegate
-        delegate.onCreate(savedInstanceState);
-
-        //we use the delegate to inflate the layout
-        delegate.setContentView(R.layout.activity_welcome_page_app);
-
-        //Finally, let's add the Toolbar
-        Toolbar toolbar = (Toolbar) findViewById(R.id.welcome_toolbar);
-        delegate.setSupportActionBar(toolbar);
     }
 
     /**
@@ -116,21 +92,6 @@ public class WelcomePageActivity extends Activity implements LoaderManager.Loade
                 getLoaderManager().destroyLoader(WaypointsAsyncTaskLoader.LOADER_ID);
                 break;
         }
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_score) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
     }
 
     //TODO Documentation
