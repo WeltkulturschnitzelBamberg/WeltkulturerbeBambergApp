@@ -137,7 +137,7 @@ public class QuizActivity extends Activity {
     }
 
     // TODO Documentation
-    public void onClickAnswer(View view)
+    public void onBtnClickAnswer(View view)
     {
         if(view.getId() == mBtn_quiz_solution.getId())
         {
@@ -158,13 +158,13 @@ public class QuizActivity extends Activity {
         mBtn_quiz_next.setVisibility(View.VISIBLE);
     }
 
-    public void onClickNext(View view)
+    public void onBtnClickNext(View view)
     {
         Intent i = new Intent(this, InformationActivity.class);
         startActivity(i);
     }
 
-    public void onClickHelp(View view)
+    public void onBtnClickTipp(View view)
     {
         //Popup mit Tipp
     }
