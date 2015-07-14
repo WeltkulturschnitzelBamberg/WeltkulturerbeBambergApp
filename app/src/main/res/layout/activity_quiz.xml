@@ -1,98 +1,107 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     tools:context="com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.activity.QuizActivity" >
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="---"
+        android:text="------------------"
         android:id="@+id/tv_quiz_station"
+        android:layout_marginTop="30dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
 
     <TextView
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="180dp"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="---"
+        android:text="-------------------"
         android:id="@+id/tv_quiz_question"
-        android:layout_below="@+id/tv_quiz_station"
-        android:layout_centerHorizontal="true" />
-
-    <TableLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/tableLayout"
-        android:layout_above="@+id/btn_quiz_help"
-        android:layout_centerHorizontal="true">
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="---"
-                android:id="@+id/btn_quiz_answer1"
-                android:layout_column="0"
-                android:onClick="onClickAnswer"/>
-
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="---"
-                android:id="@+id/btn_quiz_answer2"
-                android:layout_column="1"
-                android:onClick="onClickAnswer"/>
-        </TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="---"
-                android:id="@+id/btn_quiz_answer3"
-                android:layout_column="0"
-                android:onClick="onClickAnswer"/>
-
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="---"
-                android:id="@+id/btn_quiz_answer4"
-                android:layout_column="1"
-                android:onClick="onClickAnswer"/>
-        </TableRow>
-    </TableLayout>
+        android:layout_above="@+id/linearLayout2"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:paddingLeft="28dp"
+        android:paddingRight="28dp" />
 
     <Button
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="---"
+        android:text="Tipp"
         android:id="@+id/btn_quiz_help"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:onClick="onClickHelp"/>
+        android:onClick="onBtnClickTipp"/>
 
     <Button
-        style="?android:attr/buttonStyleSmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="---"
+        android:text="Next"
         android:id="@+id/btn_quiz_next"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true"
         android:visibility="invisible"
-        android:onClick="onClickNext"
-        android:clickable="false"/>
+        android:onClick="onBtnClickNext"
+        android:clickable="false"
+        android:layout_above="@+id/linearLayout2"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="64dp" />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="100dp"
+        android:layout_above="@+id/linearLayout"
+        android:layout_alignLeft="@+id/linearLayout"
+        android:layout_alignStart="@+id/linearLayout"
+        android:id="@+id/linearLayout2">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:text="---"
+            android:id="@+id/btn_quiz_answer1"
+            android:layout_weight="1"
+            style="@style/WeltkulturerbeBambergAppTheme.ButtonQuiz"
+            android:onClick="onBtnClickAnswer" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:text="---"
+            android:id="@+id/btn_quiz_answer2"
+            android:layout_weight="1"
+            style="@style/WeltkulturerbeBambergAppTheme.ButtonQuiz"
+            android:onClick="onBtnClickAnswer" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="100dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_above="@+id/btn_quiz_help"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/linearLayout">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:text="---"
+            android:id="@+id/btn_quiz_answer3"
+            android:layout_weight="1"
+            style="@style/WeltkulturerbeBambergAppTheme.ButtonQuiz"
+            android:onClick="onBtnClickAnswer" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:text="---"
+            android:id="@+id/btn_quiz_answer4"
+            android:layout_weight="1"
+            style="@style/WeltkulturerbeBambergAppTheme.ButtonQuiz"
+            android:onClick="onBtnClickAnswer" />
+    </LinearLayout>
 
 </RelativeLayout>
