@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="PrimaryColor">@color/light_blue</color>
+    <color name="PrimaryColorDarker">@color/light_blue_darker</color>
     <color name="SecondaryColor">@color/white</color>
     <color name="light_blue">#2196f3</color>
+    <color name="light_blue_darker">#1e88e5</color>
     <color name="white">#ffffff</color>
 </resources>
