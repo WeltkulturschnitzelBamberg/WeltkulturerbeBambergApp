@@ -6,10 +6,6 @@ import android.database.Cursor;
 import android.location.LocationManager;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatCallback;
-import android.support.v7.app.AppCompatDelegate;
-import android.support.v7.view.ActionMode;
-import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.R;
@@ -33,9 +29,7 @@ import java.util.List;
  * @since 2015-06-04
  */
 
-public class NavigationActivity extends FragmentActivity implements AppCompatCallback {
-
-    private AppCompatDelegate mDelegate;
+public class NavigationActivity extends FragmentActivity {
 
     private GoogleMap mMap;
 
@@ -58,19 +52,8 @@ public class NavigationActivity extends FragmentActivity implements AppCompatCal
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_navigation);
 
-        //TODO cohesion
-        //let's create the delegate, passing the activity at both arguments (Activity, AppCompatCallback)
-        mDelegate = AppCompatDelegate.create(this, this);
-        //we need to call the onCreate() of the AppCompatDelegate
-        mDelegate.onCreate(savedInstanceState);
-
-        //we use the delegate to inflate the layout
-        mDelegate.setContentView(R.layout.activity_navigation);
-
-        //Finally, let's add the Toolbar
-        Toolbar toolbar = (Toolbar) findViewById(R.id.navigation_toolbar);
-        mDelegate.setSupportActionBar(toolbar);
         setUpMapIfNeeded();
     }
 
@@ -202,16 +185,6 @@ public class NavigationActivity extends FragmentActivity implements AppCompatCal
             default:
                 return super.onOptionsItemSelected(item);
         }
-    }
-
-    @Override
-    public void onSupportActionModeStarted(ActionMode mode) {
-        //let's leave this empty, for now
-    }
-
-    @Override
-    public void onSupportActionModeFinished(ActionMode mode) {
-        // let's leave this empty, for now
     }
 
     private class Route {
