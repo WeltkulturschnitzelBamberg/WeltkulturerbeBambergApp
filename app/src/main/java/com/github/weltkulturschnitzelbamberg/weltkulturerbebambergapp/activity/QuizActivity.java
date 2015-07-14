@@ -105,7 +105,7 @@ public class QuizActivity extends Activity {
      * @return {@link com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.activity.QuizActivity.Quiz} with the first found query result
      */
     private Quiz getQuizByID(int quizID){
-        String[] projection = {QuizzesTable.COLUMN_QUIZ_ID, QuizzesTable.COLUMN_QUESTION, QuizzesTable.COLUMN_SOLUTION, QuizzesTable.COLUMN_WRONG_ANSWER_1,
+        String[] projection = {QuizzesTable.COLUMN_QUIZ_ID, QuizzesTable.COLUMN_LOCATION, QuizzesTable.COLUMN_QUESTION, QuizzesTable.COLUMN_SOLUTION, QuizzesTable.COLUMN_WRONG_ANSWER_1,
                                 QuizzesTable.COLUMN_WRONG_ANSWER_2, QuizzesTable.COLUMN_WRONG_ANSWER_3};
         String selection = QuizzesTable.COLUMN_QUIZ_ID + "=?";
         String[] selectionArgs = {Integer.toString(quizID)};
