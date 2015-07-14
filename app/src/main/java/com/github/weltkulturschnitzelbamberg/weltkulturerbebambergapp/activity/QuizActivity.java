@@ -172,7 +172,7 @@ public class QuizActivity extends Activity {
             this.location = location;
             this.question = question;
             this.solution = solution;
-            this.wrongAnswers = Arrays.asList(wrong_answers);
+            this.wrongAnswers = new ArrayList<>(Arrays.asList(wrong_answers));
         }
 
         public int getQuizId(){
