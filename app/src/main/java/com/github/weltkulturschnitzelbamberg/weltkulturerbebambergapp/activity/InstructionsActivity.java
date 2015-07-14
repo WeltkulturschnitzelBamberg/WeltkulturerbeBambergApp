@@ -3,10 +3,6 @@ package com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.activity;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatCallback;
-import android.support.v7.app.AppCompatDelegate;
-import android.support.v7.view.ActionMode;
-import android.support.v7.widget.Toolbar;
 import android.view.View;
 
 import com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.R;
@@ -18,26 +14,12 @@ import com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.R;
  * @version 1.0
  * @since 2015-06-04
  */
-public class InstructionsActivity extends Activity implements AppCompatCallback {
-
-    private AppCompatDelegate delegate;
+public class InstructionsActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        //TODO cohesion
-        //let's create the delegate, passing the activity at both arguments (Activity, AppCompatCallback)
-        delegate = AppCompatDelegate.create(this, this);
-        //we need to call the onCreate() of the AppCompatDelegate
-        delegate.onCreate(savedInstanceState);
-
-        //we use the delegate to inflate the layout
-        delegate.setContentView(R.layout.activity_instructions);
-
-        //Finally, let's add the Toolbar
-        Toolbar toolbar = (Toolbar) findViewById(R.id.instruc_toolbar);
-        delegate.setSupportActionBar(toolbar);
+        setContentView(R.layout.activity_instructions);
     }
 
     //TODO Documentation
@@ -52,15 +34,5 @@ public class InstructionsActivity extends Activity implements AppCompatCallback 
         Intent startLongRoute = new Intent(this, NavigationActivity.class);
         startLongRoute.putExtra(NavigationActivity.TAG_ROUTE_CODE, NavigationActivity.FLAG_ROUTE_CODE_LONG);
         startActivity(startLongRoute);
-    }
-
-    @Override
-    public void onSupportActionModeStarted(ActionMode mode) {
-        //let's leave this empty, for now
-    }
-
-    @Override
-    public void onSupportActionModeFinished(ActionMode mode) {
-        // let's leave this empty, for now
     }
 }
