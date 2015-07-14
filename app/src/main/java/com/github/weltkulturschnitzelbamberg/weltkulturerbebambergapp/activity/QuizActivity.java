@@ -120,7 +120,7 @@ public class QuizActivity extends Activity {
         String wrongAnswer2 = cursor.getString(cursor.getColumnIndex(QuizzesTable.COLUMN_WRONG_ANSWER_2));
         String wrongAnswer3 = cursor.getString(cursor.getColumnIndex(QuizzesTable.COLUMN_WRONG_ANSWER_3));
 
-        return new Quiz(quizID, question, solution, wrongAnswer1, wrongAnswer2, wrongAnswer3);
+        return new Quiz(quizID, location, question, solution, new String[]{wrongAnswer1, wrongAnswer2, wrongAnswer3});
     }
 
     public void onClickAnswer(View view)
@@ -167,7 +167,7 @@ public class QuizActivity extends Activity {
         private final String solution;
         private final List<String> wrongAnswers;
 
-        public Quiz(int quizID, String location, String question, String solution, String... wrong_answers){
+        public Quiz(int quizID, String location, String question, String solution, String[] wrong_answers){
             this.quizID = quizID;
             this.location = location;
             this.question = question;
