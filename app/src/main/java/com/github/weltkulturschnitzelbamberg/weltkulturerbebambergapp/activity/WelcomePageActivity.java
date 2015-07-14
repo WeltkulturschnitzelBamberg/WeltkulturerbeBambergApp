@@ -148,5 +148,8 @@ public class WelcomePageActivity extends Activity implements LoaderManager.Loade
     //TODO Documentation
     public void onBtnClickContinue(View view) {
         //TODO start navigation activity from last waypoint
+        Intent abc = new Intent(this, QuizActivity.class);
+        abc.putExtra(QuizActivity.TAG_QUIZ_ID, 3);
+        startActivity(abc);
     }
 }
