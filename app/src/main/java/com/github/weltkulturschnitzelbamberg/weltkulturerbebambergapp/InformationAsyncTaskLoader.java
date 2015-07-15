@@ -61,8 +61,11 @@ public class InformationAsyncTaskLoader extends AsyncTaskLoader {
 
                 if (waypointInformation.getElementsByTagName(Informations.TAG_ID).getLength() > 0)
                     id = waypointInformation.getElementsByTagName(Informations.TAG_ID).item(0).getTextContent();
-                if (waypointInformation.getElementsByTagName(Informations.TAG_IMAGE).getLength() > 0)
-                    image = waypointInformation.getElementsByTagName(Informations.TAG_IMAGE).item(0).getTextContent();
+                if (waypointInformation.getElementsByTagName(Informations.TAG_IMAGE).getLength() > 0) {
+                    String imageFileName = waypointInformation.getElementsByTagName(Informations.TAG_IMAGE).item(0).getTextContent();
+                    image = Integer.toString(getContext().getResources().getIdentifier(imageFileName, "drawable", this.getContext().getPackageName()));
+                }
+
                 if (waypointInformation.getElementsByTagName(Informations.TAG_INFO_TEXT).getLength() > 0)
                     infoText = waypointInformation.getElementsByTagName(Informations.TAG_INFO_TEXT).item(0).getTextContent();
 
