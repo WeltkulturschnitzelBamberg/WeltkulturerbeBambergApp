@@ -39,10 +39,10 @@
     <Button
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="Next"
-        android:id="@+id/btn_quiz_next"
+        android:text="More"
+        android:id="@+id/btn_quiz_more"
         android:visibility="invisible"
-        android:onClick="onBtnClickNext"
+        android:onClick="onBtnClickMore"
         android:clickable="false"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true" />

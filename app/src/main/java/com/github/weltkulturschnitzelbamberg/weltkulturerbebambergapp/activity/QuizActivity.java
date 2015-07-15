@@ -33,7 +33,7 @@ public class QuizActivity extends Activity {
     // Definition of the different Views represented inside the Layout
     private TextView mTv_quiz_station;
     private TextView mTv_quiz_question;
-    private Button mBtn_quiz_next;
+    private Button mBtn_quiz_more;
 
     // Definition of the Buttons of the Quiz. These Buttons are not represented inside the Layout
     private Button mBtn_quiz_solution;
@@ -57,7 +57,7 @@ public class QuizActivity extends Activity {
         // Initialise the Views
         mTv_quiz_station = (TextView) findViewById(R.id.tv_quiz_station);
         mTv_quiz_question = (TextView) findViewById(R.id.tv_quiz_question);
-        mBtn_quiz_next = (Button) findViewById(R.id.btn_quiz_next);
+        mBtn_quiz_more = (Button) findViewById(R.id.btn_quiz_more);
 
         // Set up the Quiz
         setUpQuiz();
@@ -153,11 +153,11 @@ public class QuizActivity extends Activity {
         mBtn_quiz_wrongAnswer2.setClickable(false);
         mBtn_quiz_wrongAnswer3.setClickable(false);
 
-        mBtn_quiz_next.setClickable(true);
-        mBtn_quiz_next.setVisibility(View.VISIBLE);
+        mBtn_quiz_more.setClickable(true);
+        mBtn_quiz_more.setVisibility(View.VISIBLE);
     }
 
-    public void onBtnClickNext(View view)
+    public void onBtnClickMore(View view)
     {
         Intent i = new Intent(this, InformationActivity.class);
         startActivity(i);
