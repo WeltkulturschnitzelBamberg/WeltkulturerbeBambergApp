@@ -63,6 +63,61 @@ public class NavigationActivity extends FragmentActivity {
         setUpMapIfNeeded();
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_navigation, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        Intent startQuiz = new Intent(this, QuizActivity.class);
+        switch (item.getItemId()) {
+            case R.id.action_navigation_waypoint_1:
+                // No Quiz
+                return true;
+            case R.id.action_navigation_waypoint_2:
+                startQuiz.putExtra(QuizActivity.TAG_QUIZ_ID, 3);
+                startActivity(startQuiz);
+                return true;
+            case R.id.action_navigation_waypoint_3:
+                startQuiz.putExtra(QuizActivity.TAG_QUIZ_ID, 8);
+                startActivity(startQuiz);
+                return true;
+            case R.id.action_navigation_waypoint_4:
+                startQuiz.putExtra(QuizActivity.TAG_QUIZ_ID, 9);
+                startActivity(startQuiz);
+                return true;
+            case R.id.action_navigation_waypoint_5:
+                startQuiz.putExtra(QuizActivity.TAG_QUIZ_ID, 7);
+                startActivity(startQuiz);
+                return true;
+            case R.id.action_navigation_waypoint_6:
+                startQuiz.putExtra(QuizActivity.TAG_QUIZ_ID, 4);
+                startActivity(startQuiz);
+                return true;
+            case R.id.action_navigation_waypoint_7:
+                startQuiz.putExtra(QuizActivity.TAG_QUIZ_ID, 5);
+                startActivity(startQuiz);
+                return true;
+            case R.id.action_navigation_waypoint_8:
+                startQuiz.putExtra(QuizActivity.TAG_QUIZ_ID, 1);
+                startActivity(startQuiz);
+                return true;
+            case R.id.action_navigation_waypoint_9:
+                startQuiz.putExtra(QuizActivity.TAG_QUIZ_ID, 6);
+                startActivity(startQuiz);
+                return true;
+            case R.id.action_navigation_waypoint_10:
+                startQuiz.putExtra(QuizActivity.TAG_QUIZ_ID, 2);
+                startActivity(startQuiz);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
     /**
      * Sets up the map if it is possible to do so (i.e., the Google Play services APK is correctly
      * installed) and the map has not already been instantiated.. This will ensure that we only ever
@@ -159,31 +214,6 @@ public class NavigationActivity extends FragmentActivity {
             intent.putExtra("lng", waypoint.getLongitude());
             PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
             locManager.addProximityAlert(waypoint.getLatitude(), waypoint.getLongitude(), 40, -1, pendingIntent);
-        }
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_navigation, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.action_score:
-                if (item.isChecked()) item.setChecked(false);
-                else item.setChecked(true);
-                startActivity(new Intent(NavigationActivity.this, ScoreActivity.class));
-                return true;
-            case R.id.action_start:
-                if (item.isChecked()) item.setChecked(false);
-                else item.setChecked(true);
-                startActivity(new Intent(NavigationActivity.this, WelcomePageActivity.class));
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
         }
     }
 

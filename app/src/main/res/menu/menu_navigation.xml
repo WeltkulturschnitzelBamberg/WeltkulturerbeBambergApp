@@ -1,10 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android"
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-    <item android:id="@+id/waypoint_1" android:title="@string/waypoint_1"
-        android:orderInCategory="100" app:showAsAction="never" />
-    <item android:id="@+id/waypoint_2" android:title="@string/waypoint_2"
-        android:orderInCategory="100" app:showAsAction="never" />
-    <item android:id="@+id/waypoint_3" android:title="@string/waypoint_3"
-        android:orderInCategory="100" app:showAsAction="never" />
+    <item
+        android:id="@+id/action_navigation_waypoint_1"
+        android:title="Gärtner- und Häckermuseum"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_navigation_waypoint_2"
+        android:title="Linker Regnitzarm"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_navigation_waypoint_3"
+        android:title="Otto-Friedrich-Universität Bamberg"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_navigation_waypoint_4"
+        android:title="St. Martin"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_navigation_waypoint_5"
+        android:title="Obere Brücke"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_navigation_waypoint_6"
+        android:title="St. Elisabeth"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_navigation_waypoint_7"
+        android:title="Bamberger Dom"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_navigation_waypoint_8"
+        android:title="Neue Residenz"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_navigation_waypoint_9"
+        android:title="Alte Hofhaltung"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_navigation_waypoint_10"
+        android:title="St. Getreu"
+        app:showAsAction="never" />
 </menu>
