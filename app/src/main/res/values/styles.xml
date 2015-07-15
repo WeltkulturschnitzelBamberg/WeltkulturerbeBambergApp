@@ -22,7 +22,14 @@
 
     <!-- Style of the Buttons -->
     <style name="WeltkulturerbeBambergAppTheme.Button" parent="android:Widget.Holo.Light.Button">
-        <item name="android:background">@drawable/button_default</item>
+        <item name="android:background">@drawable/button</item>
+        <item name="android:textColor">@color/SecondaryColor</item>
+        <item name="android:clickable">true</item>
+        <item name="android:focusable">true</item>
+    </style>
+
+    <style name="WeltkulturerbeBambergAppTheme.Button.Inverted" parent="WeltkulturerbeBambergAppTheme.Button">
+        <item name="android:background">@drawable/button</item>
         <item name="android:textColor">@color/SecondaryColor</item>
         <item name="android:clickable">true</item>
         <item name="android:focusable">true</item>
