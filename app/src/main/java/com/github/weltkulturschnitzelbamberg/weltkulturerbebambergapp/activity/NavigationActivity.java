@@ -6,10 +6,6 @@ import android.database.Cursor;
 import android.location.LocationManager;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatCallback;
-import android.support.v7.app.AppCompatDelegate;
-import android.support.v7.view.ActionMode;
-import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.R;
@@ -33,9 +29,7 @@ import java.util.List;
  * @since 2015-06-04
  */
 
-public class NavigationActivity extends FragmentActivity implements AppCompatCallback {
-
-    private AppCompatDelegate mDelegate;
+public class NavigationActivity extends FragmentActivity {
 
     private GoogleMap mMap;
 
@@ -58,19 +52,8 @@ public class NavigationActivity extends FragmentActivity implements AppCompatCal
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_navigation);
 
-        //TODO cohesion
-        //let's create the delegate, passing the activity at both arguments (Activity, AppCompatCallback)
-        mDelegate = AppCompatDelegate.create(this, this);
-        //we need to call the onCreate() of the AppCompatDelegate
-        mDelegate.onCreate(savedInstanceState);
-
-        //we use the delegate to inflate the layout
-        mDelegate.setContentView(R.layout.activity_navigation);
-
-        //Finally, let's add the Toolbar
-        Toolbar toolbar = (Toolbar) findViewById(R.id.navigation_toolbar);
-        mDelegate.setSupportActionBar(toolbar);
         setUpMapIfNeeded();
     }
 
@@ -78,6 +61,61 @@ public class NavigationActivity extends FragmentActivity implements AppCompatCal
     protected void onResume() {
         super.onResume();
         setUpMapIfNeeded();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_navigation, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        Intent startQuiz = new Intent(this, QuizActivity.class);
+        switch (item.getItemId()) {
+            case R.id.action_navigation_waypoint_1:
+                // No Quiz
+                return true;
+            case R.id.action_navigation_waypoint_2:
+                startQuiz.putExtra(QuizActivity.TAG_QUIZ_ID, 3);
+                startActivity(startQuiz);
+                return true;
+            case R.id.action_navigation_waypoint_3:
+                startQuiz.putExtra(QuizActivity.TAG_QUIZ_ID, 8);
+                startActivity(startQuiz);
+                return true;
+            case R.id.action_navigation_waypoint_4:
+                startQuiz.putExtra(QuizActivity.TAG_QUIZ_ID, 9);
+                startActivity(startQuiz);
+                return true;
+            case R.id.action_navigation_waypoint_5:
+                startQuiz.putExtra(QuizActivity.TAG_QUIZ_ID, 7);
+                startActivity(startQuiz);
+                return true;
+            case R.id.action_navigation_waypoint_6:
+                startQuiz.putExtra(QuizActivity.TAG_QUIZ_ID, 4);
+                startActivity(startQuiz);
+                return true;
+            case R.id.action_navigation_waypoint_7:
+                startQuiz.putExtra(QuizActivity.TAG_QUIZ_ID, 5);
+                startActivity(startQuiz);
+                return true;
+            case R.id.action_navigation_waypoint_8:
+                startQuiz.putExtra(QuizActivity.TAG_QUIZ_ID, 1);
+                startActivity(startQuiz);
+                return true;
+            case R.id.action_navigation_waypoint_9:
+                startQuiz.putExtra(QuizActivity.TAG_QUIZ_ID, 6);
+                startActivity(startQuiz);
+                return true;
+            case R.id.action_navigation_waypoint_10:
+                startQuiz.putExtra(QuizActivity.TAG_QUIZ_ID, 2);
+                startActivity(startQuiz);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
     /**
@@ -177,41 +215,6 @@ public class NavigationActivity extends FragmentActivity implements AppCompatCal
             PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
             locManager.addProximityAlert(waypoint.getLatitude(), waypoint.getLongitude(), 40, -1, pendingIntent);
         }
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_navigation, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.action_score:
-                if (item.isChecked()) item.setChecked(false);
-                else item.setChecked(true);
-                startActivity(new Intent(NavigationActivity.this, ScoreActivity.class));
-                return true;
-            case R.id.action_start:
-                if (item.isChecked()) item.setChecked(false);
-                else item.setChecked(true);
-                startActivity(new Intent(NavigationActivity.this, WelcomePageActivity.class));
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
-    }
-
-    @Override
-    public void onSupportActionModeStarted(ActionMode mode) {
-        //let's leave this empty, for now
-    }
-
-    @Override
-    public void onSupportActionModeFinished(ActionMode mode) {
-        // let's leave this empty, for now
     }
 
     private class Route {

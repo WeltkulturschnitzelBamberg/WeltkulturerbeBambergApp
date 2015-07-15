@@ -34,12 +34,7 @@
         android:text="@string/btn_score_back_to_start"
         android:id="@+id/btn_score_back_to_start"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true" />
-
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/score_toolbar"
-        android:layout_height="@dimen/abc_action_bar_default_height_material"
-        android:layout_width="match_parent"
-        android:minHeight="@dimen/abc_action_bar_default_height_material"
-        android:background="?attr/colorPrimary" />
+        android:layout_centerHorizontal="true"
+        android:nestedScrollingEnabled="false"
+        android:onClick="onBtnClickBackToStart" />
 </RelativeLayout>

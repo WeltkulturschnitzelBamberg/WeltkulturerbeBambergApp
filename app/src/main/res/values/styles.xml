@@ -1,12 +1,50 @@
 <resources>
 
-    <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
-    <!-- colorPrimary is used for coloring the Toolbar -->
-    <item name="colorPrimary">@android:color/background_light</item>
-    <!-- colorAccent is used as the default value for colorControlActivated
-     which is used to tint widgets -->
-    <item name="colorAccent">#FFAB40</item>
+    <!-- Theme of the Application. -->
+    <style name="WeltkulturerbeBambergAppTheme" parent="android:Theme.Holo.Light">
+        <item name="android:actionBarStyle">@style/WeltkulturerbeBambergAppTheme.ActionBar</item>
+        <item name="android:buttonStyle">@style/WeltkulturerbeBambergAppTheme.Button</item>
+        <item name="android:textViewStyle">@style/WeltkulturerbeBambergAppTheme.TextView</item>
     </style>
 
+    <!--- Style of the ActionBar -->
+    <style name="WeltkulturerbeBambergAppTheme.ActionBar" parent="android:Widget.Holo.Light.ActionBar">
+        <item name="android:background">@color/PrimaryColor</item>
+        <item name="android:displayOptions">showTitle</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:titleTextStyle">@style/WeltkulturerbeBambergAppTheme.ActionBar.TitleText</item>
+    </style>
+
+    <!-- Style of the Title Text of the ActionBar -->
+    <style name="WeltkulturerbeBambergAppTheme.ActionBar.TitleText" parent="android:TextAppearance.Holo.Widget.ActionBar.Title">
+        <item name="android:textColor">@color/SecondaryColor</item>
+    </style>
+
+    <!-- Style of the Buttons -->
+    <style name="WeltkulturerbeBambergAppTheme.Button" parent="android:Widget.Holo.Light.Button">
+        <item name="android:background">@drawable/button</item>
+        <item name="android:textColor">@color/SecondaryColor</item>
+        <item name="android:clickable">true</item>
+        <item name="android:focusable">true</item>
+    </style>
+
+    <style name="WeltkulturerbeBambergAppTheme.Button.Inverted" parent="WeltkulturerbeBambergAppTheme.Button">
+        <item name="android:background">@drawable/button</item>
+        <item name="android:textColor">@color/SecondaryColor</item>
+        <item name="android:clickable">true</item>
+        <item name="android:focusable">true</item>
+    </style>
+
+    <!-- Style for the Buttons of the Quiz -->
+    <style name="WeltkulturerbeBambergAppTheme.ButtonQuiz" parent="android:Widget.Holo.Light.Button">
+        <item name="android:background">@drawable/button_quiz</item>
+        <item name="android:textColor">@color/SecondaryColor</item>
+        <item name="android:clickable">true</item>
+        <item name="android:focusable">true</item>
+    </style>
+
+    <!-- Style of the Text Views -->
+    <style name="WeltkulturerbeBambergAppTheme.TextView" parent="android:Widget.Holo.TextView">
+        <item name="android:textColor">@color/PrimaryColor</item>
+    </style>
 </resources>
