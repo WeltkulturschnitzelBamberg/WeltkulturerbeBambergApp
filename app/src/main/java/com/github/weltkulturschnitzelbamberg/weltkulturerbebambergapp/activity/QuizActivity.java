@@ -44,7 +44,7 @@ public class QuizActivity extends Activity {
 
     // Definition of the Tags used in Intents send to this Activity
     public static final String TAG_PACKAGE = QuizActivity.class.getPackage().getName();
-    /** This TAG tags the ID of the Quiz which is to be loaded within an Intent send to this Activity*/
+    /** This TAG tags the ID of the Quiz, which is to be loaded, within an Intent send to this Activity*/
     public static final String TAG_QUIZ_ID = TAG_PACKAGE + "quiz_id";
     /** FLAG for the Quiz ID within an Intent send to this Activity, tagged with the TAG {@link QuizActivity#TAG_QUIZ_ID}, which indicates a Quiz with this ID doesn't exist*/
     public static final int FLAG_QUIZ_ID_ERROR = -1;
