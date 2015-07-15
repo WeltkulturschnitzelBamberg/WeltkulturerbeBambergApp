@@ -34,7 +34,7 @@ public class InformationTable {
             + "("
             + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
             + COLUMN_INFORMATION_ID + " INTEGER NOT NULL,"
-            + COLUMN_IMAGE + " TEXT,"
+            + COLUMN_IMAGE + " INTEGER,"
             + COLUMN_INFO_TEXT + " TEXT"
             + ");";
 
