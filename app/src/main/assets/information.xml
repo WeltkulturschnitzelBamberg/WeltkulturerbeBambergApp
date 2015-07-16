@@ -34,19 +34,25 @@
         <id>3</id>
         <image></image>
         <info-text>
-            Das am 14. Oktober 1979 gegründete Freilichtmuseum, widmet sich dem Leben der Geschichte
-            und der Kultur, von Erwerbsgärtnern um das Jahr 1900.
-            Da es sich in einem Haus aus dieser Zeit befindet wie es früher üblich war,
-            hat es einen ganz besonderen Charme.
-            Bei der Wiedereröffnung am 22.4.2012 wurde eine Komplette Umgestaltung vorgenommen.
-            \n Öffnungszeiten
-            \n 1. Mai bis 31. Oktober:
-            \n Mittwoch bis Sonntag und Pfingstmontag
-            \n 11-17 Uhr
-            \n Preise
-            \n 3,- Euro
-            \n ermäßigt 2,50 Euro
-            \n Kinder &#38; Jugendliche: 1 Euro
+            <![CDATA[
+                <body>
+                    <p>Das am 14. Oktober 1979 gegründete Freilichtmuseum, widmet sich dem Leben der Geschichte und der Kultur, von Erwerbsgärtnern um das Jahr 1900.
+                        <br>Da es sich in einem Haus aus dieser Zeit befindet wie es früher üblich war, hat es einen ganz besonderen Charme.
+                        <br>Bei der Wiedereröffnung am 22.4.2012 wurde eine Komplette Umgestaltung vorgenommen.<br>
+                    </p>
+                    <blockquote>
+                        <p>
+                            <u>Öffnungszeiten:</u>
+                            <br>1. Mai bis 31. Oktober
+                            <br>Mittwoch bis Sonntag und Pfingstmontag
+                            <br>11-17 Uhr<br>
+                            <br>Preise:
+                            <br>3,- Euro, ermäßigt 2,50 Euro
+                            <br>Kinder &#38; Jugendliche: 1 Euro
+                        </p>
+                    </blockquote>
+                </body>
+            ]]>
         </info-text>
     </waypoint-information>
     <waypoint-information>
