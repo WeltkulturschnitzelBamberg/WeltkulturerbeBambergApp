@@ -91,7 +91,7 @@ public class QuizActivity extends Activity {
         btnIds.add(R.id.btn_quiz_answer4);
         Collections.shuffle(btnIds);
 
-        // Assign the Quiz Buttonsin the Layout to their representations in the Activity
+        // Assign the Quiz Buttons in the Layout to their representations in the Activity
         mBtn_quiz_solution = (Button) findViewById(btnIds.remove(0));
         mBtn_quiz_wrongAnswer1 = (Button) findViewById(btnIds.remove(0));
         mBtn_quiz_wrongAnswer2 = (Button) findViewById(btnIds.remove(0));
@@ -119,7 +119,7 @@ public class QuizActivity extends Activity {
      */
     private Quiz getQuizByID(int quizID){
         String[] projection = {QuizzesTable.COLUMN_QUIZ_ID, QuizzesTable.COLUMN_LOCATION, QuizzesTable.COLUMN_QUESTION, QuizzesTable.COLUMN_SOLUTION, QuizzesTable.COLUMN_WRONG_ANSWER_1,
-                                QuizzesTable.COLUMN_WRONG_ANSWER_2, QuizzesTable.COLUMN_WRONG_ANSWER_3};
+                                QuizzesTable.COLUMN_WRONG_ANSWER_2, QuizzesTable.COLUMN_WRONG_ANSWER_3, QuizzesTable.COLUMN_INFO_ID};
         String selection = QuizzesTable.COLUMN_QUIZ_ID + "=?";
         String[] selectionArgs = {Integer.toString(quizID)};
         String sortOrder = null;
@@ -132,8 +132,9 @@ public class QuizActivity extends Activity {
         String wrongAnswer1 = cursor.getString(cursor.getColumnIndex(QuizzesTable.COLUMN_WRONG_ANSWER_1));
         String wrongAnswer2 = cursor.getString(cursor.getColumnIndex(QuizzesTable.COLUMN_WRONG_ANSWER_2));
         String wrongAnswer3 = cursor.getString(cursor.getColumnIndex(QuizzesTable.COLUMN_WRONG_ANSWER_3));
+        int infoID = cursor.getInt(cursor.getColumnIndex(QuizzesTable.COLUMN_INFO_ID));
 
-        return new Quiz(quizID, location, question, solution, new String[]{wrongAnswer1, wrongAnswer2, wrongAnswer3});
+        return new Quiz(quizID, location, question, solution, new String[]{wrongAnswer1, wrongAnswer2, wrongAnswer3}, infoID);
     }
 
     // TODO Documentation
@@ -160,6 +161,7 @@ public class QuizActivity extends Activity {
     public void onBtnClickMore(View view)
     {
         Intent i = new Intent(this, InformationActivity.class);
+        i.putExtra(InformationActivity.TAG_INFORMATION_ID, mCurrentQuiz.getInfoID());
         startActivity(i);
     }
 
@@ -177,13 +179,15 @@ public class QuizActivity extends Activity {
         private final String location;
         private final String question;
         private final String solution;
+        private final int infoID;
         private final List<String> wrongAnswers;
 
-        public Quiz(int quizID, String location, String question, String solution, String[] wrong_answers){
+        public Quiz(int quizID, String location, String question, String solution, String[] wrong_answers, int infoID){
             this.quizID = quizID;
             this.location = location;
             this.question = question;
             this.solution = solution;
+            this.infoID = infoID;
             this.wrongAnswers = new ArrayList<>(Arrays.asList(wrong_answers));
         }
 
@@ -201,6 +205,10 @@ public class QuizActivity extends Activity {
 
         public String getSolution(){
             return this.solution;
+        }
+
+        public int getInfoID() {
+            return infoID;
         }
 
         public List<String> getWrongAnswers(){
