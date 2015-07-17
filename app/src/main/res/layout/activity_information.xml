@@ -7,18 +7,6 @@
     app:contentInsetStart="0dp"
     tools:context="com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.activity.InformationActivity">
 
-    <ImageView
-        android:layout_width="fill_parent"
-        android:layout_height="200dp"
-        android:id="@+id/iv_info_image"
-        android:layout_gravity="center_horizontal"
-        android:background="#fffafafa"
-        android:minHeight="250dp"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:src="@mipmap/ic_launcher" />
-
     <ScrollView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -27,21 +15,33 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:layout_below="@+id/iv_info_image">
+        android:layout_above="@+id/linearLayout3"
+        android:layout_alignParentTop="true">
 
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
+            <ImageView
+                android:layout_width="fill_parent"
+                android:layout_height="200dp"
+                android:id="@+id/iv_info_image"
+                android:layout_gravity="center_horizontal"
+                android:minHeight="250dp"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:src="@mipmap/ic_launcher" />
+
             <TextView
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/tv_info_information"
                 android:text="@string/tv_info_information"
-                android:paddingLeft="16dp"
-                android:paddingRight="16dp"
-                android:textAppearance="?android:attr/textAppearanceLarge" />
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                style="@style/WeltkulturerbeBambergAppTheme.TextView.Small"
+                android:padding="16dp" />
 
             <Button
                 android:layout_width="fill_parent"
@@ -49,6 +49,7 @@
                 android:id="@+id/btn_info_selfie_spot"
                 android:layout_gravity="center_horizontal"
                 android:text="@string/btn_info_selfie_spot" />
+
         </LinearLayout>
     </ScrollView>
 
@@ -58,7 +59,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_alignParentBottom="true">
+        android:layout_alignParentBottom="true"
+        android:id="@+id/linearLayout3">
 
         <Button
             android:layout_width="fill_parent"
