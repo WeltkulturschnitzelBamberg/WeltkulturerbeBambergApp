@@ -15,6 +15,7 @@ import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.CustomHtmlTagHandler;
 import com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.R;
 import com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.contentprovider.WeltkulturerbeContentProvider;
 import com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.database.InformationTable;
@@ -63,8 +64,7 @@ public class InformationActivity extends Activity {
 
     private void setUpInformation(){
         mCurrentInformation = getInformationFromID(getInformationIDFromIntent());
-        mTv_info_information.setText(Html.fromHtml(mCurrentInformation.getInfoText()));
-        DebugUtils.log(mCurrentInformation.getInfoText());
+        mTv_info_information.setText(Html.fromHtml(mCurrentInformation.getInfoText(), null, new CustomHtmlTagHandler()));
     }
 
     private int getInformationIDFromIntent() {
