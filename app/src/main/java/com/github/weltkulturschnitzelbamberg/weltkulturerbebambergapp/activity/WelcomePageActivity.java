@@ -5,6 +5,7 @@ import android.app.LoaderManager;
 import android.content.Loader;
 import android.os.Bundle;
 
+import com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.InformationAsyncTaskLoader;
 import com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.R;
 import com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.RouteAsyncTaskLoader;
 import com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.WaypointsAsyncTaskLoader;
@@ -41,6 +42,7 @@ public class WelcomePageActivity extends Activity implements LoaderManager.Loade
             getLoaderManager().initLoader(WaypointsAsyncTaskLoader.LOADER_ID, null, this);
             getLoaderManager().initLoader(RouteAsyncTaskLoader.LOADER_ID, null, this);
             getLoaderManager().initLoader(QuizzesAsyncTaskLoader.LOADER_ID, null, this);
+            getLoaderManager().initLoader(InformationAsyncTaskLoader.LOADER_ID, null, this);
             getSharedPreferences("PREFERENCES", MODE_PRIVATE).edit().putBoolean("IS_FIRST_LAUNCH", false).commit();
         }
     }
@@ -60,6 +62,10 @@ public class WelcomePageActivity extends Activity implements LoaderManager.Loade
                 // Return new WaypointsAsyncTaskLoader to load waypoints in the database
                 DebugUtils.toast(this, "Loading Waypoints in Database ...");
                 return new WaypointsAsyncTaskLoader(this);
+            case InformationAsyncTaskLoader.LOADER_ID:
+                // Return new InformationAsyncTaskLoader to load the information about the waypoints in the database
+                DebugUtils.toast(this, "Loading Information about the Waypoints in the Database ...");
+                return new InformationAsyncTaskLoader(this);
             default:
                 // There is no such Loader ID -> throw Exception
                 throw new IllegalArgumentException("Loader not found. ID: " + id);
@@ -86,6 +92,10 @@ public class WelcomePageActivity extends Activity implements LoaderManager.Loade
                 DebugUtils.toast(this, "Waypoints loaded");
                 getLoaderManager().destroyLoader(WaypointsAsyncTaskLoader.LOADER_ID);
                 break;
+            case InformationAsyncTaskLoader.LOADER_ID:
+                DebugUtils.toast(this, "Information about Waypoints loaded");
+                getLoaderManager().destroyLoader(InformationAsyncTaskLoader.LOADER_ID);
+                break;
         }
     }
 
@@ -104,8 +114,8 @@ public class WelcomePageActivity extends Activity implements LoaderManager.Loade
     //TODO Documentation
     public void onBtnClickContinue(View view) {
         //TODO start navigation activity from last waypoint
-        Intent abc = new Intent(this, QuizActivity.class);
-        abc.putExtra(QuizActivity.TAG_QUIZ_ID, 3);
-        startActivity(abc);
+        Intent start = new Intent(this, InformationActivity.class);
+        start.putExtra(InformationActivity.TAG_INFORMATION_ID, 3);
+        startActivity(start);
     }
 }

@@ -7,55 +7,76 @@
     app:contentInsetStart="0dp"
     tools:context="com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.activity.InformationActivity">
 
-    <ImageView
-        android:layout_width="fill_parent"
+    <ScrollView
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/iv_info_image"
-        android:layout_gravity="center_horizontal"
-        android:background="#fffafafa"
-        android:minHeight="250dp"
-        android:layout_alignParentTop="true"
-        android:layout_marginBottom="10dp"
+        android:id="@+id/scrollView"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:src="@mipmap/ic_launcher" />
+        android:layout_above="@+id/linearLayout3"
+        android:layout_alignParentTop="true">
 
-    <TextView
-        android:layout_width="fill_parent"
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:layout_width="fill_parent"
+                android:layout_height="200dp"
+                android:id="@+id/iv_info_image"
+                android:layout_gravity="center_horizontal"
+                android:minHeight="250dp"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:src="@mipmap/ic_launcher" />
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/tv_info_information"
+                android:text="@string/tv_info_information"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                style="@style/WeltkulturerbeBambergAppTheme.TextView.Small"
+                android:padding="16dp" />
+
+            <Button
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/btn_info_selfie_spot"
+                android:layout_gravity="center_horizontal"
+                android:text="@string/btn_info_selfie_spot" />
+
+        </LinearLayout>
+    </ScrollView>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:id="@+id/tv_info_information"
-        android:text="@string/tv_info_information"
-        android:paddingLeft="28dp"
-        android:paddingRight="28dp"
-        android:layout_centerVertical="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-
-    <Button
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/btn_info_selfie_spot"
-        android:layout_gravity="center_horizontal"
-        android:text="@string/btn_info_selfie_spot"
-        android:layout_above="@+id/btn_info_continue"
-        android:layout_centerHorizontal="true" />
-
-    <Button
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/btn_info_continue"
-        android:layout_gravity="center_horizontal"
-        android:text="@string/btn_info_continue"
-        android:layout_above="@+id/btn_info_score"
-        android:layout_centerHorizontal="true" />
-
-    <Button
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/btn_info_score"
-        android:layout_gravity="center_horizontal"
-        android:text="@string/btn_info_score"
+        android:layout_alignParentStart="true"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true" />
+        android:id="@+id/linearLayout3">
+
+        <Button
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/btn_info_score"
+            android:text="@string/btn_info_score"
+            android:layout_gravity="bottom"
+            android:layout_weight="1" />
+
+        <Button
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/btn_info_continue"
+            android:text="@string/btn_info_continue"
+            android:layout_gravity="bottom"
+            android:layout_weight="1"/>
+    </LinearLayout>
+
 </RelativeLayout>

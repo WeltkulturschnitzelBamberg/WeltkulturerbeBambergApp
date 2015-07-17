@@ -32,6 +32,7 @@ public final class QuizzesTable {
     public static final String COLUMN_WRONG_ANSWER_1 = "wrong_answer1";
     public static final String COLUMN_WRONG_ANSWER_2 = "wrong_answer2";
     public static final String COLUMN_WRONG_ANSWER_3 = "wrong_answer3";
+    public static final String COLUMN_INFO_ID = "info_id";
 
     /** SQL command to create the table **/
     private static final String SQL_CREATE = "CREATE TABLE " + TABLE_QUIZZES
@@ -43,7 +44,8 @@ public final class QuizzesTable {
             + COLUMN_SOLUTION + " TEXT NOT NULL,"
             + COLUMN_WRONG_ANSWER_1 + " TEXT NOT NULL,"
             + COLUMN_WRONG_ANSWER_2 + " TEXT NOT NULL,"
-            + COLUMN_WRONG_ANSWER_3 + " TEXT NOT NULL"
+            + COLUMN_WRONG_ANSWER_3 + " TEXT NOT NULL,"
+            + COLUMN_INFO_ID + " INTEGER NOT NULL"
             + ");";
 
     public static void onCreate(SQLiteDatabase database) {

@@ -44,7 +44,12 @@
     </style>
 
     <!-- Style of the Text Views -->
-    <style name="WeltkulturerbeBambergAppTheme.TextView" parent="android:Widget.Holo.TextView">
+    <style name="WeltkulturerbeBambergAppTheme.TextView" parent="android:Widget.Holo.Light.TextView">
         <item name="android:textColor">@color/PrimaryColor</item>
+    </style>
+
+    <!-- TextView Style with smaller text size -->
+    <style name="WeltkulturerbeBambergAppTheme.TextView.Small" parent="WeltkulturerbeBambergAppTheme.TextView">
+        <item name="android:textSize">15dp</item>
     </style>
 </resources>

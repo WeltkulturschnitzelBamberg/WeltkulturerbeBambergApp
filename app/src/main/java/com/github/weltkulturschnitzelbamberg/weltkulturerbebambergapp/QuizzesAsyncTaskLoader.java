@@ -64,6 +64,7 @@ public class QuizzesAsyncTaskLoader extends AsyncTaskLoader {
             String wrongAnswer1 = null;
             String wrongAnswer2 = null;
             String wrongAnswer3 = null;
+            String infoID = null;
 
             if (quiz.getElementsByTagName(Quizzes.TAG_QUIZ_ID).getLength() > 0) quizID = quiz.getElementsByTagName(Quizzes.TAG_QUIZ_ID).item(0).getTextContent();
             if (quiz.getElementsByTagName(Quizzes.TAG_LOCATION).getLength() > 0) location = quiz.getElementsByTagName(Quizzes.TAG_LOCATION).item(0).getTextContent();
@@ -72,6 +73,7 @@ public class QuizzesAsyncTaskLoader extends AsyncTaskLoader {
             if (quiz.getElementsByTagName(Quizzes.TAG_WRONG_ANSWER_1).getLength() > 0) wrongAnswer1 = quiz.getElementsByTagName(Quizzes.TAG_WRONG_ANSWER_1).item(0).getTextContent();
             if (quiz.getElementsByTagName(Quizzes.TAG_WRONG_ANSWER_2).getLength() > 0) wrongAnswer2 = quiz.getElementsByTagName(Quizzes.TAG_WRONG_ANSWER_2).item(0).getTextContent();
             if (quiz.getElementsByTagName(Quizzes.TAG_WRONG_ANSWER_3).getLength() > 0) wrongAnswer3 = quiz.getElementsByTagName(Quizzes.TAG_WRONG_ANSWER_3).item(0).getTextContent();
+            if (quiz.getElementsByTagName(Quizzes.TAG_INFO_ID).getLength() > 0) infoID = quiz.getElementsByTagName(Quizzes.TAG_INFO_ID).item(0).getTextContent();
 
             values.put(QuizzesTable.COLUMN_QUIZ_ID, quizID);
             values.put(QuizzesTable.COLUMN_LOCATION, location);
@@ -80,6 +82,7 @@ public class QuizzesAsyncTaskLoader extends AsyncTaskLoader {
             values.put(QuizzesTable.COLUMN_WRONG_ANSWER_1, wrongAnswer1);
             values.put(QuizzesTable.COLUMN_WRONG_ANSWER_2, wrongAnswer2);
             values.put(QuizzesTable.COLUMN_WRONG_ANSWER_3, wrongAnswer3);
+            values.put(QuizzesTable.COLUMN_INFO_ID, infoID);
             getContext().getContentResolver().insert(WeltkulturerbeContentProvider.URI_TABLE_QUIZZES, values);
         }
     }
@@ -104,5 +107,6 @@ public class QuizzesAsyncTaskLoader extends AsyncTaskLoader {
         private static final String TAG_WRONG_ANSWER_1 = "wrong-answer1";
         private static final String TAG_WRONG_ANSWER_2 = "wrong-answer2";
         private static final String TAG_WRONG_ANSWER_3 = "wrong-answer3";
+        private static final String TAG_INFO_ID = "info-id";
     }
 }
