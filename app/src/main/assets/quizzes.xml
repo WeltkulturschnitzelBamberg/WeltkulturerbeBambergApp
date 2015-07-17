@@ -8,6 +8,7 @@
         <wrong-answer1>Romantik</wrong-answer1>
         <wrong-answer2>Moderne</wrong-answer2>
         <wrong-answer3>Gotik</wrong-answer3>
+        <info-id>0</info-id>
     </quiz>
     <quiz>
         <id>1</id>
@@ -17,6 +18,7 @@
         <wrong-answer1>Stein</wrong-answer1>
         <wrong-answer2>Matsch</wrong-answer2>
         <wrong-answer3>Metall</wrong-answer3>
+        <info-id>1</info-id>
     </quiz>
     <quiz>
         <id>2</id>
@@ -26,6 +28,7 @@
         <wrong-answer1>Schule</wrong-answer1>
         <wrong-answer2>Steuergebäude</wrong-answer2>
         <wrong-answer3>Kindergarten</wrong-answer3>
+        <info-id>2</info-id>
     </quiz>
     <quiz>
         <id>3</id>
@@ -35,6 +38,7 @@
         <wrong-answer1>kleines Istanbul</wrong-answer1>
         <wrong-answer2>kleines New York</wrong-answer2>
         <wrong-answer3>kleines Tokyo</wrong-answer3>
+        <info-id>4</info-id>
     </quiz>
     <quiz>
         <id>4</id>
@@ -44,6 +48,7 @@
         <wrong-answer1>Taufe</wrong-answer1>
         <wrong-answer2>Auferstehung</wrong-answer2>
         <wrong-answer3>Teufelsanbetung</wrong-answer3>
+        <info-id>5</info-id>
     </quiz>
     <quiz>
         <id>5</id>
@@ -53,6 +58,7 @@
         <wrong-answer1>Geheime Tunnel</wrong-answer1>
         <wrong-answer2>Speisekammer</wrong-answer2>
         <wrong-answer3>Waffenkammer</wrong-answer3>
+        <info-id>6</info-id>
     </quiz>
     <quiz>
         <id>6</id>
@@ -62,6 +68,7 @@
         <wrong-answer1>7</wrong-answer1>
         <wrong-answer2>3</wrong-answer2>
         <wrong-answer3>42</wrong-answer3>
+        <info-id>7</info-id>
     </quiz>
     <quiz>
         <id>7</id>
@@ -71,6 +78,7 @@
         <wrong-answer1>Hand</wrong-answer1>
         <wrong-answer2>Kopf</wrong-answer2>
         <wrong-answer3>Torso</wrong-answer3>
+        <info-id>8</info-id>
     </quiz>
     <quiz>
         <id>8</id>
@@ -80,6 +88,7 @@
         <wrong-answer1>Hund</wrong-answer1>
         <wrong-answer2>Löwe</wrong-answer2>
         <wrong-answer3>Stier</wrong-answer3>
+        <info-id>9</info-id>
     </quiz>
     <quiz>
         <id>9</id>
@@ -89,5 +98,6 @@
         <wrong-answer1>Martin</wrong-answer1>
         <wrong-answer2>Der Papst</wrong-answer2>
         <wrong-answer3>St. Nikolaus</wrong-answer3>
+        <info-id>10</info-id>
     </quiz>
 </quizzes>
