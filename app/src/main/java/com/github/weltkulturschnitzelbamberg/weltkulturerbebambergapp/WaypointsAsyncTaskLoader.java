@@ -3,22 +3,22 @@ package com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp;
 import android.content.AsyncTaskLoader;
 import android.content.ContentValues;
 import android.content.Context;
+import android.util.Log;
 
 import com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.contentprovider.WeltkulturerbeContentProvider;
 import com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.database.WaypointsTable;
 
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
-import org.xml.sax.InputSource;
-import org.xml.sax.SAXException;
+import org.json.JSONException;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 
+import java.io.BufferedReader;
 import java.io.IOException;
-
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
+import java.io.InputStreamReader;
+import java.nio.charset.CharsetDecoder;
+import java.nio.charset.StandardCharsets;
 
 /**
  * This AsyncTaskLoader loads the waypoints into the Weltkulturschnitzel Database
@@ -52,56 +52,40 @@ public class WaypointsAsyncTaskLoader extends AsyncTaskLoader{
         return null;
     }
 
-    private void writeWaypointsToDatabase() throws IOException, ParserConfigurationException, SAXException{
-        Document doc = loadFile();
+    private void writeWaypointsToDatabase() throws IOException, ParseException, JSONException{
+        JSONParser parser = new JSONParser();
+        Object obj = parser.parse(new BufferedReader(new InputStreamReader(getContext().getAssets().open("waypoints.json"), "UTF-8")));
 
-        NodeList nodeList = doc.getElementsByTagName(Waypoints.TAG_WAYPOINT);
-        for (int i = 0; i < nodeList.getLength(); i++) {
-            Node node = nodeList.item(i);
-            if (node.getNodeType() == Node.ELEMENT_NODE) {
-                Element element = (Element) node;
-                ContentValues values = new ContentValues();
 
-                String waypointID = INT_NOT_DEFINED;
+        if (obj instanceof JSONObject) {
+            JSONObject jsonObject = (JSONObject) obj;
+
+            // Get the array of waypoints
+            JSONArray waypoints = (JSONArray) jsonObject.get("waypoints");
+            for (int i = 0; i<waypoints.size(); i++) {
+                JSONObject waypoint = (JSONObject) waypoints.get(i);
+
+                long id = 0L;
                 String name = null;
-                String latitude = null;
-                String longitude = null;
-                String quizID = null;
+                long quizID = 0L;
+                double latitude = 0L;
+                double longitude = 0L;
 
-                if (element.getElementsByTagName(Waypoints.TAG_ID).getLength() > 0) waypointID = element.getElementsByTagName(Waypoints.TAG_ID).item(0).getTextContent();
-                if (element.getElementsByTagName(Waypoints.TAG_NAME).getLength() > 0) name = element.getElementsByTagName(Waypoints.TAG_NAME).item(0).getTextContent();
-                if (element.getElementsByTagName(Waypoints.TAG_LATITUDE).getLength() > 0) latitude = element.getElementsByTagName(Waypoints.TAG_LATITUDE).item(0).getTextContent();
-                if (element.getElementsByTagName(Waypoints.TAG_LONGITUDE).getLength() > 0) longitude = element.getElementsByTagName(Waypoints.TAG_LONGITUDE).item(0).getTextContent();
-                if (element.getElementsByTagName(Waypoints.TAG_QUIZ_ID).getLength() > 0) quizID = element.getElementsByTagName(Waypoints.TAG_QUIZ_ID).item(0).getTextContent();
+                if (waypoint.get("id") instanceof Long) id = (long) waypoint.get("id");
+                if (waypoint.get("name") instanceof String) name = (String) waypoint.get("name");
+                if (waypoint.get("quizID") instanceof Long) quizID = (long) waypoint.get("quizID");
+                if (waypoint.get("latitude") instanceof Double) latitude = (double) waypoint.get("latitude");
+                if (waypoint.get("longitude") instanceof Double) longitude = (double) waypoint.get("longitude");
 
-                values.put(WaypointsTable.COLUMN_WAYPOINT_ID, waypointID);
+                ContentValues values = new ContentValues();
+                values.put(WaypointsTable.COLUMN_WAYPOINT_ID, id);
                 values.put(WaypointsTable.COLUMN_NAME, name);
+                values.put(WaypointsTable.COLUMN_QUIZ_ID, quizID);
                 values.put(WaypointsTable.COLUMN_LATITUDE, latitude);
                 values.put(WaypointsTable.COLUMN_LONGITUDE, longitude);
-                values.put(WaypointsTable.COLUMN_QUIZ_ID, quizID);
 
                 getContext().getContentResolver().insert(WeltkulturerbeContentProvider.URI_TABLE_WAYPOINTS, values);
             }
         }
-    }
-
-    private Document loadFile() throws IOException, ParserConfigurationException, SAXException{
-        DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
-        DocumentBuilder docBuilder = dbFactory.newDocumentBuilder();
-        InputSource inputSource = new InputSource(getContext().getAssets().open(Waypoints.FILENAME));
-        Document doc = docBuilder.parse(inputSource);
-        doc.getDocumentElement().normalize();
-        return doc;
-    }
-
-    private static class Waypoints {
-
-        private static final String FILENAME = "waypoints.xml";
-        private static final String TAG_WAYPOINT = "waypoint";
-        private static final String TAG_ID = "id";
-        private static final String TAG_NAME = "name";
-        private static final String TAG_LATITUDE = "latitude";
-        private static final String TAG_LONGITUDE = "longitude";
-        private static final String TAG_QUIZ_ID = "quiz-id";
     }
 }
