@@ -1,0 +1,14 @@
+{
+  "quizzes":[
+    {"id":0, "location":"Kloster Michaelsberg", "question":"In welchen Stil ist die Fassade gebaut?", "solution":"Barock", "wrong-answer1":"Romantik", "wrong-answer2":"Moderne", "wrong-answer3":"Gotik", "info-id":0},
+    {"id":1, "location":"Neue Residenz", "question":"Aus welchem Material besteht der Boden in der Einfahrt?", "solution":"Holz", "wrong-answer1":"Stein", "wrong-answer2":"Matsch", "wrong-answer3":"Metall", "info-id":1},
+    {"id":2, "location":"St. Getreu", "question":"Was ist in dem Gebäude noch untergebracht?", "solution":"Nervenklinik", "wrong-answer1":"Schule", "wrong-answer2":"Steuergebäude", "wrong-answer3":"Kindergarten", "info-id":2},
+    {"id":3, "location":"Markusbrücke", "question":"Was sehen sie am Ufer?", "solution":"kleines Venedig", "wrong-answer1":"kleines Istanbul", "wrong-answer2":"kleines New York", "wrong-answer3":"kleines Tokyo", "info-id":4},
+    {"id":4, "location":"St.Elisabeth", "question":"Welche Szene wird auf dem linken Pfosten der Tafel vor der Kirche dargestellt?", "solution":"Hand wird abgehackt", "wrong-answer1":"Taufe", "wrong-answer2":"Auferstehung", "wrong-answer3":"Teufelsanbetung", "info-id":5},
+    {"id":5, "location":"Dom", "question":"Was befindet sich außergewöhnliches in der vorderen Krypta?", "solution":"Brunnen", "wrong-answer1":"Geheime Tunnel", "wrong-answer2":"Speisekammer", "wrong-answer3":"Waffenkammer", "info-id":6},
+    {"id":6, "location":"Alte Hofhaltung", "question":"Wie viele kleine Figuren sind auf dem Prachttor zu sehen?", "solution":"8", "wrong-answer1":"7", "wrong-answer2":"3", "wrong-answer3":"42", "info-id":7},
+    {"id":7, "location":"Altes Rathaus", "question":"Welches Körperteil befindet sich am alten Rathaus?", "solution":"Bein", "wrong-answer1":"Hand", "wrong-answer2":"Kopf", "wrong-answer3":"Torso", "info-id":8},
+    {"id":8, "location":"Universität", "question":"Welches Tier ist auf dem Wappen über der Tür zu sehen?", "solution":"", "wrong-answer1":"", "wrong-answer2":"", "wrong-answer3":"", "info-id":9},
+    {"id":9, "location":"St. Martin", "question":"Wie heißt die Heiligenstatue links oben?", "solution":"Ignatius", "wrong-answer1":"Martin", "wrong-answer2":"Der Papst", "wrong-answer3":"St. Nikolaus", "info-id":10}
+  ]
+}

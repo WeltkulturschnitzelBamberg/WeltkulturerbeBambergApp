@@ -7,18 +7,14 @@ import android.content.Context;
 import com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.contentprovider.WeltkulturerbeContentProvider;
 import com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.database.InformationTable;
 
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
-import org.xml.sax.InputSource;
-import org.xml.sax.SAXException;
+import org.json.JSONException;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 
 import java.io.IOException;
-
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
+import java.io.InputStreamReader;
 
 /**
  * Created by Michael on 15.07.2015.
@@ -47,27 +43,30 @@ public class InformationAsyncTaskLoader extends AsyncTaskLoader {
     }
 
     // TODO Docuemntation
-    private void writeInformationsToDatabase() throws IOException, ParserConfigurationException, SAXException {
-        Document doc = loadFile();
+    private void writeInformationsToDatabase() throws IOException, ParseException, JSONException {
+        JSONParser parser = new JSONParser();
+        Object obj = parser.parse(new InputStreamReader(getContext().getAssets().open("information.json"), "UTF-8"));
 
-        NodeList waypointInformations = doc.getElementsByTagName(Informations.TAG_WAYPOINT_INFORMATION);
-        for (int i = 0; i < waypointInformations.getLength(); i++) {
-            if (waypointInformations.item(i).getNodeType() == Node.ELEMENT_NODE) {
-                Element waypointInformation = (Element) waypointInformations.item(i);
+        // Get information for each wayoint
+        if (obj instanceof JSONObject) {
+            JSONObject jsonObject = (JSONObject) obj;
 
-                String id = null;
+            JSONArray informationArray = (JSONArray) jsonObject.get("information");
+            for (int i = 0; i < informationArray.size(); i++) {
+                JSONObject information = (JSONObject) informationArray.get(i);
+
+                long id = 0L;
                 String image = null;
-                String infoText = null;
+                String infoText = "";
 
-                if (waypointInformation.getElementsByTagName(Informations.TAG_ID).getLength() > 0)
-                    id = waypointInformation.getElementsByTagName(Informations.TAG_ID).item(0).getTextContent();
-                if (waypointInformation.getElementsByTagName(Informations.TAG_IMAGE).getLength() > 0) {
-                    String imageFileName = waypointInformation.getElementsByTagName(Informations.TAG_IMAGE).item(0).getTextContent();
-                    image = Integer.toString(getContext().getResources().getIdentifier(imageFileName, "drawable", this.getContext().getPackageName()));
+                if (information.get("id") instanceof Long) id = (long) information.get("id");
+                if (information.get("image") instanceof String) image = (String) information.get("image");
+                if (information.get("info-text") instanceof JSONArray) {
+                    JSONArray infoTextArray = (JSONArray) information.get("info-text");
+                    for (int k = 0; k < infoTextArray.size(); k++) {
+                        infoText += (String) infoTextArray.get(k);
+                    }
                 }
-
-                if (waypointInformation.getElementsByTagName(Informations.TAG_INFO_TEXT).getLength() > 0)
-                    infoText = waypointInformation.getElementsByTagName(Informations.TAG_INFO_TEXT).item(0).getTextContent();
 
                 ContentValues values = new ContentValues();
                 values.put(InformationTable.COLUMN_INFORMATION_ID, id);
@@ -77,24 +76,5 @@ public class InformationAsyncTaskLoader extends AsyncTaskLoader {
                 getContext().getContentResolver().insert(WeltkulturerbeContentProvider.URI_TABLE_INFORMATION, values);
             }
         }
-    }
-
-    // TODO Documentation
-    private Document loadFile() throws IOException, ParserConfigurationException, SAXException {
-        DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
-        DocumentBuilder documentBuilder = dbFactory.newDocumentBuilder();
-        InputSource inputSource = new InputSource(getContext().getAssets().open(Informations.FILENAME));
-        Document doc = documentBuilder.parse(inputSource);
-        return doc;
-    }
-
-    private static class Informations {
-
-        private static final String FILENAME = "information.xml";
-        private static final String TAG_INFORMATIONS = "information";
-        private static final String TAG_WAYPOINT_INFORMATION = "waypoint-information";
-        private static final String TAG_ID = "id";
-        private static final String TAG_IMAGE = "image";
-        private static final String TAG_INFO_TEXT = "info-text";
     }
 }
