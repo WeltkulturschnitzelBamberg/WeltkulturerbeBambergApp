@@ -3,7 +3,6 @@ package com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp;
 import android.content.AsyncTaskLoader;
 import android.content.ContentValues;
 import android.content.Context;
-import android.util.Log;
 
 import com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.contentprovider.WeltkulturerbeContentProvider;
 import com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.database.WaypointsTable;
@@ -14,11 +13,8 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
-import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.nio.charset.CharsetDecoder;
-import java.nio.charset.StandardCharsets;
 
 /**
  * This AsyncTaskLoader loads the waypoints into the Weltkulturschnitzel Database
@@ -54,7 +50,7 @@ public class WaypointsAsyncTaskLoader extends AsyncTaskLoader{
 
     private void writeWaypointsToDatabase() throws IOException, ParseException, JSONException{
         JSONParser parser = new JSONParser();
-        Object obj = parser.parse(new BufferedReader(new InputStreamReader(getContext().getAssets().open("waypoints.json"), "UTF-8")));
+        Object obj = parser.parse(new InputStreamReader(getContext().getAssets().open("waypoints.json"), "UTF-8"));
 
 
         if (obj instanceof JSONObject) {
