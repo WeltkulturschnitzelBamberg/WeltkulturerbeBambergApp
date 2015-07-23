@@ -1,14 +1,14 @@
 {
     "waypoints":[
-      {"id":0, "name":"Gärtner- und Häckermuseum", "quizID":null, "coordinates": {"latitude":49.899380, "longitude":10.892761}},
-      {"id":1, "name":"Linker Regnitzarm", "quizID":3, "coordinates": {"latitude":49.894137, "longitude":10.882387}},
-      {"id":2, "name":"Otto-Friedrich-Universität Bamberg", "quizID":8, "coordinates": {"latitude":49.893815, "longitude":10.885937}},
-      {"id":3, "name":"St. Martin", "quizID":9, "coordinates": {"latitude":49.893274, "longitude":10.888598}},
-      {"id":4, "name":"Obere Brücke", "quizID":7, "coordinates": {"latitude":49.891626, "longitude":10.887468}},
-      {"id":5, "name":"St. Elisabeth", "quizID":4, "coordinates": {"latitude":49.892849, "longitude":10.882882}},
-      {"id":6, "name":"Bamberger Dom", "quizID":5, "coordinates": {"latitude":49.891154, "longitude":10.882907}},
-      {"id":7, "name":"Neue Residenz", "quizID":1, "coordinates": {"latitude":49.891561, "longitude":10.882456}},
-      {"id":8, "name":"Alte Hofhaltung", "quizID":6, "coordinates": {"latitude":49.891077, "longitude":10.881412}},
-      {"id":9, "name":"St. Getreu", "quizID":2, "coordinates": {"latitude":49.892689, "longitude":10.872340}}
+      {"id":0, "name":"GÃ¤rtner- und HÃ¤ckermuseum", "quizID":null, "latitude":49.899380, "longitude":10.892761},
+      {"id":1, "name":"Linker Regnitzarm", "quizID":3, "latitude":49.894137, "longitude":10.882387},
+      {"id":2, "name":"Otto-Friedrich-UniversitÃ¤t Bamberg", "quizID":8, "latitude":49.893815, "longitude":10.885937},
+      {"id":3, "name":"St. Martin", "quizID":9, "latitude":49.893274, "longitude":10.888598},
+      {"id":4, "name":"Obere BrÃ¼cke", "quizID":7, "latitude":49.891626, "longitude":10.887468},
+      {"id":5, "name":"St. Elisabeth", "quizID":4, "latitude":49.892849, "longitude":10.882882},
+      {"id":6, "name":"Bamberger Dom", "quizID":5, "latitude":49.891154, "longitude":10.882907},
+      {"id":7, "name":"Neue Residenz", "quizID":1, "latitude":49.891561, "longitude":10.882456},
+      {"id":8, "name":"Alte Hofhaltung", "quizID":6, "latitude":49.891077, "longitude":10.881412},
+      {"id":9, "name":"St. Getreu", "quizID":2, "latitude":49.892689, "longitude":10.872340}
     ]
 }
