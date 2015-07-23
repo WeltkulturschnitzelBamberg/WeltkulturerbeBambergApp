@@ -1,29 +1,24 @@
 {
   "information":[
     {"id":0, "image":null, "info-text":[
-      "<![CDATA[",
         "<html>",
           "<l>",
             "Kloster Michelsberg (auch Michaelsberg) ist ein ehemaliges Kloster der Benediktiner.",
             "Nach seiner Auflösung 1803 wurden die Räumlichkeiten für das dorthin verlegte Vereinigte",
             "Katharinen- und Elisabethen-Spital verwendet. Dieses Seniorenheim befindet sich dort noch heute.",
           "</l>",
-        "</html>",
-      "]]>"
+        "</html>"
     ]},
     {"id":1, "image":null, "info-text":[
-      "<![CDATA[",
         "<html>",
           "<l>",
             "Die Neue Residenz ist ein mehrflügeliges Gebäude.",
             "Es war der ehemalige Sitz der Bamberger Fürstbischöfe.",
             "Heute beherbergt der Komplex aus Sandstein die Staatsbibliothek und die Staatsgalerie.",
           "</l>",
-        "</html>",
-      "]]>"
+        "</html>"
     ]},
     {"id":2, "image":null, "info-text":[
-      "<![CDATA[",
         "<html>",
           "<l>",
             "St. Getreu ist eine ehemalige Benediktinerpropstei,",
@@ -33,11 +28,9 @@
             "Sie besitzt eine interessante Ausstattung, Deckengemälde aus der Zeit um das Jahr 1760,",
             "einen Hochaltar aus dem Jahr 1733 mit einer spätgotischen Muttergottes des 15. Jahrhunderts.",
           "</l>",
-        "</html>",
-      "]]>"
+        "</html>"
     ]},
     {"id":3, "image":null, "info-text":[
-      "<![CDATA[",
         "<html>",
           "<l>",
             "Das am 14. Oktober 1979 gegründete Freilichtmuseum, widmet sich dem Leben der Geschichte und der Kultur, von Erwerbsgärtnern um das Jahr 1900.",
@@ -53,84 +46,69 @@
             "<l>3,- Euro, ermäßigt 2,50 Euro</l>",
             "<l>Kinder &#38; Jugendliche: 1 Euro</l>",
           "</indent>",
-        "</html>",
-      "]]>"
+        "</html>"
     ]},
     {"id":4, "image":null, "info-text":[
-      "<![CDATA[",
         "<html>",
           "<l>",
             "Klein Venedig ist eine Fischersiedlung, die im 17. Jahrhundert erbaut wurde,",
             "und vom aussehen her sehr an die auf dem Wasser erbaute Stadt Venedig erinnert,",
             "welche auch der Namensgeber ist.",
           "</l>",
-        "</html>",
-      "]]>"
+        "</html>"
     ]},
     {"id":5, "image":null, "info-text":[
-      "<![CDATA[",
         "<html>",
           "<l>",
             "Die Kirche gehörte ursprünglich zu dem 1328 gegründeten Elisabethspital.",
             "Das Langhaus der Kirche stammt noch aus der Zeit nach der Gründung 1338.",
             "Auf die Weihe dieser Kapelle geht die bekannte Sandkirchweih zurück.",
           "</l>",
-        "</html>",
-      "]]>"
+        "</html>"
     ]},
     {"id":6, "image":null, "info-text":[
-      "<![CDATA[",
         "<html>",
           "<l>Das 1012 unter  Kaiser Heinrich II fertiggestellte Gotteshaus brannte ebenso,",
             "wie der Nachfolgebau nieder. In dem bis heute überdauerten 3.",
             "Bau ist das Hochgrab des heiligen Kaiserpaares Kunigunde und Heinrich II,",
             "der „Bamberger Reiter“, der Marienaltar und das Grab von Papst Clemens II enthalten.",
           "</l>",
-        "</html>",
-      "]]>"
+        "</html>"
     ]},
     {"id":7, "image":null, "info-text":[
-      "<![CDATA[",
         "<html>",
           "<l>",
             "Seit der Bistumsgründung 1007 war die Hofhaltung Wohnsitz des Bischofs wurde jedoch",
             "nach dem Dombrand 1185 zu einem Palas. Die alte Hofhaltung beherbergt das Historische",
             "Museum und die Katharinenkapelle.",
           "</l>",
-        "</html>",
-      "]]>"
+        "</html>"
     ]},
     {"id":8, "image":null, "info-text":[
-      "<![CDATA[",
         "<html>",
           "<l>",
             "Das Alte Rathaus wurde zwischen 1461 und 1467 auf den Fluss Regnitz erbaut.",
             "Besonders Sehenswert ist die vollständig bemalte Fassade.",
             "Im Inneren befindet sich heute der repräsentative Rokokosaal und die Sammlung Ludwigs.",
           "</l>",
-        "</html>",
-      "]]>"
+        "</html>"
     ]},
     {"id":9, "image":null, "info-text":[
-      "<![CDATA[",
         "<html>",
           "<l>",
             "Die Otto-Friedrich-Universität Bamberg eine der ältesten Universitäten Bayerns",
             "und gehört zu den führenden Universitäten für Psychologie,",
             "Wirtschafts- und Sozialwissenschaften. Ihre Einrichtungen befinden sich verstreut im Stadtgebiet.",
           "</l>",
-        "</html>",
-      "]]>"
+        "</html>"
     ]},
     {"id":10, "image":null, "info-text":[
-      "<![CDATA[",
         "<html>",
           "<l>",
             "Die Martinskirche wurde zwischen 1686 und 1693 erbaut und befindet sich im Stadtzentrum.",
             "Sehenswert ist vor allem die Barocke Fassade und die Scheinkuppel über dem Altar.",
           "</l>",
-        "</html>",
-      "]]>"
+        "</html>"
     ]}
   ]
 }
