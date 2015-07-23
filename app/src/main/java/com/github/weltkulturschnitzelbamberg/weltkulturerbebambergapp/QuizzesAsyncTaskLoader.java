@@ -7,16 +7,16 @@ import android.content.Context;
 import com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.contentprovider.WeltkulturerbeContentProvider;
 import com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.database.QuizzesTable;
 
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.NodeList;
-import org.xml.sax.InputSource;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 import org.xml.sax.SAXException;
 
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.Objects;
 
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
 /**
@@ -49,64 +49,47 @@ public class QuizzesAsyncTaskLoader extends AsyncTaskLoader {
         return null;
     }
 
-    private void writeQuizzesToDatabase() throws IOException, ParserConfigurationException, SAXException {
-        Document doc = loadFile();
+    private void writeQuizzesToDatabase() throws IOException, ParseException {
+        JSONParser parser = new JSONParser();
+        Object obj = parser.parse(new InputStreamReader(getContext().getAssets().open("quizzes.json"), "UTF-8"));
 
-        NodeList quizzesList = doc.getElementsByTagName(Quizzes.TAG_QUIZ);
-        for (int i = 0; i < quizzesList.getLength(); i++) {
-            Element quiz = (Element) quizzesList.item(i);
-            ContentValues values = new ContentValues();
+        if (obj instanceof JSONObject) {
+            JSONObject jsonObject = (JSONObject) obj;
 
-            String quizID = null;
-            String question = null;
-            String location = null;
-            String solution = null;
-            String wrongAnswer1 = null;
-            String wrongAnswer2 = null;
-            String wrongAnswer3 = null;
-            String infoID = null;
+            JSONArray quizzes = (JSONArray) jsonObject.get("quizzes");
+            for (int i = 0; i < quizzes.size(); i++) {
+                JSONObject quizz = (JSONObject) quizzes.get(i);
 
-            if (quiz.getElementsByTagName(Quizzes.TAG_QUIZ_ID).getLength() > 0) quizID = quiz.getElementsByTagName(Quizzes.TAG_QUIZ_ID).item(0).getTextContent();
-            if (quiz.getElementsByTagName(Quizzes.TAG_LOCATION).getLength() > 0) location = quiz.getElementsByTagName(Quizzes.TAG_LOCATION).item(0).getTextContent();
-            if (quiz.getElementsByTagName(Quizzes.TAG_QUESTION).getLength() > 0) question = quiz.getElementsByTagName(Quizzes.TAG_QUESTION).item(0).getTextContent();
-            if (quiz.getElementsByTagName(Quizzes.TAG_SOLUTION).getLength() > 0) solution = quiz.getElementsByTagName(Quizzes.TAG_SOLUTION).item(0).getTextContent();
-            if (quiz.getElementsByTagName(Quizzes.TAG_WRONG_ANSWER_1).getLength() > 0) wrongAnswer1 = quiz.getElementsByTagName(Quizzes.TAG_WRONG_ANSWER_1).item(0).getTextContent();
-            if (quiz.getElementsByTagName(Quizzes.TAG_WRONG_ANSWER_2).getLength() > 0) wrongAnswer2 = quiz.getElementsByTagName(Quizzes.TAG_WRONG_ANSWER_2).item(0).getTextContent();
-            if (quiz.getElementsByTagName(Quizzes.TAG_WRONG_ANSWER_3).getLength() > 0) wrongAnswer3 = quiz.getElementsByTagName(Quizzes.TAG_WRONG_ANSWER_3).item(0).getTextContent();
-            if (quiz.getElementsByTagName(Quizzes.TAG_INFO_ID).getLength() > 0) infoID = quiz.getElementsByTagName(Quizzes.TAG_INFO_ID).item(0).getTextContent();
+                Long id = 0L;
+                String location = null;
+                String question = null;
+                String solution = null;
+                String wrongAnswer1 = null;
+                String wrongAnswer2 = null;
+                String wrongAnswer3 = null;
+                Long infoID = 0L;
 
-            values.put(QuizzesTable.COLUMN_QUIZ_ID, quizID);
-            values.put(QuizzesTable.COLUMN_LOCATION, location);
-            values.put(QuizzesTable.COLUMN_QUESTION, question);
-            values.put(QuizzesTable.COLUMN_SOLUTION, solution);
-            values.put(QuizzesTable.COLUMN_WRONG_ANSWER_1, wrongAnswer1);
-            values.put(QuizzesTable.COLUMN_WRONG_ANSWER_2, wrongAnswer2);
-            values.put(QuizzesTable.COLUMN_WRONG_ANSWER_3, wrongAnswer3);
-            values.put(QuizzesTable.COLUMN_INFO_ID, infoID);
-            getContext().getContentResolver().insert(WeltkulturerbeContentProvider.URI_TABLE_QUIZZES, values);
+                if (quizz.get("id") instanceof Long) id = (long) quizz.get("id");
+                if (quizz.get("location") instanceof String) location = (String) quizz.get("location");
+                if (quizz.get("question") instanceof String) question = (String) quizz.get("question");
+                if (quizz.get("solution") instanceof String) solution = (String) quizz.get("solution");
+                if (quizz.get("wrong-answer1") instanceof String) wrongAnswer1 = (String) quizz.get("wrong-answer1");
+                if (quizz.get("wrong-answer2") instanceof String) wrongAnswer2 = (String) quizz.get("wrong-answer2");
+                if (quizz.get("wrong-answer3") instanceof String) wrongAnswer3 = (String) quizz.get("wrong-answer3");
+                if (quizz.get("info-id") instanceof Long) infoID = (long) quizz.get("info-id");
+
+                ContentValues values = new ContentValues();
+                values.put(QuizzesTable.COLUMN_QUIZ_ID, id);
+                values.put(QuizzesTable.COLUMN_LOCATION, location);
+                values.put(QuizzesTable.COLUMN_QUESTION, question);
+                values.put(QuizzesTable.COLUMN_SOLUTION, solution);
+                values.put(QuizzesTable.COLUMN_WRONG_ANSWER_1, wrongAnswer1);
+                values.put(QuizzesTable.COLUMN_WRONG_ANSWER_2, wrongAnswer2);
+                values.put(QuizzesTable.COLUMN_WRONG_ANSWER_3, wrongAnswer3);
+                values.put(QuizzesTable.COLUMN_INFO_ID, infoID);
+
+                getContext().getContentResolver().insert(WeltkulturerbeContentProvider.URI_TABLE_QUIZZES, values);
+            }
         }
-    }
-
-    private Document loadFile() throws IOException, ParserConfigurationException, SAXException {
-        DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
-        DocumentBuilder docBuilder = dbFactory.newDocumentBuilder();
-        InputSource inputSource = new InputSource(getContext().getAssets().open(Quizzes.FILENAME));
-        Document doc = docBuilder.parse(inputSource);
-        doc.getDocumentElement().normalize();
-        return doc;
-    }
-
-    private static class Quizzes {
-
-        private static final String FILENAME = "quizzes.xml";
-        private static final String TAG_QUIZ = "quiz";
-        private static final String TAG_QUIZ_ID = "id";
-        private static final String TAG_LOCATION = "location";
-        private static final String TAG_QUESTION = "question";
-        private static final String TAG_SOLUTION = "solution";
-        private static final String TAG_WRONG_ANSWER_1 = "wrong-answer1";
-        private static final String TAG_WRONG_ANSWER_2 = "wrong-answer2";
-        private static final String TAG_WRONG_ANSWER_3 = "wrong-answer3";
-        private static final String TAG_INFO_ID = "info-id";
     }
 }
