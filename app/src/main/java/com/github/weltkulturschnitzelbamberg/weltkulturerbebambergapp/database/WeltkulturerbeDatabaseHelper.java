@@ -31,6 +31,6 @@ public class WeltkulturerbeDatabaseHelper extends SQLiteOpenHelper{
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        //TODO onUpgrade() schreiben
+        // Not used
     }
 }
