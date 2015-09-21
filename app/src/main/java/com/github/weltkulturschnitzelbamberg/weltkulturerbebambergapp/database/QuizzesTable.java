@@ -6,7 +6,7 @@ import android.database.sqlite.SQLiteDatabase;
  * This class describes the table "quizzes" in the Database {@link WeltkulturerbeDatabaseHelper} which contains
  * different quizzes. Each quiz has a question, a solution, three wrong answers and the ID of a Information.
  * The corresponding Information is saved inside the {@link InformationTable} with the same ID in its
- * Column {@value InformationTable#COLUMN_INFORMATION_ID}
+ * Column {@link InformationTable#COLUMN_INFORMATION_ID}
  *
  * @author Project-Seminar "Schnitzeljagd World-heritage" 2015/2016 des Clavius Gymnasiums Bamberg
  * @version 1.0
