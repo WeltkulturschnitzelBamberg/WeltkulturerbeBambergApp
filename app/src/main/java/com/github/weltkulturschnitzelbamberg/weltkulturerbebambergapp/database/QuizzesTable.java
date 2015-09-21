@@ -59,6 +59,10 @@ public final class QuizzesTable {
             + COLUMN_INFO_ID + " INTEGER NOT NULL"
             + ");";
 
+    /**
+     * Add this Table to a SQLite Database
+     * @param database {@link SQLiteDatabase} The Database you want to add this Table to
+     */
     public static void addToDatabase(SQLiteDatabase database) {
         database.execSQL(SQL_CREATE);
     }
