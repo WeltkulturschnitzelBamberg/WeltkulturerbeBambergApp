@@ -24,7 +24,7 @@ public class WeltkulturerbeDatabaseHelper extends SQLiteOpenHelper{
     @Override
     public void onCreate(SQLiteDatabase db) {
         WaypointsTable.onCreate(db);
-        QuizzesTable.onCreate(db);
+        QuizzesTable.addToDatabase(db);
         RoutesTable.onCreate(db);
         InformationTable.addToDatabase(db);
     }
