@@ -33,15 +33,16 @@ import org.w3c.dom.Text;
  */
 public class InformationActivity extends Activity {
 
+
     // Current Information used in this Activity
-    private Information mCurrentInformation;
+    private Information mCurrentInformation; // TODO Documentation
 
     // Definition of the different Views represented inside the Layout
-    private ImageView mIv_info_image;
-    private TextView mTv_info_information;
+    private ImageView mIv_info_image; // TODO Documentation
+    private TextView mTv_info_information; // TODO Documentation
 
     // Definition of the Tags used in Intents send to this Activity
-    public static final String TAG_PACKAGE = QuizActivity.class.getPackage().getName();
+    public static final String TAG_PACKAGE = QuizActivity.class.getPackage().getName(); // TODO Documentation
     /** This TAG tags the ID of the Information, which is to be loaded, within an Intent send to this Activity*/
     public static final String TAG_INFORMATION_ID = TAG_PACKAGE + "information_id";
     /** FLAG for the Information ID, within an Intent send to this Activity,
@@ -62,15 +63,18 @@ public class InformationActivity extends Activity {
         setUpInformation();
     }
 
+    // TODO Documentation
     private void setUpInformation(){
         mCurrentInformation = getInformationFromID(getInformationIDFromIntent());
         mTv_info_information.setText(Html.fromHtml(mCurrentInformation.getInfoText(), null, new CustomHtmlTagHandler()));
     }
 
+    // TODO Documentation
     private int getInformationIDFromIntent() {
         return getIntent().getIntExtra(TAG_INFORMATION_ID, FLAG_INFORMATION_ID_ERROR);
     }
 
+    // TODO Documentation
     private Information getInformationFromID(int informationID) {
         String[] projection = {InformationTable.COLUMN_INFORMATION_ID, InformationTable.COLUMN_IMAGE, InformationTable.COLUMN_INFO_TEXT};
         String selection = InformationTable.COLUMN_INFORMATION_ID + "=?";
@@ -85,6 +89,7 @@ public class InformationActivity extends Activity {
         return new Information(informationID, image, infoText);
     }
 
+    // TODO Documentation
     private class Information {
 
         private final int id;
