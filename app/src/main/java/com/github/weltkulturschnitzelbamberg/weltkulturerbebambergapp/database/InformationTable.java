@@ -3,8 +3,9 @@ package com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.database;
 import android.database.sqlite.SQLiteDatabase;
 
 /**
- * This class describes the table "information" in the Database {@link WeltkulturerbeDatabaseHelper}.
- * In this Table all information about each waypoints are saved
+ * This class describes the table "information" in the Database {@link WeltkulturerbeDatabaseHelper} which
+ * contains different Information about different waypoints. Each Information has a unique ID, a reference
+ * to an Image and a text providing information about a waypoint.
  *
  * @author Project-Seminar "Schnitzeljagd World-heritage" 2015/2016 des Clavius Gymnasiums Bamberg
  * @version 1.0
