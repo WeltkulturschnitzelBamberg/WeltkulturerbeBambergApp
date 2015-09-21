@@ -10,7 +10,7 @@ import android.database.sqlite.SQLiteDatabase;
  * @version 1.0
  * @since 2015-06-04
  */
-public class InformationTable {
+public final class InformationTable {
 
     /** Private constructor to prevent instantiation. If this class is instantiated,
      * it throws a {@link IllegalAccessException}
