@@ -3,14 +3,39 @@ package com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.database;
 import android.database.sqlite.SQLiteDatabase;
 
 /**
- * This class describes the table "quizzes" in the Database {@link WeltkulturerbeDatabaseHelper}.
- * In this Table all quizzes are saved
+ * This class describes the table "quizzes" in the Database {@link WeltkulturerbeDatabaseHelper} which contains
+ * different quizzes. Each quiz has a question, a solution, three wrong answers and the ID of a Information.
+ * The corresponding Information is saved inside the {@link InformationTable} with the same ID in its
+ * Column {@link InformationTable#COLUMN_INFORMATION_ID}
  *
  * @author Project-Seminar "Schnitzeljagd World-heritage" 2015/2016 des Clavius Gymnasiums Bamberg
  * @version 1.0
  * @since 2015-06-04
  */
 public final class QuizzesTable {
+
+    /** Name of the table in the database **/
+    public static final String TABLE_QUIZZES = "quizzes";
+
+    /** Name of the Column containing the ID (index) of each Row **/
+    public static final String COLUMN_ID = "_id";
+    /** Name of the Column containing the ID of each Quiz **/
+    public static final String COLUMN_QUIZ_ID = "quiz_id";
+    /** Name of the Column containing the location of the each Quiz **/
+    public static final String COLUMN_LOCATION = "location";
+    /** Name of the Column containing the Question of each Quiz **/
+    public static final String COLUMN_QUESTION = "question";
+    /** Name of the Column containing the Solution to each Quiz **/
+    public static final String COLUMN_SOLUTION = "solution";
+    /** Name of the Column containing the first wrong answer to each Quiz **/
+    public static final String COLUMN_WRONG_ANSWER_1 = "wrong_answer1";
+    /** Name of the Column containing the second wrong answer to each Quiz **/
+    public static final String COLUMN_WRONG_ANSWER_2 = "wrong_answer2";
+    /** Name of the Column containing the third wrong answer to each Quiz **/
+    public static final String COLUMN_WRONG_ANSWER_3 = "wrong_answer3";
+    /** Name of the Column containing the ID of the Information belonging to each Quiz **/
+    public static final String COLUMN_INFO_ID = "info_id";
+
 
     /** Private constructor to prevent instantiation. If this class is instantiated,
      * it throws a {@link IllegalAccessException}
@@ -19,20 +44,6 @@ public final class QuizzesTable {
     private QuizzesTable() throws IllegalAccessException {
         throw new IllegalAccessException("'" + this.getClass().getName() + "' should not be instantiated");
     }
-
-    /** Name of the table in the database **/
-    public static final String TABLE_QUIZZES = "quizzes";
-
-    /** Names of the columns inside the table **/
-    public static final String COLUMN_ID = "_id";
-    public static final String COLUMN_QUIZ_ID = "quiz_id";
-    public static final String COLUMN_LOCATION = "location";
-    public static final String COLUMN_QUESTION = "question";
-    public static final String COLUMN_SOLUTION = "solution";
-    public static final String COLUMN_WRONG_ANSWER_1 = "wrong_answer1";
-    public static final String COLUMN_WRONG_ANSWER_2 = "wrong_answer2";
-    public static final String COLUMN_WRONG_ANSWER_3 = "wrong_answer3";
-    public static final String COLUMN_INFO_ID = "info_id";
 
     /** SQL command to create the table **/
     private static final String SQL_CREATE = "CREATE TABLE " + TABLE_QUIZZES
@@ -48,11 +59,11 @@ public final class QuizzesTable {
             + COLUMN_INFO_ID + " INTEGER NOT NULL"
             + ");";
 
-    public static void onCreate(SQLiteDatabase database) {
+    /**
+     * Add this Table to a SQLite Database
+     * @param database {@link SQLiteDatabase} The Database you want to add this Table to
+     */
+    public static void addToDatabase(SQLiteDatabase database) {
         database.execSQL(SQL_CREATE);
-    }
-
-    public static void onUpgrade() {
-        //TODO onUpgrade() schreiben
     }
 }

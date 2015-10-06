@@ -23,14 +23,14 @@ public class WeltkulturerbeDatabaseHelper extends SQLiteOpenHelper{
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        WaypointsTable.onCreate(db);
-        QuizzesTable.onCreate(db);
-        RoutesTable.onCreate(db);
-        InformationTable.onCreate(db);
+        WaypointsTable.addToDatabase(db);
+        QuizzesTable.addToDatabase(db);
+        RoutesTable.addToDatabase(db);
+        InformationTable.addToDatabase(db);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        //TODO onUpgrade() schreiben
+        // Not used
     }
 }
