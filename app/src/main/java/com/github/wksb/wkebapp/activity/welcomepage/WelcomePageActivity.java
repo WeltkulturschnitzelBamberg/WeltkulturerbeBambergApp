@@ -58,21 +58,6 @@ public class WelcomePageActivity extends Activity implements LoaderManager.Loade
         DebugUtils.toast(this, "State changed to: " + state.getClass().getSimpleName());
     }
 
-    /**
-     * This methode executes only on the first start of the Application
-     */
-    private void onFirstLaunch() {
-        // Check if this is the first launch of the Application
-        if (getSharedPreferences("PREFERENCES", MODE_PRIVATE).getBoolean("IS_FIRST_LAUNCH", true)) {
-            // Initialise Loaders
-            getLoaderManager().initLoader(WaypointsAsyncTaskLoader.LOADER_ID, null, this);
-            getLoaderManager().initLoader(RouteAsyncTaskLoader.LOADER_ID, null, this);
-            getLoaderManager().initLoader(QuizzesAsyncTaskLoader.LOADER_ID, null, this);
-            getLoaderManager().initLoader(InformationAsyncTaskLoader.LOADER_ID, null, this);
-            getSharedPreferences("PREFERENCES", MODE_PRIVATE).edit().putBoolean("IS_FIRST_LAUNCH", false).commit();
-        }
-    }
-
     @Override
     public Loader onCreateLoader(int id, Bundle args) {
         switch (id) {
@@ -123,12 +108,6 @@ public class WelcomePageActivity extends Activity implements LoaderManager.Loade
                 getLoaderManager().destroyLoader(InformationAsyncTaskLoader.LOADER_ID);
                 break;
         }
-    }
-
-    //TODO Documentation
-    public void onBtnClickScore(View view) {
-        Intent startScoreActivity = new Intent(this, ScoreActivity.class);
-        startActivity(startScoreActivity);
     }
 
     //TODO Documentation
