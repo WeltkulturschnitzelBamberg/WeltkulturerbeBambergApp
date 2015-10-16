@@ -111,16 +111,16 @@ public class WelcomePageActivity extends Activity implements LoaderManager.Loade
     }
 
     //TODO Documentation
-    public void onBtnClickStart(View view) {
-        Intent startInstructionActivity = new Intent(this, InstructionsActivity.class);
-        startActivity(startInstructionActivity);
+    public void onBtnClickedStart(View view) {
+        activityState.onBtnClickedStart(view);
     }
 
     //TODO Documentation
-    public void onBtnClickContinue(View view) {
-        //TODO start navigation activity from last waypoint
-        Intent start = new Intent(this, InformationActivity.class);
-        start.putExtra(InformationActivity.TAG_INFORMATION_ID, 3);
-        startActivity(start);
+    public void onBtnClickedContinue(View view) {
+        activityState.onBtnClickedContinue(view);
+    }
+
+    public void onBtnClickedAbout(View view) {
+        activityState.onBtnClickedStart(view);
     }
 }
