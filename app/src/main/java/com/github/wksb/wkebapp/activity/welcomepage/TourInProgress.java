@@ -30,12 +30,13 @@ public class TourInProgress implements WelcomePageActivityState{
     }
 
     @Override
-    public void onResume() {
+    public void onActivityStart() {
+        welcomePageActivity.setContentView(R.layout.activity_welcome_page_app_tourinprogress);
     }
 
     @Override
     public void initState() {
-        welcomePageActivity.setContentView(R.layout.activity_welcome_page_app_tourinprogress);
+
     }
 
     @Override

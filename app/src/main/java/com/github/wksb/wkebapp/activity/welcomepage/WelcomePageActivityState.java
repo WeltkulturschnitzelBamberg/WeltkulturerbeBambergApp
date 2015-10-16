@@ -14,9 +14,9 @@ import android.view.View;
 public interface WelcomePageActivityState {
 
     /**
-     * Logic that is to be executed when the {@linkplain WelcomePageActivity#onResume()} Method in the {@link WelcomePageActivity} is called
+     * Logic that is to be executed when the {@linkplain WelcomePageActivity#onStart()} Method in the {@link WelcomePageActivity} is called
      */
-    void onResume();
+    void onActivityStart();
 
     /**
      * Called if the state of the overlying {@link WelcomePageActivity} was changed. Initialises the new state

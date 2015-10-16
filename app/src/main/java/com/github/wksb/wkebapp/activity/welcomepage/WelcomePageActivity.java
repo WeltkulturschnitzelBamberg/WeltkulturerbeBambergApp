@@ -42,7 +42,7 @@ public class WelcomePageActivity extends Activity implements LoaderManager.Loade
     }
 
     @Override
-    protected void onResume() {
+    protected void onStart() {
         super.onResume();
         if (getSharedPreferences("TOUR", MODE_PRIVATE).getBoolean("IS_IN_PROGRESS", false)) {
             setActivityState(new TourInProgress(this));
@@ -50,7 +50,7 @@ public class WelcomePageActivity extends Activity implements LoaderManager.Loade
             setActivityState(new NoTourInProgress(this));
         }
 
-        activityState.onResume();
+        activityState.onActivityStart();
     }
 
     /**

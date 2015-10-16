@@ -30,12 +30,12 @@ public class NoTourInProgress implements WelcomePageActivityState{
     }
 
     @Override
-    public void onResume() {
+    public void onActivityStart() {
+        welcomePageActivity.setContentView(R.layout.activity_welcome_page_app_notourinprogress);
     }
 
     @Override
     public void initState() {
-        welcomePageActivity.setContentView(R.layout.activity_welcome_page_app_notourinprogress);
     }
 
     @Override
