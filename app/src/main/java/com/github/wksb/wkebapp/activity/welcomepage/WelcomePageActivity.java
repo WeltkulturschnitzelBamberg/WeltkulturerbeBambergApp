@@ -27,12 +27,35 @@ import android.view.View;
  */
 public class WelcomePageActivity extends Activity implements LoaderManager.LoaderCallbacks{
 
+    /**
+     * The state of this Activity. The Behaviour of this Activity changes with its current state
+     */
+    private WelcomePageActivityState activityState;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_welcome_page_app);
+        if (getSharedPreferences("TOUR", MODE_PRIVATE).getBoolean("IS_IN_PROGRESS", false)) {
+            setActivityState(new TourInProgress(this));
+        } else {
+            if (getSharedPreferences("MISCELLANEOUS", MODE_PRIVATE).getBoolean("IS_FIRST_APP_LAUNCH", true)) {
+                setActivityState(new FirstLaunch(this));
+            } else {
+                setActivityState(new NoTourInProgress(this));
+            }
+        }
 
-        onFirstLaunch();
+        activityState.onCreate(savedInstanceState);
+    }
+
+    /**
+     * Set the state of this Activity
+     * @param state The new state of this Activity
+     */
+    public void setActivityState(WelcomePageActivityState state) {
+        activityState = state;
+        activityState.initState(); // Initialise state
+        DebugUtils.toast(this, "State changed to: " + state.getClass().getSimpleName());
     }
 
     /**
