@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="title_activity_score">ScoreActivity</string>
+
+    <string name="tv_score_title">Deine Punktzahl beträgt</string>
+    <string name="tv_score_score">0</string>
+    <string name="btn_score_back_to_start">Zur Startseite</string>
+</resources>

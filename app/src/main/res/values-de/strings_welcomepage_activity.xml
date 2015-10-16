@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="title_activity_welcomepage">Weltkulturerbe Bamberg App</string>
+
+    <string name="tv_welcome_title">Wilkommen!</string>
+    <string name="btn_welcome_continue">Fortsetzen</string>
+    <string name="btn_welcome_start">Start</string>
+    <string name="btn_welcome_score">Punktzahl</string>
+    <string name="btn_welcome_about">Impressum</string>
+    <string name="btn_welcome_restart_tour">Neue Tour starten</string>
+</resources>

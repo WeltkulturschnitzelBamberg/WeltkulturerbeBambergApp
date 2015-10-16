@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="title_activity_instructions">InstructionsActivity</string>
+
+    <string name="tv_instruc_title">Einführung</string>
+    <string name="tv_instruc_instructions">Herzlich willkommen zur Schnitzeljagd,\n\nIn dIeser App
+        werden Sie zu allen wichtigen Weltkulturerbe-Sehenswürdigkeiten in Bamberg geführt.
+        Wenn Sie am ersten Punkt angekommen sind, werden Sie dort ein Rätsel lösen müssen, um die
+        Navigation zum nächsten Punkt freizuschalten.\nAchten sie dabei bitte auf die
+        Verkehrsregeln und Hinweise auf Buslinien.\n\nAn allen Punkten erhalten sie wichtige
+        Informationen und Tips zur Sehenswürdigkeit.\n\nViel Spaß beim Rätseln und Entdecken,\nDas
+        P-Seminar „Schnitzeljagt World-Heritage“  2015/2016 des Clavius Gymnasiums Bamberg</string>
+    <string name="btn_instruc_short_route">Kurze Route</string>
+    <string name="btn_instruc_long_route">Lange Route</string>
+</resources>

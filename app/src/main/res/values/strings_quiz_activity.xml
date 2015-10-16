@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="title_activity_quiz">QuizActivity</string>
+
+    <string name="tv_quiz_title">No Waypoint found :(</string>
+    <string name="tv_quiz_question">If you can read this something went wrong :(</string>
+    <string name="btn_quiz_answer_one">Answer 1</string>
+    <string name="btn_quiz_answer_two">Answer 2</string>
+    <string name="btn_quiz_answer_three">Answer 3</string>
+    <string name="btn_quiz_answer_four">Answer 4</string>
+    <string name="btn_quiz_help">Help</string>
+</resources>

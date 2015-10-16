@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="title_activity_instructions">InstructionsActivity</string>
+
+    <string name="tv_instruc_title">Instructions</string>
+    <string name="tv_instruc_instructions">Welcome to this Paper Chase,\n\nThis
+        application will guide you to all important World Cultural Heritage sights in Bamberg.
+        Once you arrive at the first waypoint you have to solve a riddle to unlock the next waypoint.
+        Please mind the traffic rules and the suggested bus routes.\n\nYou will receive
+        important information and tips about the sight at every waypoint.\n\nHave fun solving
+        the riddles and discovering Bamberg.\nYours sincerely project workshop "Schnitzeljagd World-Heritage"
+        2015/2016 of the Academic High School Clavius - Bamberg</string>
+    <string name="btn_instruc_short_route">Short route</string>
+    <string name="btn_instruc_long_route">Long route</string>
+</resources>
