@@ -35,17 +35,22 @@ public class WelcomePageActivity extends Activity implements LoaderManager.Loade
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if (getSharedPreferences("MISCELLANEOUS", MODE_PRIVATE).getBoolean("IS_FIRST_APP_LAUNCH", true)) {
+            onFirstLaunch();
+            getSharedPreferences("MISCELLANEOUS", MODE_PRIVATE).edit().putBoolean("IS_FIRST_APP_LAUNCH", false);
+        }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
         if (getSharedPreferences("TOUR", MODE_PRIVATE).getBoolean("IS_IN_PROGRESS", false)) {
             setActivityState(new TourInProgress(this));
         } else {
-            if (getSharedPreferences("MISCELLANEOUS", MODE_PRIVATE).getBoolean("IS_FIRST_APP_LAUNCH", true)) {
-                setActivityState(new FirstLaunch(this));
-            } else {
-                setActivityState(new NoTourInProgress(this));
-            }
+            setActivityState(new NoTourInProgress(this));
         }
 
-        activityState.onCreate(savedInstanceState);
+        activityState.onResume();
     }
 
     /**
@@ -56,6 +61,17 @@ public class WelcomePageActivity extends Activity implements LoaderManager.Loade
         activityState = state;
         activityState.initState(); // Initialise state
         DebugUtils.toast(this, "State changed to: " + state.getClass().getSimpleName());
+    }
+
+    /**
+     * Logic executed on first Launch of this Application
+     */
+    private void onFirstLaunch() {
+        // Initialise Loaders
+        getLoaderManager().initLoader(WaypointsAsyncTaskLoader.LOADER_ID, null, this);
+        getLoaderManager().initLoader(RouteAsyncTaskLoader.LOADER_ID, null, this);
+        getLoaderManager().initLoader(QuizzesAsyncTaskLoader.LOADER_ID, null, this);
+        getLoaderManager().initLoader(InformationAsyncTaskLoader.LOADER_ID, null, this);
     }
 
     @Override
@@ -122,5 +138,9 @@ public class WelcomePageActivity extends Activity implements LoaderManager.Loade
 
     public void onBtnClickedAbout(View view) {
         activityState.onBtnClickedStart(view);
+    }
+
+    public void onBtnClickedRestartTour(View view) {
+        activityState.onBtnClickedRestartTour(view);
     }
 }
