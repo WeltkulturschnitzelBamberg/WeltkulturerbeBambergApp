@@ -12,18 +12,6 @@ import android.view.View;
  * @since 2015-10-15
  */
 public interface WelcomePageActivityState {
-    String PREFERENCES_TAG = "WELCOME_PAGE_ACTIVITY_STATE";
-
-    String FIRST_LAUNCH = "FIRST_LAUNCH";
-    String GUIDED_TOUR_IN_PROGRESS = "GUIDED_TOUR_IN_PROGRESS";
-    String NO_GUIDED_TOUR_RUNNING = "NO_GUIDED_TOUR_IN_PROGRESS";
-
-    /**
-     * Logic that is to be executed when the {@linkplain WelcomePageActivity#onCreate(Bundle)} Method in the {@link WelcomePageActivity} is called
-     * @param savedInstanceState If the overlying activity is being re-initialized after previously being shut down then this Bundle contains the
-     *                           data it most recently supplied in {@link android.app.Activity#onSaveInstanceState(Bundle)}. <b><i>Note: Otherwise it is null.</i></b>
-     */
-    void onCreate(Bundle savedInstanceState);
 
     /**
      * Logic that is to be executed when the {@linkplain WelcomePageActivity#onResume()} Method in the {@link WelcomePageActivity} is called
@@ -36,7 +24,7 @@ public interface WelcomePageActivityState {
     void initState();
 
     /**
-     * Logic executed if the Button {@link com.github.wksb.wkebapp.R.id#btn_welcome_restart_tour} gets clicked
+     * Logic executed if the Button {@link com.github.wksb.wkebapp.R.id#btn_welcome_start} gets clicked
      * @param view The view calling this method
      */
     void onBtnClickedStart(View view);
@@ -54,7 +42,7 @@ public interface WelcomePageActivityState {
     void onBtnClickedContinue(View view);
 
     /**
-     * Logic executed if the Button {@link com.github.wksb.wkebapp.R.id#btn_welcome_restart_tour} gets clicked
+     * Logic executed if the Button {@link com.github.wksb.wkebapp.R.id#btn_welcome_start} gets clicked
      * @param view The view calling this method
      */
     void onBtnClickedRestartTour(View view);
