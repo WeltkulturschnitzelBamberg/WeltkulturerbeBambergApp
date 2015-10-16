@@ -19,6 +19,8 @@
     <string name="btn_welcome_continue">Continue</string>
     <string name="btn_welcome_start">Start</string>
     <string name="btn_welcome_score">Score</string>
+    <string name="btn_welcome_about">About</string>
+    <string name="btn_welcome_restart_tour">Restart Tour</string>
 
     <!-- Instructions Activity -->
     <string name="tv_instruc_title">Instructions</string>

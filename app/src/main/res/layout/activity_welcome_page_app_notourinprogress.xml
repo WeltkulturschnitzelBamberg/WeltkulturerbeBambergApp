@@ -22,30 +22,19 @@
     <Button
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="@string/btn_welcome_continue"
-        android:id="@+id/btn_welcome_continue"
-        android:onClick="onBtnClickContinue"
-        android:layout_centerVertical="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-
-    <Button
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
         android:text="@string/btn_welcome_start"
         android:id="@+id/btn_welcome_start"
-        android:onClick="onBtnClickStart"
-        android:layout_below="@+id/btn_welcome_continue"
-        android:layout_alignParentLeft="true"
+        android:onClick="onBtnClickedStart"
+        android:layout_centerVertical="true"
         android:layout_alignParentStart="true" />
 
     <Button
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="@string/btn_welcome_score"
-        android:id="@+id/btn_welcome_score"
-        android:onClick="onBtnClickScore"
+        android:text="@string/btn_welcome_about"
+        android:id="@+id/btn_welcome_about"
+        android:onClick="onBtnClickedAbout"
         android:layout_below="@+id/btn_welcome_start"
-        android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
+
 </RelativeLayout>

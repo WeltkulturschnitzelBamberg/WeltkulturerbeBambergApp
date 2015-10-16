@@ -19,6 +19,8 @@
     <string name="btn_welcome_continue">Fortsetzen</string>
     <string name="btn_welcome_start">Start</string>
     <string name="btn_welcome_score">Punktzahl</string>
+    <string name="btn_welcome_about">Impressum</string>
+    <string name="btn_welcome_restart_tour">Neue Tour starten</string>
 
     <!-- Instructions Activity -->
     <string name="tv_instruc_title">Einführung</string>
