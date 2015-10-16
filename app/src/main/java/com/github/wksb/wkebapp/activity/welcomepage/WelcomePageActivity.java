@@ -1,4 +1,4 @@
-package com.github.wksb.wkebapp.activity;
+package com.github.wksb.wkebapp.activity.welcomepage;
 
 import android.app.Activity;
 import android.app.LoaderManager;
@@ -9,6 +9,9 @@ import com.github.wksb.wkebapp.InformationAsyncTaskLoader;
 import com.github.wksb.wkebapp.R;
 import com.github.wksb.wkebapp.RouteAsyncTaskLoader;
 import com.github.wksb.wkebapp.WaypointsAsyncTaskLoader;
+import com.github.wksb.wkebapp.activity.InformationActivity;
+import com.github.wksb.wkebapp.activity.InstructionsActivity;
+import com.github.wksb.wkebapp.activity.ScoreActivity;
 import com.github.wksb.wkebapp.utilities.DebugUtils;
 import com.github.wksb.wkebapp.QuizzesAsyncTaskLoader;
 

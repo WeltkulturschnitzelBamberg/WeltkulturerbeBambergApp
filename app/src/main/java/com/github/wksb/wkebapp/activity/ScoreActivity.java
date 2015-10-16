@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.github.wksb.wkebapp.R;
+import com.github.wksb.wkebapp.activity.welcomepage.WelcomePageActivity;
 
 /**
  * This activity shows the score of the user.
