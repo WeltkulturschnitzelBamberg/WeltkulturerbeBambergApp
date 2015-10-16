@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp" >
+    package="com.github.wksb.wkebapp" >
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -26,7 +26,7 @@
             android:value="@string/google_maps_key" />
 
         <activity
-            android:name=".activity.WelcomePageActivity"
+            android:name="com.github.wksb.wkebapp.activity.WelcomePageActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -35,29 +35,29 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".activity.InstructionsActivity"
+            android:name="com.github.wksb.wkebapp.activity.InstructionsActivity"
             android:label="@string/title_activity_instructions" >
         </activity>
         <activity
-            android:name=".activity.InformationActivity"
+            android:name="com.github.wksb.wkebapp.activity.InformationActivity"
             android:label="@string/title_activity_information" >
         </activity>
         <activity
-            android:name=".activity.ScoreActivity"
+            android:name="com.github.wksb.wkebapp.activity.ScoreActivity"
             android:label="@string/title_activity_score" >
         </activity>
         <activity
-            android:name=".activity.NavigationActivity"
+            android:name="com.github.wksb.wkebapp.activity.NavigationActivity"
             android:label="@string/title_activity_navigation" >
         </activity>
 
         <provider
-            android:name=".contentprovider.WeltkulturerbeContentProvider"
-            android:authorities="com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.contentprovider.WeltkulturerbeContentProvider" >
+            android:name="com.github.wksb.wkebapp.contentprovider.WeltkulturerbeContentProvider"
+            android:authorities="com.github.wksb.wkebapp.contentprovider.WeltkulturerbeContentProvider" >
         </provider>
 
         <receiver
-            android:name=".ProximityAlertReceiver"
+            android:name="com.github.wksb.wkebapp.ProximityAlertReceiver"
             android:enabled="true"
             android:exported="true" >
             <intent-filter>
@@ -66,7 +66,7 @@
         </receiver>
 
         <activity
-            android:name=".activity.QuizActivity"
+            android:name="com.github.wksb.wkebapp.activity.QuizActivity"
             android:label="@string/title_activity_quiz" >
         </activity>
     </application>

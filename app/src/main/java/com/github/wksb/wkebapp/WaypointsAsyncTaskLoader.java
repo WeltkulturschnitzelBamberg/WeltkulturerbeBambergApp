@@ -1,11 +1,11 @@
-package com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp;
+package com.github.wksb.wkebapp;
 
 import android.content.AsyncTaskLoader;
 import android.content.ContentValues;
 import android.content.Context;
 
-import com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.contentprovider.WeltkulturerbeContentProvider;
-import com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.database.WaypointsTable;
+import com.github.wksb.wkebapp.contentprovider.WeltkulturerbeContentProvider;
+import com.github.wksb.wkebapp.database.WaypointsTable;
 
 import org.json.JSONException;
 import org.json.simple.JSONArray;

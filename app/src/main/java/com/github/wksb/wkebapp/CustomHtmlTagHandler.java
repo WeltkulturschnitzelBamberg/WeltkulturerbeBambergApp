@@ -1,4 +1,4 @@
-package com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp;
+package com.github.wksb.wkebapp;
 
 import android.text.Editable;
 import android.text.Html;

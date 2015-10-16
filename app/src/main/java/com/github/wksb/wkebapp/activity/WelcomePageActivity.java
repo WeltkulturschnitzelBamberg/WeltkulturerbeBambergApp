@@ -1,16 +1,16 @@
-package com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.activity;
+package com.github.wksb.wkebapp.activity;
 
 import android.app.Activity;
 import android.app.LoaderManager;
 import android.content.Loader;
 import android.os.Bundle;
 
-import com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.InformationAsyncTaskLoader;
-import com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.R;
-import com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.RouteAsyncTaskLoader;
-import com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.WaypointsAsyncTaskLoader;
-import com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.utilities.DebugUtils;
-import com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.QuizzesAsyncTaskLoader;
+import com.github.wksb.wkebapp.InformationAsyncTaskLoader;
+import com.github.wksb.wkebapp.R;
+import com.github.wksb.wkebapp.RouteAsyncTaskLoader;
+import com.github.wksb.wkebapp.WaypointsAsyncTaskLoader;
+import com.github.wksb.wkebapp.utilities.DebugUtils;
+import com.github.wksb.wkebapp.QuizzesAsyncTaskLoader;
 
 import android.content.Intent;
 import android.view.View;

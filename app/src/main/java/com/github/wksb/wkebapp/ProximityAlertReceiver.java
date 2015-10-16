@@ -1,11 +1,11 @@
-package com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp;
+package com.github.wksb.wkebapp;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.location.LocationManager;
 
-import com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.utilities.DebugUtils;
+import com.github.wksb.wkebapp.utilities.DebugUtils;
 
 //TODO Documentation
 /**

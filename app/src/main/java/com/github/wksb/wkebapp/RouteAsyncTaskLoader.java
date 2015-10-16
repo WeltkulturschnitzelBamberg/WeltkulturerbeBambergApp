@@ -1,30 +1,19 @@
-package com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp;
+package com.github.wksb.wkebapp;
 
 import android.content.AsyncTaskLoader;
 import android.content.ContentValues;
 import android.content.Context;
 
-import com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.contentprovider.WeltkulturerbeContentProvider;
-import com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.database.RoutesTable;
-import com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.utilities.DebugUtils;
+import com.github.wksb.wkebapp.contentprovider.WeltkulturerbeContentProvider;
+import com.github.wksb.wkebapp.database.RoutesTable;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
-import org.xml.sax.InputSource;
-import org.xml.sax.SAXException;
 
 import java.io.IOException;
 import java.io.InputStreamReader;
-
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
 
 /**
  * This AsyncTaskLoader loads the routes into the Weltkulturschnitzel Database

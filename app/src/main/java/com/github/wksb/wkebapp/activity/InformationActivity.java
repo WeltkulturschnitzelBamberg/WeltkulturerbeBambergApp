@@ -1,27 +1,16 @@
-package com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.activity;
+package com.github.wksb.wkebapp.activity;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.database.Cursor;
-import android.drm.DrmInfoRequest;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatCallback;
-import android.support.v7.app.AppCompatDelegate;
-import android.support.v7.view.ActionMode;
-import android.support.v7.widget.Toolbar;
 import android.text.Html;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.CustomHtmlTagHandler;
-import com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.R;
-import com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.contentprovider.WeltkulturerbeContentProvider;
-import com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.database.InformationTable;
-import com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.utilities.DebugUtils;
-
-import org.w3c.dom.Text;
+import com.github.wksb.wkebapp.CustomHtmlTagHandler;
+import com.github.wksb.wkebapp.R;
+import com.github.wksb.wkebapp.contentprovider.WeltkulturerbeContentProvider;
+import com.github.wksb.wkebapp.database.InformationTable;
 
 /**
  * This activity shows information about a world-heritage.

@@ -1,11 +1,11 @@
-package com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.activity;
+package com.github.wksb.wkebapp.activity;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
-import com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.R;
+import com.github.wksb.wkebapp.R;
 
 /**
  * This activity shows a greeting and instructions how to use the World-heritage-Application.

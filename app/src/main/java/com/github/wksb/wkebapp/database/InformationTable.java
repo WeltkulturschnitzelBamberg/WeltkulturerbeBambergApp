@@ -1,4 +1,4 @@
-package com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.database;
+package com.github.wksb.wkebapp.database;
 
 import android.database.sqlite.SQLiteDatabase;
 

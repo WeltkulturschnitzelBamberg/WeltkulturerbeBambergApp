@@ -1,21 +1,16 @@
-package com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.activity;
+package com.github.wksb.wkebapp.activity;
 
 import android.app.Activity;
 import android.database.Cursor;
-import android.graphics.Color;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.TextView;
 import android.view.View;
 import android.content.Intent;
 
-import com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.R;
-import com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.contentprovider.WeltkulturerbeContentProvider;
-import com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.database.QuizzesTable;
-import com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.utilities.DebugUtils;
+import com.github.wksb.wkebapp.R;
+import com.github.wksb.wkebapp.contentprovider.WeltkulturerbeContentProvider;
+import com.github.wksb.wkebapp.database.QuizzesTable;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -113,9 +108,9 @@ public class QuizActivity extends Activity {
     }
 
     /**
-     * This Method queries the SQLite Database for quizzes with the committed ID and returns it as a {@link com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.activity.QuizActivity.Quiz}
+     * This Method queries the SQLite Database for quizzes with the committed ID and returns it as a {@link com.github.wksb.wkebapp.activity.QuizActivity.Quiz}
      * @param quizID The QuizID of the quiz to load
-     * @return {@link com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.activity.QuizActivity.Quiz} with the first found query result
+     * @return {@link com.github.wksb.wkebapp.activity.QuizActivity.Quiz} with the first found query result
      */
     private Quiz getQuizByID(int quizID){
         String[] projection = {QuizzesTable.COLUMN_QUIZ_ID, QuizzesTable.COLUMN_LOCATION, QuizzesTable.COLUMN_QUESTION, QuizzesTable.COLUMN_SOLUTION, QuizzesTable.COLUMN_WRONG_ANSWER_1,

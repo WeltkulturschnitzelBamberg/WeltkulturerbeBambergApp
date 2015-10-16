@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/map"
-    tools:context="com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.activity.NavigationActivity"
+    tools:context="com.github.wksb.wkebapp.activity.NavigationActivity"
     android:name="com.google.android.gms.maps.SupportMapFragment" >
 
 </fragment>

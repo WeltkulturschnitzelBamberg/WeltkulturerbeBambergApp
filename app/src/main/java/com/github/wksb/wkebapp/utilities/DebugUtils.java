@@ -1,10 +1,10 @@
-package com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.utilities;
+package com.github.wksb.wkebapp.utilities;
 
 import android.content.Context;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.BuildConfig;
+import com.github.wksb.wkebapp.BuildConfig;
 
 /**
  * This class eases debugging

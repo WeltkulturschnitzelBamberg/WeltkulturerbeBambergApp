@@ -1,23 +1,19 @@
-package com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp;
+package com.github.wksb.wkebapp;
 
 import android.content.AsyncTaskLoader;
 import android.content.ContentValues;
 import android.content.Context;
 
-import com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.contentprovider.WeltkulturerbeContentProvider;
-import com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.database.QuizzesTable;
+import com.github.wksb.wkebapp.contentprovider.WeltkulturerbeContentProvider;
+import com.github.wksb.wkebapp.database.QuizzesTable;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
-import org.xml.sax.SAXException;
 
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.Objects;
-
-import javax.xml.parsers.ParserConfigurationException;
 
 /**
  * This AsyncTaskLoader loads the quizzes into the Weltkulturschnitzel Database

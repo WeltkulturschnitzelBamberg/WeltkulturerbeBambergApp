@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.activity.QuizActivity" >
+    tools:context="com.github.wksb.wkebapp.activity.QuizActivity" >
 
     <TextView
         android:layout_width="wrap_content"
