@@ -69,7 +69,7 @@
             android:enabled="true"
             android:exported="true" >
             <intent-filter>
-                <action android:name="com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.PROXIMITY_ALERT" />
+                <action android:name="com.github.wksb.wkebapp.PROXIMITY_ALERT" />
             </intent-filter>
         </receiver>
     </application>
