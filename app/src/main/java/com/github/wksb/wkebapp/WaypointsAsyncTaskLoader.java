@@ -25,7 +25,6 @@ import java.io.InputStreamReader;
  */
 public class WaypointsAsyncTaskLoader extends AsyncTaskLoader{
 
-    public static final int LOADER_ID = 0;
     private static final String PACKAGE = WaypointsAsyncTaskLoader.class.getPackage().getName();
     private static final String INT_NOT_DEFINED = "" + -1;
 

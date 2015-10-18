@@ -24,8 +24,6 @@ import java.io.InputStreamReader;
  */
 public class RouteAsyncTaskLoader extends AsyncTaskLoader {
 
-    public static final int LOADER_ID = 1;
-
     public RouteAsyncTaskLoader(Context context) {
         super(context);
     }

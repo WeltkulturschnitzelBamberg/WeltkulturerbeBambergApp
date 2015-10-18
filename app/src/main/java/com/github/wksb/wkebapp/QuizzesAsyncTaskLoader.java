@@ -24,8 +24,6 @@ import java.io.InputStreamReader;
  */
 public class QuizzesAsyncTaskLoader extends AsyncTaskLoader {
 
-    public static final int LOADER_ID = 2;
-
     public QuizzesAsyncTaskLoader(Context context) {
         super(context);
     }
