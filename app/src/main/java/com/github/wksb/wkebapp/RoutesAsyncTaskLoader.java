@@ -22,9 +22,9 @@ import java.io.InputStreamReader;
  * @version 1.0
  * @since 2015-06-04
  */
-public class RouteAsyncTaskLoader extends AsyncTaskLoader {
+public class RoutesAsyncTaskLoader extends AsyncTaskLoader {
 
-    public RouteAsyncTaskLoader(Context context) {
+    public RoutesAsyncTaskLoader(Context context) {
         super(context);
     }
 
