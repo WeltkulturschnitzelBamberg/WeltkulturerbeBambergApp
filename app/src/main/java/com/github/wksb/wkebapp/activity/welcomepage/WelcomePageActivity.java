@@ -33,7 +33,7 @@ public class WelcomePageActivity extends Activity implements LoaderManager.Loade
     private WelcomePageActivityState activityState;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getSharedPreferences("MISCELLANEOUS", MODE_PRIVATE).getBoolean("IS_FIRST_APP_LAUNCH", true)) {
             onFirstLaunch();
@@ -42,8 +42,8 @@ public class WelcomePageActivity extends Activity implements LoaderManager.Loade
     }
 
     @Override
-    protected void onStart() {
-        super.onResume();
+    public void onStart() {
+        super.onStart();
         if (getSharedPreferences("TOUR", MODE_PRIVATE).getBoolean("IS_IN_PROGRESS", false)) {
             setActivityState(new TourInProgress(this));
         } else {
