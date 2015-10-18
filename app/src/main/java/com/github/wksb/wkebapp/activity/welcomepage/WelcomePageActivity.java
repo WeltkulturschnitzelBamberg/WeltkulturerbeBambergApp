@@ -6,16 +6,11 @@ import android.content.Loader;
 import android.os.Bundle;
 
 import com.github.wksb.wkebapp.InformationAsyncTaskLoader;
-import com.github.wksb.wkebapp.R;
-import com.github.wksb.wkebapp.RouteAsyncTaskLoader;
+import com.github.wksb.wkebapp.RoutesAsyncTaskLoader;
 import com.github.wksb.wkebapp.WaypointsAsyncTaskLoader;
-import com.github.wksb.wkebapp.activity.InformationActivity;
-import com.github.wksb.wkebapp.activity.InstructionsActivity;
-import com.github.wksb.wkebapp.activity.ScoreActivity;
 import com.github.wksb.wkebapp.utilities.DebugUtils;
 import com.github.wksb.wkebapp.QuizzesAsyncTaskLoader;
 
-import android.content.Intent;
 import android.view.View;
 
 /**
@@ -31,6 +26,15 @@ public class WelcomePageActivity extends Activity implements LoaderManager.Loade
      * The state of this Activity. The Behaviour of this Activity changes with its current state
      */
     private WelcomePageActivityState activityState;
+
+    /** LOADER-ID of {@link QuizzesAsyncTaskLoader} **/
+    private static final int QUIZZES_LOADER_ID = 0;
+    /** LOADER-ID of {@link InformationAsyncTaskLoader} **/
+    private static final int INFORMATION_LOADER_ID = 1;
+    /** LOADER-ID of {@link RoutesAsyncTaskLoader} **/
+    private static final int ROUTES_LOADER_ID = 2;
+    /** LOADER-ID of {@link WaypointsAsyncTaskLoader} **/
+    private static final int WAYPOINTS_LOADER_ID = 3;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -68,28 +72,28 @@ public class WelcomePageActivity extends Activity implements LoaderManager.Loade
      */
     private void onFirstLaunch() {
         // Initialise Loaders
-        getLoaderManager().initLoader(WaypointsAsyncTaskLoader.LOADER_ID, null, this);
-        getLoaderManager().initLoader(RouteAsyncTaskLoader.LOADER_ID, null, this);
-        getLoaderManager().initLoader(QuizzesAsyncTaskLoader.LOADER_ID, null, this);
-        getLoaderManager().initLoader(InformationAsyncTaskLoader.LOADER_ID, null, this);
+        getLoaderManager().initLoader(WAYPOINTS_LOADER_ID, null, this);
+        getLoaderManager().initLoader(ROUTES_LOADER_ID, null, this);
+        getLoaderManager().initLoader(QUIZZES_LOADER_ID, null, this);
+        getLoaderManager().initLoader(INFORMATION_LOADER_ID, null, this);
     }
 
     @Override
     public Loader onCreateLoader(int id, Bundle args) {
         switch (id) {
-            case RouteAsyncTaskLoader.LOADER_ID:
-                // Return new RouteAsyncTaskLoader to load routes in the database
+            case ROUTES_LOADER_ID:
+                // Return new RoutesAsyncTaskLoader to load routes in the database
                 DebugUtils.toast(this, "Loading Routes in Database ...");
-                return new RouteAsyncTaskLoader(this);
-            case QuizzesAsyncTaskLoader.LOADER_ID:
+                return new RoutesAsyncTaskLoader(this);
+            case QUIZZES_LOADER_ID:
                 // Return new QuizzesAsyncTaskLoader to load quizzes in the database
                 DebugUtils.toast(this, "Loading Quizzes in Database ...");
                 return new QuizzesAsyncTaskLoader(this);
-            case WaypointsAsyncTaskLoader.LOADER_ID:
+            case WAYPOINTS_LOADER_ID:
                 // Return new WaypointsAsyncTaskLoader to load waypoints in the database
                 DebugUtils.toast(this, "Loading Waypoints in Database ...");
                 return new WaypointsAsyncTaskLoader(this);
-            case InformationAsyncTaskLoader.LOADER_ID:
+            case INFORMATION_LOADER_ID:
                 // Return new InformationAsyncTaskLoader to load the information about the waypoints in the database
                 DebugUtils.toast(this, "Loading Information about the Waypoints in the Database ...");
                 return new InformationAsyncTaskLoader(this);
@@ -107,21 +111,21 @@ public class WelcomePageActivity extends Activity implements LoaderManager.Loade
     @Override
     public void onLoadFinished(Loader loader, Object data) {
         switch (loader.getId()) {
-            case RouteAsyncTaskLoader.LOADER_ID:
+            case ROUTES_LOADER_ID:
                 DebugUtils.toast(this, "Routes loaded");
-                getLoaderManager().destroyLoader(RouteAsyncTaskLoader.LOADER_ID);
+                getLoaderManager().destroyLoader(ROUTES_LOADER_ID);
                 break;
-            case QuizzesAsyncTaskLoader.LOADER_ID:
+            case QUIZZES_LOADER_ID:
                 DebugUtils.toast(this, "Quizzes loaded");
-                getLoaderManager().destroyLoader(QuizzesAsyncTaskLoader.LOADER_ID);
+                getLoaderManager().destroyLoader(QUIZZES_LOADER_ID);
                 break;
-            case WaypointsAsyncTaskLoader.LOADER_ID:
+            case WAYPOINTS_LOADER_ID:
                 DebugUtils.toast(this, "Waypoints loaded");
-                getLoaderManager().destroyLoader(WaypointsAsyncTaskLoader.LOADER_ID);
+                getLoaderManager().destroyLoader(WAYPOINTS_LOADER_ID);
                 break;
-            case InformationAsyncTaskLoader.LOADER_ID:
+            case INFORMATION_LOADER_ID:
                 DebugUtils.toast(this, "Information about Waypoints loaded");
-                getLoaderManager().destroyLoader(InformationAsyncTaskLoader.LOADER_ID);
+                getLoaderManager().destroyLoader(INFORMATION_LOADER_ID);
                 break;
         }
     }
