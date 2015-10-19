@@ -42,7 +42,6 @@ public class WelcomePageActivity extends Activity implements LoaderManager.Loade
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        DebugUtils.toast(this, getPackageName() + ", " + getFilesDir().getAbsolutePath());
         if (getSharedPreferences("MISCELLANEOUS", MODE_PRIVATE).getBoolean("IS_FIRST_APP_LAUNCH", true)) {
             onFirstLaunch();
             getSharedPreferences("MISCELLANEOUS", MODE_PRIVATE).edit().putBoolean("IS_FIRST_APP_LAUNCH", false);
