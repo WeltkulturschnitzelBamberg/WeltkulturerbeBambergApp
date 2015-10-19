@@ -154,7 +154,7 @@ public class WelcomePageActivity extends Activity implements LoaderManager.Loade
     }
 
     public void onBtnClickedAbout(View view) {
-        activityState.onBtnClickedStart(view);
+        activityState.onBtnClickedAbout(view);
     }
 
     public void onBtnClickedRestartTour(View view) {
