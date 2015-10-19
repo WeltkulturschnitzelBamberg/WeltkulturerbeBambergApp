@@ -220,57 +220,44 @@ public class NavigationActivity extends FragmentActivity {
     private class Route {
 
         private final String name;
-        private final List<RouteSegment> routeSegmentsList;
+        private final List<Waypoint> waypoints;
 
         public Route(String name) {
             this.name = name;
-            this.routeSegmentsList = new ArrayList<>();
+            this.waypoints = new ArrayList<>();
         }
 
-        public void addRouteSegment(int startWaypointID, int endWaypointID, String filename) {
-            routeSegmentsList.add(new RouteSegment(startWaypointID, endWaypointID, filename));
+        public void addWaypoint(Float latitude, Float longitude, String title) {
+            waypoints.add(new Waypoint(latitude, longitude, title));
         }
 
-        public List<RouteSegment> getWaypoints() {
-            return this.routeSegmentsList;
-        }
-    }
-
-    private class RouteSegment {
-
-        private int startWaypointID;
-        private int endWaypointID;
-        private String filename;
-
-        public RouteSegment(int startWaypointID, int endWaypointID, String filename) {
-            this.startWaypointID = startWaypointID;
-            this.endWaypointID = endWaypointID;
-            this.filename = filename;
-        }
-    }
-
-    private class Waypoint {
-
-        private final float latitude;
-        private final float longitude;
-        private final String title;
-
-        public Waypoint(Float latitude, Float longitude, String title) {
-            this.latitude = latitude;
-            this.longitude = longitude;
-            this.title = title;
+        public List<Waypoint> getWaypoints() {
+            return this.waypoints;
         }
 
-        public Float getLatitude() {
-            return latitude;
-        }
+        private class Waypoint {
 
-        public Float getLongitude() {
-            return longitude;
-        }
+            private final float latitude;
+            private final float longitude;
+            private final String title;
 
-        public String getTitle() {
-            return title;
+            public Waypoint(Float latitude, Float longitude, String title) {
+                this.latitude = latitude;
+                this.longitude = longitude;
+                this.title = title;
+            }
+
+            public Float getLatitude() {
+                return latitude;
+            }
+
+            public Float getLongitude() {
+                return longitude;
+            }
+
+            public String getTitle() {
+                return title;
+            }
         }
     }
 }
