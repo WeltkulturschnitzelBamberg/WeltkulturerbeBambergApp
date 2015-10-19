@@ -161,7 +161,7 @@ public class NavigationActivity extends FragmentActivity {
 
     //TODO Documentation
     private void loadRoute(int routeCode) {
-        String[] projection = {RoutesTable.COLUMN_WAYPOINT_ID};
+        String[] projection = {RoutesTable.COLUMN_ROUTE_SEGMENT_ID};
         String selection = RoutesTable.COLUMN_ROUTE_NAME + "=?";
         String[] selectionArgs;
         switch (routeCode) {
@@ -182,7 +182,7 @@ public class NavigationActivity extends FragmentActivity {
         while (waypointIDs.moveToNext()) {
             String[] projection2 = new String[]{WaypointsTable.COLUMN_NAME, WaypointsTable.COLUMN_LONGITUDE, WaypointsTable.COLUMN_LATITUDE};
             String selection2 = WaypointsTable.COLUMN_WAYPOINT_ID + "=?";
-            String[] selectionArgs2 = {Integer.toString(waypointIDs.getInt(waypointIDs.getColumnIndex(RoutesTable.COLUMN_WAYPOINT_ID)))};
+            String[] selectionArgs2 = {Integer.toString(waypointIDs.getInt(waypointIDs.getColumnIndex(RoutesTable.COLUMN_ROUTE_SEGMENT_ID)))};
             Cursor waypoint = getContentResolver().query(WeltkulturerbeContentProvider.URI_TABLE_WAYPOINTS,
                     projection2, selection2, selectionArgs2, null);
             while (waypoint.moveToNext()) {

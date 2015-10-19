@@ -6,6 +6,7 @@ import android.content.Context;
 
 import com.github.wksb.wkebapp.contentprovider.WeltkulturerbeContentProvider;
 import com.github.wksb.wkebapp.database.RoutesTable;
+import com.github.wksb.wkebapp.utilities.DebugUtils;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -58,20 +59,20 @@ public class RoutesAsyncTaskLoader extends AsyncTaskLoader {
                 String name = null;
                 if (route.get("name") instanceof String) name = (String) route.get("name");
 
-                JSONArray waypoints = (JSONArray) route.get("waypoints");
-                for (int k = 0; k < waypoints.size(); k++) {
-                    JSONObject waypoint = (JSONObject) waypoints.get(k);
+                JSONArray routeSegments = (JSONArray) route.get("route-segments");
+                for (int k = 0; k < routeSegments.size(); k++) {
+                    JSONObject routeSegment = (JSONObject) routeSegments.get(k);
 
-                    Long waypointId = 0L;
-                    Long position = 0L;
+                    Long routeSegmentID = -1L;
+                    Long routeSegmentPosition = -1L;
 
-                    if (waypoint.get("id") instanceof Long) waypointId = (long) waypoint.get("id");
-                    if (waypoint.get("position") instanceof Long) position = (long) waypoint.get("position");
+                    if (routeSegment.get("segment-id") instanceof Long) routeSegmentID = (long) routeSegment.get("segment-id");
+                    if (routeSegment.get("position") instanceof Long) routeSegmentPosition = (long) routeSegment.get("position");
 
                     ContentValues values = new ContentValues();
                     values.put(RoutesTable.COLUMN_ROUTE_NAME, name);
-                    values.put(RoutesTable.COLUMN_WAYPOINT_ID, waypointId);
-                    values.put(RoutesTable.COLUMN_WAYPOINT_POSITION, position);
+                    values.put(RoutesTable.COLUMN_ROUTE_SEGMENT_ID, routeSegmentID);
+                    values.put(RoutesTable.COLUMN_ROUTE_SEGMENT_POSITION, routeSegmentPosition);
 
                     getContext().getContentResolver().insert(WeltkulturerbeContentProvider.URI_TABLE_ROUTES, values);
                 }

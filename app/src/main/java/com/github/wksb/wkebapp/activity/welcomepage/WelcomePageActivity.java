@@ -6,6 +6,7 @@ import android.content.Loader;
 import android.os.Bundle;
 
 import com.github.wksb.wkebapp.InformationAsyncTaskLoader;
+import com.github.wksb.wkebapp.RouteSegmentsAsyncTaskLoader;
 import com.github.wksb.wkebapp.RoutesAsyncTaskLoader;
 import com.github.wksb.wkebapp.WaypointsAsyncTaskLoader;
 import com.github.wksb.wkebapp.utilities.DebugUtils;
@@ -35,10 +36,13 @@ public class WelcomePageActivity extends Activity implements LoaderManager.Loade
     private static final int ROUTES_LOADER_ID = 2;
     /** LOADER-ID of {@link WaypointsAsyncTaskLoader} **/
     private static final int WAYPOINTS_LOADER_ID = 3;
+    /** LOADER-ID of {@link RouteSegmentsAsyncTaskLoader} **/
+    private static final int ROUTE_SEGMENTS_LOADER_ID = 4;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        DebugUtils.toast(this, getPackageName() + ", " + getFilesDir().getAbsolutePath());
         if (getSharedPreferences("MISCELLANEOUS", MODE_PRIVATE).getBoolean("IS_FIRST_APP_LAUNCH", true)) {
             onFirstLaunch();
             getSharedPreferences("MISCELLANEOUS", MODE_PRIVATE).edit().putBoolean("IS_FIRST_APP_LAUNCH", false);
@@ -76,6 +80,7 @@ public class WelcomePageActivity extends Activity implements LoaderManager.Loade
         getLoaderManager().initLoader(ROUTES_LOADER_ID, null, this);
         getLoaderManager().initLoader(QUIZZES_LOADER_ID, null, this);
         getLoaderManager().initLoader(INFORMATION_LOADER_ID, null, this);
+        getLoaderManager().initLoader(ROUTE_SEGMENTS_LOADER_ID, null, this);
     }
 
     @Override
@@ -97,6 +102,10 @@ public class WelcomePageActivity extends Activity implements LoaderManager.Loade
                 // Return new InformationAsyncTaskLoader to load the information about the waypoints in the database
                 DebugUtils.toast(this, "Loading Information about the Waypoints in the Database ...");
                 return new InformationAsyncTaskLoader(this);
+            case ROUTE_SEGMENTS_LOADER_ID:
+                // Return new RouteSegmentsAsyncTaskLoader to load the rout-segments
+                DebugUtils.toast(this, "Loading Route Segments in Database ...");
+                return new RouteSegmentsAsyncTaskLoader(this);
             default:
                 // There is no such Loader ID -> throw Exception
                 throw new IllegalArgumentException("Loader not found. ID: " + id);
@@ -126,6 +135,10 @@ public class WelcomePageActivity extends Activity implements LoaderManager.Loade
             case INFORMATION_LOADER_ID:
                 DebugUtils.toast(this, "Information about Waypoints loaded");
                 getLoaderManager().destroyLoader(INFORMATION_LOADER_ID);
+                break;
+            case ROUTE_SEGMENTS_LOADER_ID:
+                DebugUtils.toast(this, "Route Segments loaded");
+                getLoaderManager().destroyLoader(ROUTE_SEGMENTS_LOADER_ID);
                 break;
         }
     }
