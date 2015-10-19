@@ -22,10 +22,10 @@ public final class RoutesTable {
     public static final String COLUMN_ID = "_id";
     /** Name of the Column containing the name of the Route **/
     public static final String COLUMN_ROUTE_NAME = "route_name";
-    /** Name of the Column containing the ID of the Waypoint **/
-    public static final String COLUMN_WAYPOINT_ID = "waypoint_id";
-    /** Name of the Column containing the position of the waypoint in the Route **/
-    public static final String COLUMN_WAYPOINT_POSITION = "waypoint_position";
+    /** Name of the Column containing the ID of the Route-Segment **/
+    public static final String COLUMN_ROUTE_SEGMENT_ID = "route_segment_id";
+    /** Name of the Column containing the position of the Route-Segment in the Route **/
+    public static final String COLUMN_ROUTE_SEGMENT_POSITION = "route_segment_position";
 
     /** Private constructor to prevent instantiation. If this class is instantiated,
      * it throws a {@link IllegalAccessException}
@@ -40,8 +40,8 @@ public final class RoutesTable {
             + "("
             + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
             + COLUMN_ROUTE_NAME + " TEXT NOT NULL,"
-            + COLUMN_WAYPOINT_POSITION + " INTEGER NOT NULL,"
-            + COLUMN_WAYPOINT_ID + " INTEGER NOT NULL"
+            + COLUMN_ROUTE_SEGMENT_POSITION + " INTEGER NOT NULL,"
+            + COLUMN_ROUTE_SEGMENT_ID + " INTEGER NOT NULL"
             + ");";
 
     /**

@@ -10,6 +10,7 @@ import android.net.Uri;
 
 import com.github.wksb.wkebapp.database.InformationTable;
 import com.github.wksb.wkebapp.database.QuizzesTable;
+import com.github.wksb.wkebapp.database.RouteSegmentsTable;
 import com.github.wksb.wkebapp.database.RoutesTable;
 import com.github.wksb.wkebapp.database.WaypointsTable;
 import com.github.wksb.wkebapp.database.WeltkulturerbeDatabaseHelper;
@@ -43,6 +44,10 @@ public class WeltkulturerbeContentProvider extends ContentProvider {
     private static final int CODE_TABLE_INFORMATION = 11;
     private static final int CODE_TABLE_INFORMATION_ROW = 12;
 
+    public static final Uri URI_TABLE_ROUTE_SEGMENTS = Uri.parse("content://" + AUTHORITY + "/" + RouteSegmentsTable.TABLE_ROUTE_SEGMENTS);
+    private static final int CODE_TABLE_ROUTE_SEGMENTS = 13;
+    private static final int CODE_TABLE_ROUTE_SEGMENTS_ROW = 14;
+
     // UriMatcher that returns NO_MATCH if it matches the root URI
     private static final UriMatcher sUriMatcher = new UriMatcher(UriMatcher.NO_MATCH);
     static {
@@ -61,6 +66,10 @@ public class WeltkulturerbeContentProvider extends ContentProvider {
         // Add URI for the table "information" and for its rows
         sUriMatcher.addURI(AUTHORITY, InformationTable.TABLE_INFORMATION, CODE_TABLE_INFORMATION);
         sUriMatcher.addURI(AUTHORITY, InformationTable.TABLE_INFORMATION + "/#", CODE_TABLE_INFORMATION_ROW);
+
+        // Add URI for the table "route_segments" and for its rows
+        sUriMatcher.addURI(AUTHORITY, RouteSegmentsTable.TABLE_ROUTE_SEGMENTS, CODE_TABLE_ROUTE_SEGMENTS);
+        sUriMatcher.addURI(AUTHORITY, RouteSegmentsTable.TABLE_ROUTE_SEGMENTS + "/#", CODE_TABLE_ROUTE_SEGMENTS_ROW);
     }
 
     @Override
@@ -104,6 +113,13 @@ public class WeltkulturerbeContentProvider extends ContentProvider {
                 queryBuilder.setTables(InformationTable.TABLE_INFORMATION);
                 queryBuilder.appendWhere(InformationTable.COLUMN_ID + "=" + uri.getLastPathSegment());
                 break;
+            case CODE_TABLE_ROUTE_SEGMENTS:
+                queryBuilder.setTables(RouteSegmentsTable.TABLE_ROUTE_SEGMENTS);
+                break;
+            case CODE_TABLE_ROUTE_SEGMENTS_ROW:
+                queryBuilder.setTables(RouteSegmentsTable.TABLE_ROUTE_SEGMENTS);
+                queryBuilder.appendWhere(RouteSegmentsTable.COLUMN_ID + "=" + uri.getLastPathSegment());
+                break;
             default:
                 throw new IllegalArgumentException("Unkown URI: " + uri);
         }
@@ -132,6 +148,9 @@ public class WeltkulturerbeContentProvider extends ContentProvider {
             case CODE_TABLE_INFORMATION:
                 rowID = database.insert(InformationTable.TABLE_INFORMATION, null, values);
                 break;
+            case CODE_TABLE_ROUTE_SEGMENTS:
+                rowID = database.insert(RouteSegmentsTable.TABLE_ROUTE_SEGMENTS, null, values);
+                break;
             default:
                 throw new IllegalArgumentException("Unknown URI: " + uri);
         }
@@ -139,7 +158,7 @@ public class WeltkulturerbeContentProvider extends ContentProvider {
         return Uri.parse(AUTHORITY + "/" + rowID);
     }
 
-    // Functions delete(), update() and getType() aren't needed in this project
+    // Functions delete(), update() and getType() are not used in this project
     @Override
     public int delete(Uri uri, String selection, String[] selectionArgs) {
         return 0;
