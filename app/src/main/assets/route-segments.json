@@ -1,7 +1,7 @@
 {
   "route-segments" : [
-    {"segment-id" : 0, "start-waypoint-id" : 0, "end-waypoint-id" : 1, "kml-filename" : ""},
-    {"segment-id" : 1, "start-waypoint-id" : 1, "end-waypoint-id" : 2, "kml-filename" : ""},
+    {"segment-id" : 0, "start-waypoint-id" : 0, "end-waypoint-id" : 1, "kml-filename" : "route-polylines/fromGaertnerUndHaeckermuseumToLinkerRegnitzarm.json"},
+    {"segment-id" : 1, "start-waypoint-id" : 1, "end-waypoint-id" : 2, "kml-filename" : "route-polylines/fromLinkerRegnitzarmToOttoFriedrichUniversitaetBamberg.json"},
     {"segment-id" : 2, "start-waypoint-id" : 2, "end-waypoint-id" : 3, "kml-filename" : ""},
     {"segment-id" : 3, "start-waypoint-id" : 3, "end-waypoint-id" : 4, "kml-filename" : ""},
     {"segment-id" : 4, "start-waypoint-id" : 4, "end-waypoint-id" : 5, "kml-filename" : ""},
