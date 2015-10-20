@@ -3,21 +3,36 @@ package com.github.wksb.wkebapp.activity;
 import android.app.PendingIntent;
 import android.content.Intent;
 import android.database.Cursor;
+import android.graphics.Color;
+import android.location.Location;
 import android.location.LocationManager;
+import android.os.Debug;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+
 import com.github.wksb.wkebapp.R;
 import com.github.wksb.wkebapp.contentprovider.WeltkulturerbeContentProvider;
+import com.github.wksb.wkebapp.database.RouteSegmentsTable;
 import com.github.wksb.wkebapp.database.RoutesTable;
 import com.github.wksb.wkebapp.database.WaypointsTable;
+import com.github.wksb.wkebapp.utilities.DebugUtils;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.maps.model.PolylineOptions;
 
+import org.json.JSONException;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
+
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -35,7 +50,7 @@ public class NavigationActivity extends FragmentActivity {
 
     private static final LatLng BAMBERG = new LatLng(49.898814, 10.890764);
 
-    // This Object contains the current Route with all its Waypoints
+    // This Object contains the current Route with all its RouteSegments
     private Route mRoute;
 
     // Definition of the Tags used in Intents send to this Activity
@@ -54,13 +69,21 @@ public class NavigationActivity extends FragmentActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_navigation);
 
-        setUpMapIfNeeded();
+        // Set up Map and Route if they don't exist
+        if (mMap == null) setUpMap();
+        if (mRoute == null) setUpRoute();
+
+        getSharedPreferences("TOUR", MODE_PRIVATE).edit().putBoolean("IS_IN_PROGRESS", true).commit(); // Set the Tour to being in progress
+        mRoute.getRouteSegments().get(getSharedPreferences("TOUR", MODE_PRIVATE).getInt("PROGRESS", 0)).init(mMap); // Load the n-th Segment in the current Route, depending on the progress. Load Segment 0 as default
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        setUpMapIfNeeded();
+
+        // Set up Map and Route if they don't exist
+        if (mMap == null) setUpMap();
+        if (mRoute == null) setUpRoute();
     }
 
     @Override
@@ -118,146 +141,231 @@ public class NavigationActivity extends FragmentActivity {
         }
     }
 
-    /**
-     * Sets up the map if it is possible to do so (i.e., the Google Play services APK is correctly
-     * installed) and the map has not already been instantiated.. This will ensure that we only ever
-     * call {@link #setUpMap()} once when {@link #mMap} is not null.
-     * <p/>
-     * If it isn't installed {@link SupportMapFragment} (and
-     * {@link com.google.android.gms.maps.MapView MapView}) will show a prompt for the user to
-     * install/update the Google Play services APK on their device.
-     * <p/>
-     * A user can return to this FragmentActivity after following the prompt and correctly
-     * installing/updating/enabling the Google Play services. Since the FragmentActivity may not
-     * have been completely destroyed during this process (it is likely that it would only be
-     * stopped or paused), {@link #onCreate(Bundle)} may not be called again so we should call this
-     * method in {@link #onResume()} to guarantee that it will be called.
-     */
-    private void setUpMapIfNeeded() {
-        // Do a null check to confirm that we have not already instantiated the map.
-        if (mMap == null) {
-            // Try to obtain the map from the SupportMapFragment.
-            mMap = ((SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map))
-                    .getMap();
-            // Check if we were successful in obtaining the map.
-            if (mMap != null) {
-                setUpMap();
-            }
-        }
-    }
-
     //TODO Dont animate camera on onResume()
     /**
      * This function sets up the GoogleMaps v2 Map
      */
     private void setUpMap() {
+        mMap = ((SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map))
+                .getMap();
+
         // Move Camera to Bamberg
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(BAMBERG, 12f));
         mMap.setMyLocationEnabled(true);
-        loadRoute(getIntent().getIntExtra(TAG_ROUTE_CODE, FLAG_ROUTE_CODE_ERROR));
-        addMarkers();
-        addProximityAlerts();
     }
 
     //TODO Documentation
-    private void loadRoute(int routeCode) {
-        String[] projection = {RoutesTable.COLUMN_ROUTE_SEGMENT_ID};
+    private void setUpRoute() {
+        int routeCode = getIntent().getIntExtra(TAG_ROUTE_CODE, FLAG_ROUTE_CODE_ERROR);
+
+        String[] projection = {RoutesTable.COLUMN_ROUTE_SEGMENT_ID, RoutesTable.COLUMN_ROUTE_SEGMENT_POSITION};
         String selection = RoutesTable.COLUMN_ROUTE_NAME + "=?";
         String[] selectionArgs;
         switch (routeCode) {
             case FLAG_ROUTE_CODE_SHORT:
-                selectionArgs = new String[]{"Short Route"};
-                mRoute = new Route("Short Route");
+                selectionArgs = new String[]{"short"};
+                mRoute = new Route("short");
                 break;
             case FLAG_ROUTE_CODE_LONG:
-                selectionArgs = new String[]{"Long Route"};
-                mRoute = new Route("Long Route");
+                selectionArgs = new String[]{"long"};
+                mRoute = new Route("long");
                 break;
             default:
                 throw new IllegalArgumentException("No such Route found. Route Code: " + routeCode);
         }
 
-        Cursor waypointIDs = getContentResolver().query(WeltkulturerbeContentProvider.URI_TABLE_ROUTES,
+        Cursor routeSegments = getContentResolver().query(WeltkulturerbeContentProvider.URI_TABLE_ROUTES,
                 projection, selection, selectionArgs, null);
-        while (waypointIDs.moveToNext()) {
-            String[] projection2 = new String[]{WaypointsTable.COLUMN_NAME, WaypointsTable.COLUMN_LONGITUDE, WaypointsTable.COLUMN_LATITUDE};
-            String selection2 = WaypointsTable.COLUMN_WAYPOINT_ID + "=?";
-            String[] selectionArgs2 = {Integer.toString(waypointIDs.getInt(waypointIDs.getColumnIndex(RoutesTable.COLUMN_ROUTE_SEGMENT_ID)))};
-            Cursor waypoint = getContentResolver().query(WeltkulturerbeContentProvider.URI_TABLE_WAYPOINTS,
-                    projection2, selection2, selectionArgs2, null);
-            while (waypoint.moveToNext()) {
-                Float latitude = waypoint.getFloat(waypoint.getColumnIndex(WaypointsTable.COLUMN_LATITUDE));
-                Float longitude = waypoint.getFloat(waypoint.getColumnIndex(WaypointsTable.COLUMN_LONGITUDE));
-                String title = waypoint.getString(waypoint.getColumnIndex(WaypointsTable.COLUMN_NAME));
-                mRoute.addWaypoint(latitude, longitude, title);
+        while (routeSegments.moveToNext()) {
+            projection = new String[]{RouteSegmentsTable.COLUMN_START_WAYPOINT_ID, RouteSegmentsTable.COLUMN_END_WAYPOINT_ID, RouteSegmentsTable.COLUMN_KML_FILENAME};
+            selection = RouteSegmentsTable.COLUMN_SEGMENT_ID + "=?";
+            selectionArgs = new String[]{""+routeSegments.getInt(routeSegments.getColumnIndex(RoutesTable.COLUMN_ROUTE_SEGMENT_ID))};
+
+            Cursor routeSegment = getContentResolver().query(WeltkulturerbeContentProvider.URI_TABLE_ROUTE_SEGMENTS, projection, selection, selectionArgs, null);
+            if (routeSegment.moveToNext()) {
+                int fromWaypointID = routeSegment.getInt(routeSegment.getColumnIndex(RouteSegmentsTable.COLUMN_START_WAYPOINT_ID));
+                int toWaypointID = routeSegment.getInt(routeSegment.getColumnIndex(RouteSegmentsTable.COLUMN_END_WAYPOINT_ID));
+                String filename = routeSegment.getString(routeSegment.getColumnIndex(RouteSegmentsTable.COLUMN_KML_FILENAME));
+                mRoute.addRouteSegment(new RouteSegment(fromWaypointID, toWaypointID, filename));
             }
-        }
-    }
-
-    // TODO Documentation
-    private void addMarkers() {
-        for (Route.Waypoint waypoint : mRoute.getWaypoints()) {
-            MarkerOptions marker = new MarkerOptions()
-                    .title(waypoint.getTitle())
-                    .position(new LatLng(waypoint.getLatitude(), waypoint.getLongitude()));
-            mMap.addMarker(marker);
-        }
-    }
-
-    private void addProximityAlerts() {
-        LocationManager locManager = (LocationManager) getSystemService(LOCATION_SERVICE);
-        for (Route.Waypoint waypoint : mRoute.getWaypoints()) {
-            Intent intent = new Intent();
-            intent.setAction("com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.PROXIMITY_ALERT");
-            intent.putExtra("name", waypoint.getTitle());
-            intent.putExtra("lat", waypoint.getLatitude());
-            intent.putExtra("lng", waypoint.getLongitude());
-            PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
-            locManager.addProximityAlert(waypoint.getLatitude(), waypoint.getLongitude(), 40, -1, pendingIntent);
         }
     }
 
     private class Route {
 
         private final String name;
-        private final List<Waypoint> waypoints;
+        private final List<RouteSegment> routeSegmentsList;
 
         public Route(String name) {
             this.name = name;
-            this.waypoints = new ArrayList<>();
+            this.routeSegmentsList = new ArrayList<>();
         }
 
-        public void addWaypoint(Float latitude, Float longitude, String title) {
-            waypoints.add(new Waypoint(latitude, longitude, title));
+        public void addRouteSegment(RouteSegment routeSegment) {
+            routeSegmentsList.add(routeSegment);
         }
 
-        public List<Waypoint> getWaypoints() {
-            return this.waypoints;
+        public List<RouteSegment> getRouteSegments() {
+            return this.routeSegmentsList;
+        }
+    }
+
+    private class RouteSegment {
+
+        private int fromWaypointID;
+        private int toWaypointID;
+        private Waypoint fromWaypoint;
+        private Waypoint toWaypoint;
+        private String filename;
+
+        public RouteSegment(int fromWaypointID, int toWaypointID, String filename) {
+            this.fromWaypointID = fromWaypointID;
+            this.toWaypointID = toWaypointID;
+            this.filename = filename;
         }
 
-        private class Waypoint {
+        /**
+         * Initialises this RouteSegment. Adds Markers for the Start and Destination, the Polyline connecting the two Markers and a Proximity for the Destination
+         * @param map The Map on which to add the Markers and the Polyline
+         */
+        public void init(GoogleMap map) {
+            // Get the from and to Waypoints, if they don't already exist
+            if (fromWaypoint == null) fromWaypoint = new Waypoint(fromWaypointID);
+            if (toWaypoint == null) toWaypoint = new Waypoint(toWaypointID);
 
-            private final float latitude;
-            private final float longitude;
-            private final String title;
+            // Clear the Map from all Markers, polylines, overlays, etc.
+            map.clear();
 
-            public Waypoint(Float latitude, Float longitude, String title) {
-                this.latitude = latitude;
-                this.longitude = longitude;
-                this.title = title;
+            // Add the Marker for the from and to Waypoint to the map
+            addMarkersToMap(map);
+
+            // Add the Polyline showing the Route to the Map
+            addPolylineToMape(map);
+
+            // Add the proximity alert at the destination Waypoint
+            addProximityAlert();
+
+            // Zoom to the Route Segment on the Map
+            mMap.animateCamera(CameraUpdateFactory
+                    .newLatLngZoom(new LatLng((fromWaypoint.getLatitude() + toWaypoint.getLatitude()) / 2, (fromWaypoint.getLongitude() + toWaypoint.getLongitude()) / 2), 14));
+        }
+
+        /**
+         * Add the Marker for the from and to Waypoints to a {@link GoogleMap}
+         * @param map The {@link GoogleMap} to which the Markers are added
+         */
+        private void addMarkersToMap(GoogleMap map) {
+            MarkerOptions fromWapointMarker = new MarkerOptions()
+                    .title(fromWaypoint.getName())
+                    .position(new LatLng(fromWaypoint.getLatitude(), fromWaypoint.getLongitude()));
+            MarkerOptions toWapointMarker = new MarkerOptions()
+                    .title(toWaypoint.getName())
+                    .position(new LatLng(toWaypoint.getLatitude(), toWaypoint.getLongitude()));
+            map.addMarker(fromWapointMarker);
+            map.addMarker(toWapointMarker);
+        }
+
+        /**
+         * Add a proximity alert at the destination Waypoint
+         */
+        private void addProximityAlert() {
+            LocationManager locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
+            Intent proximityAlert = new Intent();
+            proximityAlert.setAction("com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.PROXIMITY_ALERT");
+            proximityAlert.putExtra("waypoint-name", toWaypoint.getName());
+            proximityAlert.putExtra("quiz-id", toWaypoint.getQuizID());
+
+            int detectionRadius = 40; // The radius around the central point in which to send an proximity alert
+            int expirationTime = -1; // The time in milliseconds it takes this proximity alert to expire (-1 = no expiration)
+            PendingIntent pendingIntent = PendingIntent.getBroadcast(NavigationActivity.this, 0, proximityAlert, PendingIntent.FLAG_UPDATE_CURRENT); // TODO Previous Proximity Alerts have to be removed
+
+            locationManager.addProximityAlert(toWaypoint.getLatitude(), toWaypoint.getLongitude(), detectionRadius, expirationTime, pendingIntent);
+        }
+
+        private void addPolylineToMape(GoogleMap map) {
+            List<LatLng> points = new ArrayList<>();
+
+            try {
+                JSONParser parser = new JSONParser();
+                Object obj = parser.parse(new InputStreamReader(getAssets().open(filename)));
+
+                if (obj instanceof JSONObject) {
+                    JSONObject jsonObject = (JSONObject) obj;
+
+                    for (String coordinates : ((String)jsonObject.get("polyline")).split(",0.0")) {
+                        String longitude = coordinates.substring(0, coordinates.indexOf(","));
+                        String latitude = coordinates.substring(coordinates.indexOf(",") +1);
+
+                        LatLng point = new LatLng(Float.parseFloat(latitude), Float.parseFloat(longitude));
+                        points.add(point);
+                    }
+                }
+            } catch (ParseException | IOException e) {
+                e.printStackTrace();
             }
 
-            public Float getLatitude() {
-                return latitude;
-            }
+            PolylineOptions polyline = new PolylineOptions();
+            polyline.addAll(points);
+            polyline.color(getResources().getColor(R.color.PrimaryColor));
+            polyline.width(25);
+            polyline.geodesic(true);
 
-            public Float getLongitude() {
-                return longitude;
-            }
+            map.addPolyline(polyline);
+        }
+    }
 
-            public String getTitle() {
-                return title;
+    private class Waypoint {
+
+        private float latitude;
+        private float longitude;
+        private String name;
+        private int quizID;
+
+        public Waypoint(int waypointID) {
+            // The parameter for the SQLite query
+            String[] projection = {WaypointsTable.COLUMN_LATITUDE, WaypointsTable.COLUMN_LONGITUDE, WaypointsTable.COLUMN_NAME, WaypointsTable.COLUMN_QUIZ_ID};
+            String selection = WaypointsTable.COLUMN_WAYPOINT_ID + "=?";
+            String[] selectionArgs = {""+waypointID};
+
+            Cursor cursor = getContentResolver().query(WeltkulturerbeContentProvider.URI_TABLE_WAYPOINTS, projection, selection, selectionArgs, null);
+            if (cursor.moveToNext()) {
+                latitude = cursor.getFloat(cursor.getColumnIndex(WaypointsTable.COLUMN_LATITUDE));
+                longitude = cursor.getFloat(cursor.getColumnIndex(WaypointsTable.COLUMN_LONGITUDE));
+                name = cursor.getString(cursor.getColumnIndex(WaypointsTable.COLUMN_NAME));
+                quizID = cursor.getInt(cursor.getColumnIndex(WaypointsTable.COLUMN_QUIZ_ID));
             }
+        }
+
+        /**
+         * Get the Name of this Wapoint
+          * @return The Name of this Waypoint
+         */
+        public String getName() {
+            return name;
+        }
+
+        /**
+         * Get the Latitude of this Waypoint
+         * @return The Latitude of this Waypoint
+         */
+        public float getLatitude() {
+            return latitude;
+        }
+
+        /**
+         * Get the Longitude of this Waypoint
+         * @return The Waypoint of this Waypoint
+         */
+        public float getLongitude() {
+            return longitude;
+        }
+
+        /**
+         * Get the ID of the Quiz about this Waypoint
+         * @return The ID of the Quiz about this Waypoint
+         */
+        public int getQuizID() {
+            return quizID;
         }
     }
 }
