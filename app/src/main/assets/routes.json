@@ -1,6 +1,6 @@
 {
   "routes":[
-    {"name":"Long Route", "route-segments": [
+    {"name":"long", "route-segments": [
       {"position":0, "segment-id":0},
       {"position":1, "segment-id":1},
       {"position":2, "segment-id":2},
@@ -11,7 +11,7 @@
       {"position":7, "segment-id":7},
       {"position":8, "segment-id":8}
     ]},
-    {"name": "Short Route", "route-segments":[
+    {"name": "short", "route-segments":[
       {"position":0, "segment-id":1},
       {"position":1, "segment-id":2},
       {"position":2, "segment-id":3},
