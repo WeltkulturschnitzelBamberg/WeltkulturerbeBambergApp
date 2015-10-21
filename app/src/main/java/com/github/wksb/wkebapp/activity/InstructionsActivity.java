@@ -1,6 +1,7 @@
 package com.github.wksb.wkebapp.activity;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -22,8 +23,20 @@ public class InstructionsActivity extends Activity {
         setContentView(R.layout.activity_instructions);
     }
 
+    /**
+     * Reset the previous Tour
+     */
+    private void resetPreviousTour() {
+        // Reset SharedPreferences
+        getSharedPreferences("TOUR", MODE_PRIVATE).edit().putBoolean("IS_IN_PROGRESS", false).commit();
+        getSharedPreferences("TOUR", MODE_PRIVATE).edit().putInt("PROGRESS", 1).commit();
+        getSharedPreferences("TOUR", MODE_PRIVATE).edit().putInt("CURRENT_QUIZ_ID", -1).commit();
+    }
+
     //TODO Documentation
     public void onBtnClickShortRoute(View view) {
+        resetPreviousTour();
+
         Intent startShortRoute = new Intent(this, NavigationActivity.class);
         startShortRoute.putExtra(NavigationActivity.TAG_ROUTE_CODE, NavigationActivity.FLAG_ROUTE_CODE_SHORT);
         startActivity(startShortRoute);
@@ -31,6 +44,8 @@ public class InstructionsActivity extends Activity {
 
     //TODO Documentation
     public void onBtnClickLongRoute(View view) {
+        resetPreviousTour();
+
         Intent startLongRoute = new Intent(this, NavigationActivity.class);
         startLongRoute.putExtra(NavigationActivity.TAG_ROUTE_CODE, NavigationActivity.FLAG_ROUTE_CODE_LONG);
         startActivity(startLongRoute);
