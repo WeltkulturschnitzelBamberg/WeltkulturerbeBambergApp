@@ -84,6 +84,9 @@ public class NavigationActivity extends FragmentActivity {
         // Set up Map and Route if they don't exist
         if (mMap == null) setUpMap();
         if (mRoute == null) setUpRoute();
+
+        // TODO Improve this
+        setTitle("Progress: " + getSharedPreferences("TOUR", MODE_PRIVATE).getInt("PROGRESS", 0) + "/" + mRoute.getRouteSegments().size());
     }
 
     @Override
