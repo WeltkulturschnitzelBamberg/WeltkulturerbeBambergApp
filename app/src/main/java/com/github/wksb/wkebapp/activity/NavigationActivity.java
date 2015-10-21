@@ -53,17 +53,6 @@ public class NavigationActivity extends FragmentActivity {
     // This Object contains the current Route with all its RouteSegments
     private Route mRoute;
 
-    // Definition of the Tags used in Intents send to this Activity
-    public static final String TAG_PACKAGE = NavigationActivity.class.getPackage().getName();
-    /** This TAG tags the CODE for the Route which is to be loaded within an Intent send to this Activity. Use {@link NavigationActivity#FLAG_ROUTE_CODE_ERROR} to indicate an error occurred or the route doesn't exist */
-    public static final String TAG_ROUTE_CODE = TAG_PACKAGE + "route_code";
-    /** FLAG for the Route code within an Intent send to this Activity, tagged with {@link NavigationActivity#TAG_ROUTE_CODE}, which indicates the Route doesn't exist*/
-    public static final int FLAG_ROUTE_CODE_ERROR = -1;
-    /** FLAG for the Route code within an Intent send to this Activity, tagged with {@link NavigationActivity#TAG_ROUTE_CODE}, which indicates the short Route is to be loaded*/
-    public static final int FLAG_ROUTE_CODE_SHORT = 0;
-    /** FLAG for the Route code within an Intent send to this Activity, tagged with {@link NavigationActivity#TAG_ROUTE_CODE}, which indicates the long Route is to be loaded*/
-    public static final int FLAG_ROUTE_CODE_LONG = 1;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -159,23 +148,12 @@ public class NavigationActivity extends FragmentActivity {
 
     //TODO Documentation
     private void setUpRoute() {
-        int routeCode = getIntent().getIntExtra(TAG_ROUTE_CODE, FLAG_ROUTE_CODE_ERROR);
 
         String[] projection = {RoutesTable.COLUMN_ROUTE_SEGMENT_ID, RoutesTable.COLUMN_ROUTE_SEGMENT_POSITION};
         String selection = RoutesTable.COLUMN_ROUTE_NAME + "=?";
-        String[] selectionArgs;
-        switch (routeCode) {
-            case FLAG_ROUTE_CODE_SHORT:
-                selectionArgs = new String[]{"short"};
-                mRoute = new Route("short");
-                break;
-            case FLAG_ROUTE_CODE_LONG:
-                selectionArgs = new String[]{"long"};
-                mRoute = new Route("long");
-                break;
-            default:
-                throw new IllegalArgumentException("No such Route found. Route Code: " + routeCode);
-        }
+        String[] selectionArgs = {getSharedPreferences("TOUR", MODE_PRIVATE).getString("ROUTE_NAME", "")};
+
+        mRoute = new Route(getSharedPreferences("TOUR", MODE_PRIVATE).getString("ROUTE_NAME", ""));
 
         Cursor routeSegments = getContentResolver().query(WeltkulturerbeContentProvider.URI_TABLE_ROUTES,
                 projection, selection, selectionArgs, null);

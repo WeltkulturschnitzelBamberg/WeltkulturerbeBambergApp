@@ -31,14 +31,15 @@ public class InstructionsActivity extends Activity {
         getSharedPreferences("TOUR", MODE_PRIVATE).edit().putBoolean("IS_IN_PROGRESS", false).commit();
         getSharedPreferences("TOUR", MODE_PRIVATE).edit().putInt("PROGRESS", 1).commit();
         getSharedPreferences("TOUR", MODE_PRIVATE).edit().putInt("CURRENT_QUIZ_ID", -1).commit();
+        getSharedPreferences("TOUR", MODE_PRIVATE).edit().putString("ROUTE_NAME", null).commit();
     }
 
     //TODO Documentation
     public void onBtnClickShortRoute(View view) {
         resetPreviousTour();
 
+        getSharedPreferences("TOUR", MODE_PRIVATE).edit().putString("ROUTE_NAME", "short").commit();
         Intent startShortRoute = new Intent(this, NavigationActivity.class);
-        startShortRoute.putExtra(NavigationActivity.TAG_ROUTE_CODE, NavigationActivity.FLAG_ROUTE_CODE_SHORT);
         startActivity(startShortRoute);
     }
 
@@ -46,8 +47,8 @@ public class InstructionsActivity extends Activity {
     public void onBtnClickLongRoute(View view) {
         resetPreviousTour();
 
+        getSharedPreferences("TOUR", MODE_PRIVATE).edit().putString("ROUTE_NAME", "long").commit();
         Intent startLongRoute = new Intent(this, NavigationActivity.class);
-        startLongRoute.putExtra(NavigationActivity.TAG_ROUTE_CODE, NavigationActivity.FLAG_ROUTE_CODE_LONG);
         startActivity(startLongRoute);
     }
 }

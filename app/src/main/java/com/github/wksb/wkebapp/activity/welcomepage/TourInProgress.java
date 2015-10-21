@@ -55,7 +55,6 @@ public class TourInProgress implements WelcomePageActivityState{
     @Override
     public void onBtnClickedContinue(View view) {
         Intent startShortRoute = new Intent(welcomePageActivity, NavigationActivity.class);
-        startShortRoute.putExtra(NavigationActivity.TAG_ROUTE_CODE, NavigationActivity.FLAG_ROUTE_CODE_LONG);
         welcomePageActivity.startActivity(startShortRoute);
     }
 
