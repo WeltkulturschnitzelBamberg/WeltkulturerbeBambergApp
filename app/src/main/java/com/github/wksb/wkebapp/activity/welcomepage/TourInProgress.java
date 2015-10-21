@@ -1,11 +1,13 @@
 package com.github.wksb.wkebapp.activity.welcomepage;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
 import com.github.wksb.wkebapp.R;
 import com.github.wksb.wkebapp.activity.AboutActivity;
+import com.github.wksb.wkebapp.activity.InstructionsActivity;
 import com.github.wksb.wkebapp.activity.NavigationActivity;
 import com.github.wksb.wkebapp.utilities.DebugUtils;
 
@@ -53,12 +55,14 @@ public class TourInProgress implements WelcomePageActivityState{
     @Override
     public void onBtnClickedContinue(View view) {
         Intent startShortRoute = new Intent(welcomePageActivity, NavigationActivity.class);
-        startShortRoute.putExtra(NavigationActivity.TAG_ROUTE_CODE, NavigationActivity.FLAG_ROUTE_CODE_SHORT);
+        startShortRoute.putExtra(NavigationActivity.TAG_ROUTE_CODE, NavigationActivity.FLAG_ROUTE_CODE_LONG);
         welcomePageActivity.startActivity(startShortRoute);
     }
 
     @Override
     public void onBtnClickedRestartTour(View view) {
-        DebugUtils.toast(welcomePageActivity, "Restart Tour");
+        // Start InstructionsActivity
+        Intent startInstructionActivity = new Intent(welcomePageActivity, InstructionsActivity.class);
+        welcomePageActivity.startActivity(startInstructionActivity);
     }
 }
