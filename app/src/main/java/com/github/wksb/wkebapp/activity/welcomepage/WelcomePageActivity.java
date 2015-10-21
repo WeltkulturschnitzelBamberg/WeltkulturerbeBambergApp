@@ -44,7 +44,7 @@ public class WelcomePageActivity extends Activity implements LoaderManager.Loade
         super.onCreate(savedInstanceState);
         if (getSharedPreferences("MISCELLANEOUS", MODE_PRIVATE).getBoolean("IS_FIRST_APP_LAUNCH", true)) {
             onFirstLaunch();
-            getSharedPreferences("MISCELLANEOUS", MODE_PRIVATE).edit().putBoolean("IS_FIRST_APP_LAUNCH", false);
+            getSharedPreferences("MISCELLANEOUS", MODE_PRIVATE).edit().putBoolean("IS_FIRST_APP_LAUNCH", false).commit();
         }
     }
 
