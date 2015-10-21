@@ -9,5 +9,5 @@
     <string name="btn_quiz_answer_two">Antwort 2</string>
     <string name="btn_quiz_answer_three">Antwort 3</string>
     <string name="btn_quiz_answer_four">Antwort 4</string>
-    <string name="btn_quiz_help">Hilfe</string>
+    <string name="btn_quiz_tipp">Tipp</string>
 </resources>
