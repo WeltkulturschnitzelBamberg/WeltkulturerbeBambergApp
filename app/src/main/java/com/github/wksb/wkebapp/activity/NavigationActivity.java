@@ -74,7 +74,7 @@ public class NavigationActivity extends FragmentActivity {
         if (mRoute == null) setUpRoute();
 
         getSharedPreferences("TOUR", MODE_PRIVATE).edit().putBoolean("IS_IN_PROGRESS", true).commit(); // Set the Tour to being in progress
-        mRoute.getRouteSegments().get(getSharedPreferences("TOUR", MODE_PRIVATE).getInt("PROGRESS", 0)).init(mMap); // Load the n-th Segment in the current Route, depending on the progress. Load Segment 0 as default
+        mRoute.getRouteSegments().get(getSharedPreferences("TOUR", MODE_PRIVATE).getInt("PROGRESS", 1)-1).init(mMap); // Load the n-th Segment in the current Route, depending on the progress. Load Segment 0 as default
     }
 
     @Override
@@ -232,6 +232,9 @@ public class NavigationActivity extends FragmentActivity {
             // Get the from and to Waypoints, if they don't already exist
             if (fromWaypoint == null) fromWaypoint = new Waypoint(fromWaypointID);
             if (toWaypoint == null) toWaypoint = new Waypoint(toWaypointID);
+
+            // Set the current Quiz to the Quiz of the current destination Waypoint
+            getSharedPreferences("TOUR", MODE_PRIVATE).edit().putInt("CURRENT_QUIZ_ID", toWaypoint.getQuizID()).commit();
 
             // Clear the Map from all Markers, polylines, overlays, etc.
             map.clear();
