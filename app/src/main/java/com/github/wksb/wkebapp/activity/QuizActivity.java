@@ -132,17 +132,12 @@ public class QuizActivity extends Activity {
         return new Quiz(quizID, location, question, solution, new String[]{wrongAnswer1, wrongAnswer2, wrongAnswer3}, infoID);
     }
 
-    // TODO Documentation
-    public void onBtnClickAnswer(View view)
-    {
-        if(view.getId() == mBtn_quiz_solution.getId())
-        {
-            mBtn_quiz_solution.setBackgroundColor(getResources().getColor(R.color.PrimaryColor));
-        }
-        else
-        {
-            mBtn_quiz_solution.setBackgroundColor(getResources().getColor(R.color.PrimaryColor));
-        }
+    /**
+     * Logic executed when the user entered the right answer in the current Quiz
+     * @param answerEntered The {@link View} ({@link Button}) the user clicked
+     */
+    private void onRightAnswerEntered(View answerEntered) {
+        mBtn_quiz_solution.setBackgroundColor(getResources().getColor(R.color.green));
 
         mBtn_quiz_solution.setClickable(false);
         mBtn_quiz_wrongAnswer1.setClickable(false);
@@ -151,6 +146,44 @@ public class QuizActivity extends Activity {
 
         mBtn_quiz_more.setClickable(true);
         mBtn_quiz_more.setVisibility(View.VISIBLE);
+
+        if (mCurrentQuiz.getQuizId() == getSharedPreferences("TOUR", MODE_PRIVATE).getInt("CURRENT_QUIZ_ID", -1)) {
+            getSharedPreferences("TOUR", MODE_PRIVATE).edit().putInt("PROGRESS", getSharedPreferences("TOUR", MODE_PRIVATE).getInt("PROGRESS", 1)+1).commit();
+        }
+    }
+
+    /**
+     * Logic executed when the user entered the wrong answer in the current Quiz
+     * @param answerEntered The {@link View} ({@link Button}) the user clicked
+     */
+    private void onWrongAnswerEntered(View answerEntered) {
+        mBtn_quiz_solution.setBackgroundColor(getResources().getColor(R.color.green));
+        answerEntered.setBackgroundColor(getResources().getColor(R.color.red));
+
+        mBtn_quiz_solution.setClickable(false);
+        mBtn_quiz_wrongAnswer1.setClickable(false);
+        mBtn_quiz_wrongAnswer2.setClickable(false);
+        mBtn_quiz_wrongAnswer3.setClickable(false);
+
+        mBtn_quiz_more.setClickable(true);
+        mBtn_quiz_more.setVisibility(View.VISIBLE);
+
+        if (mCurrentQuiz.getQuizId() == getSharedPreferences("TOUR", MODE_PRIVATE).getInt("CURRENT_QUIZ_ID", -1)) {
+            getSharedPreferences("TOUR", MODE_PRIVATE).edit().putInt("PROGRESS", getSharedPreferences("TOUR", MODE_PRIVATE).getInt("PROGRESS", 1)+1).commit();
+        }
+    }
+
+    // TODO Documentation
+    public void onBtnClickAnswer(View view)
+    {
+        if(view.getId() == mBtn_quiz_solution.getId())
+        {
+            onRightAnswerEntered(view);
+        }
+        else
+        {
+            onWrongAnswerEntered(view);
+        }
     }
 
     public void onBtnClickMore(View view)
