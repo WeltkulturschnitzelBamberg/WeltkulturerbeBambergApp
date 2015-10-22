@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="title_activity_information">InformationActivity</string>
+
+    <string name="tv_info_information">No information available ...</string>
+    <string name="btn_info_selfie_spot">Show Selfie-Spot</string>
+    <string name="btn_info_continue">Continue</string>
+    <string name="btn_info_score">Show Score</string>
+</resources>

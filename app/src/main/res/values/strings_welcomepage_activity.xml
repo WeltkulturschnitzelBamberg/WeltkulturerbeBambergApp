@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="title_activity_welcomepage">World Heritage Bamberg App</string>
+
+    <string name="tv_welcome_title">Welcome!</string>
+    <string name="btn_welcome_continue">Continue</string>
+    <string name="btn_welcome_start">Start</string>
+    <string name="btn_welcome_score">Score</string>
+    <string name="btn_welcome_about">About</string>
+    <string name="btn_welcome_restart_tour">Restart Tour</string>
+</resources>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp" >
+    package="com.github.wksb.wkebapp" >
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -26,8 +26,8 @@
             android:value="@string/google_maps_key" />
 
         <activity
-            android:name=".activity.WelcomePageActivity"
-            android:label="@string/app_name" >
+            android:name=".activity.welcomepage.WelcomePageActivity"
+            android:label="@string/title_activity_welcomepage" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -50,10 +50,18 @@
             android:name=".activity.NavigationActivity"
             android:label="@string/title_activity_navigation" >
         </activity>
+        <activity
+            android:name=".activity.QuizActivity"
+            android:label="@string/title_activity_quiz" >
+        </activity>
+        <activity
+            android:name=".activity.AboutActivity"
+            android:label="@string/title_activity_about" >
+        </activity>
 
         <provider
             android:name=".contentprovider.WeltkulturerbeContentProvider"
-            android:authorities="com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.contentprovider.WeltkulturerbeContentProvider" >
+            android:authorities="com.github.wksb.wkebapp.contentprovider.WeltkulturerbeContentProvider" >
         </provider>
 
         <receiver
@@ -61,14 +69,9 @@
             android:enabled="true"
             android:exported="true" >
             <intent-filter>
-                <action android:name="com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.PROXIMITY_ALERT" />
+                <action android:name="com.github.wksb.wkebapp.PROXIMITY_ALERT" />
             </intent-filter>
         </receiver>
-
-        <activity
-            android:name=".activity.QuizActivity"
-            android:label="@string/title_activity_quiz" >
-        </activity>
     </application>
 
 </manifest>

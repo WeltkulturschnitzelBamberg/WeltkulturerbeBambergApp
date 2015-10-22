@@ -1,10 +1,18 @@
-<fragment
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/map"
-    tools:context="com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.activity.NavigationActivity"
-    android:name="com.google.android.gms.maps.SupportMapFragment" >
+    android:layout_width="match_parent"
+    tools:context=".NavigationActivity">
 
-</fragment>
+    <fragment
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/map"
+        tools:context="com.github.wksb.wkebapp.activity.NavigationActivity"
+        android:name="com.google.android.gms.maps.SupportMapFragment" >
+    </fragment>
+</RelativeLayout>

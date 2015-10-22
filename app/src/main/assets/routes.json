@@ -1,26 +1,24 @@
 {
   "routes":[
-    {"name":"Long Route", "waypoints": [
-      {"position":0, "id":0},
-      {"position":1, "id":1},
-      {"position":2, "id":2},
-      {"position":3, "id":3},
-      {"position":4, "id":4},
-      {"position":5, "id":5},
-      {"position":6, "id":6},
-      {"position":7, "id":7},
-      {"position":8, "id":8},
-      {"position":9, "id":9}
+    {"name":"long", "route-segments": [
+      {"position":0, "segment-id":0},
+      {"position":1, "segment-id":1},
+      {"position":2, "segment-id":2},
+      {"position":3, "segment-id":3},
+      {"position":4, "segment-id":4},
+      {"position":5, "segment-id":5},
+      {"position":6, "segment-id":6},
+      {"position":7, "segment-id":7},
+      {"position":8, "segment-id":8}
     ]},
-    {"name": "Short Route", "waypoints":[
-      {"position":0, "id":1},
-      {"position":1, "id":2},
-      {"position":2, "id":3},
-      {"position":3, "id":4},
-      {"position":4, "id":5},
-      {"position":5, "id":6},
-      {"position":6, "id":7},
-      {"position":7, "id":8}
+    {"name": "short", "route-segments":[
+      {"position":0, "segment-id":1},
+      {"position":1, "segment-id":2},
+      {"position":2, "segment-id":3},
+      {"position":3, "segment-id":4},
+      {"position":4, "segment-id":5},
+      {"position":5, "segment-id":6},
+      {"position":6, "segment-id":7}
     ]}
   ]
 }

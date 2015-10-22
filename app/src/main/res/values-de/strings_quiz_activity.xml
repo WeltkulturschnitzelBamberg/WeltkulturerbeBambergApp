@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="title_activity_quiz">QuizActivity</string>
+
+    <string name="tv_quiz_title">Keine Station gefunden :(</string>
+    <string name="tv_quiz_question">Wenn du das lesen kannst ist etwas falsch gelaufen :(</string>
+    <string name="btn_quiz_answer_one">Antwort 1</string>
+    <string name="btn_quiz_answer_two">Antwort 2</string>
+    <string name="btn_quiz_answer_three">Antwort 3</string>
+    <string name="btn_quiz_answer_four">Antwort 4</string>
+    <string name="btn_quiz_tipp">Tipp</string>
+</resources>
