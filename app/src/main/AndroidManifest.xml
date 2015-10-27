@@ -27,7 +27,8 @@
 
         <activity
             android:name=".activity.welcomepage.WelcomePageActivity"
-            android:label="@string/title_activity_welcomepage" >
+            android:label="@string/title_activity_welcomepage"
+            android:clearTaskOnLaunch="true"> <!-- Always start/resume at this Activity -->
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
