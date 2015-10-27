@@ -1,18 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<android.support.v4.widget.DrawerLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_height="match_parent"
+    android:id="@+id/navlayout_navigation"
     android:layout_width="match_parent"
-    tools:context=".NavigationActivity">
+    android:layout_height="match_parent"
+    tools:openDrawer="start">
 
-    <fragment
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
+    <include
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/map"
-        tools:context="com.github.wksb.wkebapp.activity.NavigationActivity"
-        android:name="com.google.android.gms.maps.SupportMapFragment" >
-    </fragment>
-</RelativeLayout>
+        layout="@layout/content_activity_navigation" />
+
+    <LinearLayout
+        android:id="@+id/linlayout_navigation"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/SecondaryColor"
+        android:layout_gravity="start">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
+            android:background="@drawable/drawer_top">
+
+        </LinearLayout>
+
+        <ListView
+            android:id="@+id/lv_navigation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="12dp" />
+
+    </LinearLayout>
+
+</android.support.v4.widget.DrawerLayout>

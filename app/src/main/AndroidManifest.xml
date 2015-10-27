@@ -48,7 +48,7 @@
             android:label="@string/title_activity_score" >
         </activity>
         <activity
-            android:name=".activity.NavigationActivity"
+            android:name=".activity.navigation.NavigationActivity"
             android:label="@string/title_activity_navigation" >
         </activity>
         <activity

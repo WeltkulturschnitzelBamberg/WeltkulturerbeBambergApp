@@ -1,4 +1,4 @@
-package com.github.wksb.wkebapp.activity;
+package com.github.wksb.wkebapp.activity.navigation;
 
 import android.app.PendingIntent;
 import android.content.Intent;
@@ -6,10 +6,13 @@ import android.database.Cursor;
 import android.location.LocationManager;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.support.v4.widget.DrawerLayout;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ListView;
 
 import com.github.wksb.wkebapp.R;
+import com.github.wksb.wkebapp.activity.QuizActivity;
 import com.github.wksb.wkebapp.contentprovider.WeltkulturerbeContentProvider;
 import com.github.wksb.wkebapp.database.RouteSegmentsTable;
 import com.github.wksb.wkebapp.database.RoutesTable;
@@ -45,17 +48,23 @@ public class NavigationActivity extends FragmentActivity {
     // This Object contains the current Route with all its RouteSegments
     private Route mRoute;
 
+    private DrawerLayout mDrawerLayout;
+    private ListView mLvWaypoints;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.content_activity_navigation);
+        setContentView(R.layout.activity_navigation);
 
         // Set up Map and Route if they don't exist
         if (mMap == null) setUpMap();
         if (mRoute == null) setUpRoute();
 
         getSharedPreferences("TOUR", MODE_PRIVATE).edit().putBoolean("IS_IN_PROGRESS", true).commit(); // Set the Tour to being in progress
-        mRoute.getRouteSegments().get(getSharedPreferences("TOUR", MODE_PRIVATE).getInt("PROGRESS", 1)-1).init(mMap); // Load the n-th Segment in the current Route, depending on the progress. Load Segment 0 as default
+        mRoute.getRouteSegments().get(getSharedPreferences("TOUR", MODE_PRIVATE).getInt("PROGRESS", 1) - 1).init(mMap); // Load the n-th Segment in the current Route, depending on the progress. Load Segment 0 as default
+
+        mDrawerLayout = (DrawerLayout) findViewById(R.id.navlayout_navigation);
+        mLvWaypoints = (ListView) findViewById(R.id.lv_navigation);
     }
 
     @Override

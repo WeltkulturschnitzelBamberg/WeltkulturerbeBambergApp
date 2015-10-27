@@ -1,15 +1,12 @@
 package com.github.wksb.wkebapp.activity.welcomepage;
 
-import android.content.Context;
 import android.content.Intent;
-import android.os.Bundle;
 import android.view.View;
 
 import com.github.wksb.wkebapp.R;
 import com.github.wksb.wkebapp.activity.AboutActivity;
 import com.github.wksb.wkebapp.activity.InstructionsActivity;
-import com.github.wksb.wkebapp.activity.NavigationActivity;
-import com.github.wksb.wkebapp.utilities.DebugUtils;
+import com.github.wksb.wkebapp.activity.navigation.NavigationActivity;
 
 /**
  * State for the {@link WelcomePageActivity} when the guided tour is in progress (started)

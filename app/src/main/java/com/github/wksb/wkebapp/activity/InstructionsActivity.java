@@ -1,12 +1,12 @@
 package com.github.wksb.wkebapp.activity;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
 import com.github.wksb.wkebapp.R;
+import com.github.wksb.wkebapp.activity.navigation.NavigationActivity;
 
 /**
  * This activity shows a greeting and instructions how to use the World-heritage-Application.
