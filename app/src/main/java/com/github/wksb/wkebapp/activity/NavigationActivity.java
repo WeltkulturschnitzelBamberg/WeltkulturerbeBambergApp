@@ -3,22 +3,17 @@ package com.github.wksb.wkebapp.activity;
 import android.app.PendingIntent;
 import android.content.Intent;
 import android.database.Cursor;
-import android.graphics.Color;
-import android.location.Location;
 import android.location.LocationManager;
-import android.os.Debug;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 
 import com.github.wksb.wkebapp.R;
 import com.github.wksb.wkebapp.contentprovider.WeltkulturerbeContentProvider;
 import com.github.wksb.wkebapp.database.RouteSegmentsTable;
 import com.github.wksb.wkebapp.database.RoutesTable;
 import com.github.wksb.wkebapp.database.WaypointsTable;
-import com.github.wksb.wkebapp.utilities.DebugUtils;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.SupportMapFragment;
@@ -26,7 +21,6 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.PolylineOptions;
 
-import org.json.JSONException;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
@@ -48,15 +42,13 @@ public class NavigationActivity extends FragmentActivity {
 
     private GoogleMap mMap;
 
-    private static final LatLng BAMBERG = new LatLng(49.898814, 10.890764);
-
     // This Object contains the current Route with all its RouteSegments
     private Route mRoute;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_navigation);
+        setContentView(R.layout.content_activity_navigation);
 
         // Set up Map and Route if they don't exist
         if (mMap == null) setUpMap();
@@ -142,6 +134,7 @@ public class NavigationActivity extends FragmentActivity {
                 .getMap();
 
         // Move Camera to Bamberg
+        LatLng BAMBERG = new LatLng(49.898814, 10.890764);
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(BAMBERG, 12f));
         mMap.setMyLocationEnabled(true);
     }
