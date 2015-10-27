@@ -1,9 +1,7 @@
 package com.github.wksb.wkebapp.activity.navigation;
 
-import android.app.PendingIntent;
 import android.content.Intent;
 import android.database.Cursor;
-import android.location.LocationManager;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
@@ -16,22 +14,10 @@ import com.github.wksb.wkebapp.activity.QuizActivity;
 import com.github.wksb.wkebapp.contentprovider.WeltkulturerbeContentProvider;
 import com.github.wksb.wkebapp.database.RouteSegmentsTable;
 import com.github.wksb.wkebapp.database.RoutesTable;
-import com.github.wksb.wkebapp.database.WaypointsTable;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.MarkerOptions;
-import com.google.android.gms.maps.model.PolylineOptions;
-
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
-
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * This activity shows a GoogleMaps map on which a route between to waypoints is shown.
@@ -61,7 +47,7 @@ public class NavigationActivity extends FragmentActivity {
         if (mRoute == null) setUpRoute();
 
         getSharedPreferences("TOUR", MODE_PRIVATE).edit().putBoolean("IS_IN_PROGRESS", true).commit(); // Set the Tour to being in progress
-        mRoute.getRouteSegments().get(getSharedPreferences("TOUR", MODE_PRIVATE).getInt("PROGRESS", 1) - 1).init(mMap); // Load the n-th Segment in the current Route, depending on the progress. Load Segment 0 as default
+        mRoute.getRouteSegments().get(getSharedPreferences("TOUR", MODE_PRIVATE).getInt("PROGRESS", 1) - 1).init(this, mMap); // Load the n-th Segment in the current Route, depending on the progress. Load Segment 0 as default
 
         mDrawerLayout = (DrawerLayout) findViewById(R.id.navlayout_navigation);
         mLvWaypoints = (ListView) findViewById(R.id.lv_navigation);
@@ -171,187 +157,6 @@ public class NavigationActivity extends FragmentActivity {
                 String filename = routeSegment.getString(routeSegment.getColumnIndex(RouteSegmentsTable.COLUMN_KML_FILENAME));
                 mRoute.addRouteSegment(new RouteSegment(fromWaypointID, toWaypointID, filename));
             }
-        }
-    }
-
-    private class Route {
-
-        private final String name;
-        private final List<RouteSegment> routeSegmentsList;
-
-        public Route(String name) {
-            this.name = name;
-            this.routeSegmentsList = new ArrayList<>();
-        }
-
-        public void addRouteSegment(RouteSegment routeSegment) {
-            routeSegmentsList.add(routeSegment);
-        }
-
-        public List<RouteSegment> getRouteSegments() {
-            return this.routeSegmentsList;
-        }
-    }
-
-    private class RouteSegment {
-
-        private int fromWaypointID;
-        private int toWaypointID;
-        private Waypoint fromWaypoint;
-        private Waypoint toWaypoint;
-        private String filename;
-
-        public RouteSegment(int fromWaypointID, int toWaypointID, String filename) {
-            this.fromWaypointID = fromWaypointID;
-            this.toWaypointID = toWaypointID;
-            this.filename = filename;
-        }
-
-        /**
-         * Initialises this RouteSegment. Adds Markers for the Start and Destination, the Polyline connecting the two Markers and a Proximity for the Destination
-         * @param map The Map on which to add the Markers and the Polyline
-         */
-        public void init(GoogleMap map) {
-            // Get the from and to Waypoints, if they don't already exist
-            if (fromWaypoint == null) fromWaypoint = new Waypoint(fromWaypointID);
-            if (toWaypoint == null) toWaypoint = new Waypoint(toWaypointID);
-
-            // Set the current Quiz to the Quiz of the current destination Waypoint
-            getSharedPreferences("TOUR", MODE_PRIVATE).edit().putInt("CURRENT_QUIZ_ID", toWaypoint.getQuizID()).commit();
-
-            // Clear the Map from all Markers, polylines, overlays, etc.
-            map.clear();
-
-            // Add the Marker for the from and to Waypoint to the map
-            addMarkersToMap(map);
-
-            // Add the Polyline showing the Route to the Map
-            addPolylineToMape(map);
-
-            // Add the proximity alert at the destination Waypoint
-            addProximityAlert();
-
-            // Zoom to the Route Segment on the Map
-            mMap.animateCamera(CameraUpdateFactory
-                    .newLatLngZoom(new LatLng((fromWaypoint.getLatitude() + toWaypoint.getLatitude()) / 2, (fromWaypoint.getLongitude() + toWaypoint.getLongitude()) / 2), 14));
-        }
-
-        /**
-         * Add the Marker for the from and to Waypoints to a {@link GoogleMap}
-         * @param map The {@link GoogleMap} to which the Markers are added
-         */
-        private void addMarkersToMap(GoogleMap map) {
-            MarkerOptions fromWapointMarker = new MarkerOptions()
-                    .title(fromWaypoint.getName())
-                    .position(new LatLng(fromWaypoint.getLatitude(), fromWaypoint.getLongitude()));
-            MarkerOptions toWapointMarker = new MarkerOptions()
-                    .title(toWaypoint.getName())
-                    .position(new LatLng(toWaypoint.getLatitude(), toWaypoint.getLongitude()));
-            map.addMarker(fromWapointMarker);
-            map.addMarker(toWapointMarker);
-        }
-
-        /**
-         * Add a proximity alert at the destination Waypoint
-         */
-        private void addProximityAlert() {
-            LocationManager locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
-            Intent proximityAlert = new Intent();
-            proximityAlert.setAction("com.github.weltkulturschnitzelbamberg.weltkulturerbebambergapp.PROXIMITY_ALERT");
-            proximityAlert.putExtra("waypoint-name", toWaypoint.getName());
-            proximityAlert.putExtra("quiz-id", toWaypoint.getQuizID());
-
-            int detectionRadius = 40; // The radius around the central point in which to send an proximity alert
-            int expirationTime = -1; // The time in milliseconds it takes this proximity alert to expire (-1 = no expiration)
-            PendingIntent pendingIntent = PendingIntent.getBroadcast(NavigationActivity.this, 0, proximityAlert, PendingIntent.FLAG_UPDATE_CURRENT); // TODO Previous Proximity Alerts have to be removed
-
-            locationManager.addProximityAlert(toWaypoint.getLatitude(), toWaypoint.getLongitude(), detectionRadius, expirationTime, pendingIntent);
-        }
-
-        private void addPolylineToMape(GoogleMap map) {
-            List<LatLng> points = new ArrayList<>();
-
-            try {
-                JSONParser parser = new JSONParser();
-                Object obj = parser.parse(new InputStreamReader(getAssets().open(filename)));
-
-                if (obj instanceof JSONObject) {
-                    JSONObject jsonObject = (JSONObject) obj;
-
-                    for (String coordinates : ((String)jsonObject.get("polyline")).split(",0.0")) {
-                        String longitude = coordinates.substring(0, coordinates.indexOf(","));
-                        String latitude = coordinates.substring(coordinates.indexOf(",") +1);
-
-                        LatLng point = new LatLng(Float.parseFloat(latitude), Float.parseFloat(longitude));
-                        points.add(point);
-                    }
-                }
-            } catch (ParseException | IOException e) {
-                e.printStackTrace();
-            }
-
-            PolylineOptions polyline = new PolylineOptions();
-            polyline.addAll(points);
-            polyline.color(getResources().getColor(R.color.PrimaryColor));
-            polyline.width(25);
-            polyline.geodesic(true);
-
-            map.addPolyline(polyline);
-        }
-    }
-
-    private class Waypoint {
-
-        private float latitude;
-        private float longitude;
-        private String name;
-        private int quizID;
-
-        public Waypoint(int waypointID) {
-            // The parameter for the SQLite query
-            String[] projection = {WaypointsTable.COLUMN_LATITUDE, WaypointsTable.COLUMN_LONGITUDE, WaypointsTable.COLUMN_NAME, WaypointsTable.COLUMN_QUIZ_ID};
-            String selection = WaypointsTable.COLUMN_WAYPOINT_ID + "=?";
-            String[] selectionArgs = {""+waypointID};
-
-            Cursor cursor = getContentResolver().query(WeltkulturerbeContentProvider.URI_TABLE_WAYPOINTS, projection, selection, selectionArgs, null);
-            if (cursor.moveToNext()) {
-                latitude = cursor.getFloat(cursor.getColumnIndex(WaypointsTable.COLUMN_LATITUDE));
-                longitude = cursor.getFloat(cursor.getColumnIndex(WaypointsTable.COLUMN_LONGITUDE));
-                name = cursor.getString(cursor.getColumnIndex(WaypointsTable.COLUMN_NAME));
-                quizID = cursor.getInt(cursor.getColumnIndex(WaypointsTable.COLUMN_QUIZ_ID));
-            }
-        }
-
-        /**
-         * Get the Name of this Wapoint
-          * @return The Name of this Waypoint
-         */
-        public String getName() {
-            return name;
-        }
-
-        /**
-         * Get the Latitude of this Waypoint
-         * @return The Latitude of this Waypoint
-         */
-        public float getLatitude() {
-            return latitude;
-        }
-
-        /**
-         * Get the Longitude of this Waypoint
-         * @return The Waypoint of this Waypoint
-         */
-        public float getLongitude() {
-            return longitude;
-        }
-
-        /**
-         * Get the ID of the Quiz about this Waypoint
-         * @return The ID of the Quiz about this Waypoint
-         */
-        public int getQuizID() {
-            return quizID;
         }
     }
 }
