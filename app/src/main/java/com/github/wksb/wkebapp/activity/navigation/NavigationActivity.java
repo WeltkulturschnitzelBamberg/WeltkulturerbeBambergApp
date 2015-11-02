@@ -5,9 +5,11 @@ import android.database.Cursor;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ListView;
+import android.widget.Toolbar;
 
 import com.github.wksb.wkebapp.R;
 import com.github.wksb.wkebapp.activity.QuizActivity;
@@ -18,6 +20,8 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
+
+import java.util.TooManyListenersException;
 
 /**
  * This activity shows a GoogleMaps map on which a route between to waypoints is shown.
@@ -36,6 +40,7 @@ public class NavigationActivity extends FragmentActivity {
 
     private DrawerLayout mDrawerLayout;
     private ListView mLvWaypoints;
+    private ActionBarDrawerToggle mDrawerToggle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +56,13 @@ public class NavigationActivity extends FragmentActivity {
 
         mDrawerLayout = (DrawerLayout) findViewById(R.id.navlayout_navigation);
         mLvWaypoints = (ListView) findViewById(R.id.lv_navigation);
+
+        getActionBar().setDisplayHomeAsUpEnabled(true);
+        getActionBar().setHomeButtonEnabled(true);
+
+        mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, R.string.waypoint_1, R.string.waypoint_2);
+        mDrawerLayout.setDrawerListener(mDrawerToggle);
+        mDrawerToggle.syncState();
     }
 
     @Override
