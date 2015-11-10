@@ -1,13 +1,17 @@
 package com.github.wksb.wkebapp.activity.navigation;
 
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.database.Cursor;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ListView;
+import android.widget.Toolbar;
 
 import com.github.wksb.wkebapp.R;
 import com.github.wksb.wkebapp.activity.QuizActivity;
@@ -19,6 +23,8 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 
+import java.util.TooManyListenersException;
+
 /**
  * This activity shows a GoogleMaps map on which a route between to waypoints is shown.
  *
@@ -29,13 +35,16 @@ import com.google.android.gms.maps.model.LatLng;
 
 public class NavigationActivity extends FragmentActivity {
 
+    // The Google Maps Fragment
     private GoogleMap mMap;
 
     // This Object contains the current Route with all its RouteSegments
     private Route mRoute;
 
+    // Components of the Navigation Drawer
     private DrawerLayout mDrawerLayout;
-    private ListView mLvWaypoints;
+    private ListView mLvWaypoints;  // ListView in the Drawer containign a List of Waypoints
+    private ActionBarDrawerToggle mDrawerToggle;  // Button in ActionBar toggling the DrawerLayout
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +60,23 @@ public class NavigationActivity extends FragmentActivity {
 
         mDrawerLayout = (DrawerLayout) findViewById(R.id.navlayout_navigation);
         mLvWaypoints = (ListView) findViewById(R.id.lv_navigation);
+
+        // Show Home Icon in Action Bar
+        if(getActionBar() != null) {
+            getActionBar().setDisplayHomeAsUpEnabled(true);
+            getActionBar().setHomeButtonEnabled(true);
+        }
+
+        // Configure Navigation Drawer
+        setUpDrawer();
+    }
+
+    private void setUpDrawer() {
+        // Configure Drawer Toggle Button in Action Bar
+        mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, R.string.waypoint_1, R.string.waypoint_2);
+        mDrawerToggle.setDrawerIndicatorEnabled(true);
+        mDrawerLayout.setDrawerListener(mDrawerToggle);
+        mDrawerToggle.syncState();
     }
 
     @Override
@@ -66,14 +92,20 @@ public class NavigationActivity extends FragmentActivity {
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_navigation, menu);
-        return true;
+    protected void onPostCreate(Bundle savedInstanceState) {
+        super.onPostCreate(savedInstanceState);
+
+        // Synchronize the Drawer Toggle Button with the Navigation Drawer
+        mDrawerToggle.syncState(); // Sync State, for example after switching from Landscape to Portrait Mode
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        // Check if the Drawer Toggle Button was pressed
+        if (mDrawerToggle.onOptionsItemSelected(item)) {
+            return true;
+        }
+
         Intent startQuiz = new Intent(this, QuizActivity.class);
         switch (item.getItemId()) {
             case R.id.action_navigation_waypoint_1:
@@ -125,24 +157,30 @@ public class NavigationActivity extends FragmentActivity {
      * This function sets up the GoogleMaps v2 Map
      */
     private void setUpMap() {
+        // Get the Map Fragment
         mMap = ((SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map))
                 .getMap();
 
         // Move Camera to Bamberg
         LatLng BAMBERG = new LatLng(49.898814, 10.890764);
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(BAMBERG, 12f));
+
+        // Show Location on Maps
         mMap.setMyLocationEnabled(true);
     }
 
     //TODO Documentation
     private void setUpRoute() {
 
+        // Query Arguments
         String[] projection = {RoutesTable.COLUMN_ROUTE_SEGMENT_ID, RoutesTable.COLUMN_ROUTE_SEGMENT_POSITION};
         String selection = RoutesTable.COLUMN_ROUTE_NAME + "=?";
         String[] selectionArgs = {getSharedPreferences("TOUR", MODE_PRIVATE).getString("ROUTE_NAME", "")};
 
+        // Give the Route a Name
         mRoute = new Route(getSharedPreferences("TOUR", MODE_PRIVATE).getString("ROUTE_NAME", ""));
 
+        // Query for Route Segments
         Cursor routeSegments = getContentResolver().query(WeltkulturerbeContentProvider.URI_TABLE_ROUTES,
                 projection, selection, selectionArgs, null);
         while (routeSegments.moveToNext()) {
@@ -155,6 +193,8 @@ public class NavigationActivity extends FragmentActivity {
                 int fromWaypointID = routeSegment.getInt(routeSegment.getColumnIndex(RouteSegmentsTable.COLUMN_START_WAYPOINT_ID));
                 int toWaypointID = routeSegment.getInt(routeSegment.getColumnIndex(RouteSegmentsTable.COLUMN_END_WAYPOINT_ID));
                 String filename = routeSegment.getString(routeSegment.getColumnIndex(RouteSegmentsTable.COLUMN_KML_FILENAME));
+
+                // Add a new Route Segment to the current Route
                 mRoute.addRouteSegment(new RouteSegment(fromWaypointID, toWaypointID, filename));
             }
         }
