@@ -6,10 +6,6 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
-    <!--
- The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
-         Google Maps Android API v2, but are recommended.
-    -->
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
@@ -30,7 +26,7 @@
         <activity
             android:name=".activity.welcomepage.WelcomePageActivity"
             android:label="@string/title_activity_welcomepage"
-            android:clearTaskOnLaunch="true"> <!-- Always start/resume at this Activity -->
+            android:clearTaskOnLaunch="true"> <!-- Always start/resume at this Activity when pressing the Launch Icon-->
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -59,7 +55,8 @@
 
         <activity
             android:name=".activity.navigation.NavigationActivity"
-            android:label="@string/title_activity_navigation" >
+            android:label="@string/title_activity_navigation"
+            android:parentActivityName="com.github.wksb.wkebapp.activity.welcomepage.WelcomePageActivity" > <!-- Activity opened upon pressing the "Up" or "Back" Button -->
         </activity>
         <activity
             android:name=".activity.QuizActivity"

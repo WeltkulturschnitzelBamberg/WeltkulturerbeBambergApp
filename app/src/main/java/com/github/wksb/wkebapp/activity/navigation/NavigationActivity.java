@@ -2,7 +2,9 @@ package com.github.wksb.wkebapp.activity.navigation;
 
 import android.content.Intent;
 import android.database.Cursor;
+import android.graphics.Typeface;
 import android.os.Bundle;
+import android.support.v4.app.NavUtils;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -63,29 +65,6 @@ public class NavigationActivity extends AppCompatActivity {
 
         getSharedPreferences("TOUR", MODE_PRIVATE).edit().putBoolean("IS_IN_PROGRESS", true).commit(); // Set the Tour to being in progress
         mRoute.getRouteSegments().get(getSharedPreferences("TOUR", MODE_PRIVATE).getInt("PROGRESS", 1) - 1).init(this, mMap); // Load the n-th Segment in the current Route, depending on the progress. Load Segment 0 as default
-    }
-
-    private void setUpActionBar() {
-        if (getSupportActionBar() == null)return;
-
-        // Use Custom ActionBar Layout and Display BackButton
-        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM | ActionBar.DISPLAY_HOME_AS_UP);
-
-        // Set Custom ActionBar Layout
-        getSupportActionBar().setCustomView(R.layout.actionbar_title);
-
-        mActionBarTitle = (TextView) findViewById(R.id.actionbar_title);
-    }
-
-    private void setUpDrawer() {
-        mDrawerLayout = (DrawerLayout) findViewById(R.id.navlayout_navigation);
-        mLvWaypoints = (ListView) findViewById(R.id.lv_navigation);
-
-        // Configure Drawer Toggle Button in Action Bar
-        mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, R.string.waypoint_1, R.string.waypoint_2);
-        mDrawerToggle.setDrawerIndicatorEnabled(true);
-        mDrawerLayout.setDrawerListener(mDrawerToggle);
-        mDrawerToggle.syncState();
     }
 
     @Override
@@ -166,6 +145,34 @@ public class NavigationActivity extends AppCompatActivity {
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        NavUtils.navigateUpFromSameTask(this);
+    }
+
+    private void setUpActionBar() {
+        if (getSupportActionBar() == null)return;
+
+        // Use Custom ActionBar Layout and Display BackButton
+        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM | ActionBar.DISPLAY_HOME_AS_UP);
+
+        // Set Custom ActionBar Layout
+        getSupportActionBar().setCustomView(R.layout.actionbar_title);
+
+        mActionBarTitle = (TextView) findViewById(R.id.actionbar_title);
+    }
+
+    private void setUpDrawer() {
+        mDrawerLayout = (DrawerLayout) findViewById(R.id.navlayout_navigation);
+        mLvWaypoints = (ListView) findViewById(R.id.lv_navigation);
+
+        // Configure Drawer Toggle Button in Action Bar
+        mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, R.string.waypoint_1, R.string.waypoint_2);
+        mDrawerToggle.setDrawerIndicatorEnabled(true);
+        mDrawerLayout.setDrawerListener(mDrawerToggle);
+        mDrawerToggle.syncState();
     }
 
     //TODO Dont animate camera on onResume()
