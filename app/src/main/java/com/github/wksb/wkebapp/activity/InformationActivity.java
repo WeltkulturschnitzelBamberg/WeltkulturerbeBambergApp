@@ -1,8 +1,9 @@
 package com.github.wksb.wkebapp.activity;
 
-import android.app.Activity;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.AppCompatActivity;
 import android.text.Html;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -20,7 +21,7 @@ import com.github.wksb.wkebapp.database.InformationTable;
  * @version 1.0
  * @since 2015-06-04
  */
-public class InformationActivity extends Activity {
+public class InformationActivity extends AppCompatActivity {
 
 
     // Current Information used in this Activity
@@ -48,8 +49,21 @@ public class InformationActivity extends Activity {
         mIv_info_image = (ImageView) findViewById(R.id.iv_info_image);
         mTv_info_information = (TextView) findViewById(R.id.tv_info_information);
 
+        // Set up the ActionBar
+        setUpActionBar();
+
         // Set up the Information
         setUpInformation();
+    }
+
+    private void setUpActionBar() {
+        if (getSupportActionBar() == null)return;
+
+        // Use Custom ActionBar Layout and Display BackButton
+        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM | ActionBar.DISPLAY_HOME_AS_UP);
+
+        // Set Custom ActionBar Layout
+        getSupportActionBar().setCustomView(R.layout.actionbar_title);
     }
 
     // TODO Documentation

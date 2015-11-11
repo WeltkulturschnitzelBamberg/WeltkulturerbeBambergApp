@@ -1,8 +1,9 @@
 package com.github.wksb.wkebapp.activity;
 
-import android.app.Activity;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.AppCompatActivity;
 import android.widget.Button;
 import android.widget.TextView;
 import android.view.View;
@@ -20,7 +21,7 @@ import java.util.ArrayList;
 /**
  *
  */
-public class QuizActivity extends Activity {
+public class QuizActivity extends AppCompatActivity {
 
     // Current Quiz used in this Activity
     private Quiz mCurrentQuiz;
@@ -54,8 +55,21 @@ public class QuizActivity extends Activity {
         mTv_quiz_question = (TextView) findViewById(R.id.tv_quiz_question);
         mBtn_quiz_more = (Button) findViewById(R.id.btn_quiz_more);
 
+        // Set up the ActionBar
+        setUpActionBar();
+
         // Set up the Quiz
         setUpQuiz();
+    }
+
+    private void setUpActionBar() {
+        if (getSupportActionBar() == null)return;
+
+        // Use Custom ActionBar Layout and Display BackButton
+        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM | ActionBar.DISPLAY_HOME_AS_UP);
+
+        // Set Custom ActionBar Layout
+        getSupportActionBar().setCustomView(R.layout.actionbar_title);
     }
 
     /**

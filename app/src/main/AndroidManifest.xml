@@ -25,6 +25,8 @@
             android:name="com.google.android.maps.v2.API_KEY"
             android:value="@string/google_maps_key" />
 
+        <!-- Activities -->
+
         <activity
             android:name=".activity.welcomepage.WelcomePageActivity"
             android:label="@string/title_activity_welcomepage"
@@ -35,35 +37,50 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity
             android:name=".activity.InstructionsActivity"
-            android:label="@string/title_activity_instructions" >
+            android:label="@string/title_activity_instructions"
+            android:parentActivityName="com.github.wksb.wkebapp.activity.welcomepage.WelcomePageActivity" > <!-- Activity opened upon pressing the "Up" or "Back" Button -->
         </activity>
+
         <activity
             android:name=".activity.InformationActivity"
-            android:label="@string/title_activity_information" >
+            android:label="@string/title_activity_information"
+            android:parentActivityName="com.github.wksb.wkebapp.activity.navigation.NavigationActivity" > <!-- Activity opened upon pressing the "Up" or "Back" Button -->
         </activity>
+
         <activity
             android:name=".activity.ScoreActivity"
-            android:label="@string/title_activity_score" >
+            android:label="@string/title_activity_score"
+            android:parentActivityName="com.github.wksb.wkebapp.activity.welcomepage.WelcomePageActivity" > <!-- Activity opened upon pressing the "Up" or "Back" Button -->
+
         </activity>
+
         <activity
             android:name=".activity.navigation.NavigationActivity"
             android:label="@string/title_activity_navigation" >
         </activity>
         <activity
             android:name=".activity.QuizActivity"
-            android:label="@string/title_activity_quiz" >
+            android:label="@string/title_activity_quiz"
+            android:parentActivityName="com.github.wksb.wkebapp.activity.navigation.NavigationActivity" > <!-- Activity opened upon pressing the "Up" or "Back" Button -->
         </activity>
+
         <activity
             android:name=".activity.AboutActivity"
-            android:label="@string/title_activity_about" >
+            android:label="@string/title_activity_about"
+            android:parentActivityName="com.github.wksb.wkebapp.activity.welcomepage.WelcomePageActivity" > <!-- Activity opened upon pressing the "Up" or "Back" Button -->
         </activity>
+
+        <!-- Content Provider -->
 
         <provider
             android:name=".contentprovider.WeltkulturerbeContentProvider"
             android:authorities="com.github.wksb.wkebapp.contentprovider.WeltkulturerbeContentProvider" >
         </provider>
+
+        <!-- Broadcast Receiver -->
 
         <receiver
             android:name=".ProximityAlertReceiver"
