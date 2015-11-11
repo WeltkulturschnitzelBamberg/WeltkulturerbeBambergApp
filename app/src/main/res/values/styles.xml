@@ -31,6 +31,11 @@
         <item name="android:textColor">@color/SecondaryColor</item>
     </style>
 
+    <!-- Style of TextViews in the ActionBar -->
+    <style name="WeltkulturerbeBambergAppTheme.ActionBar.TextView" parent="android:Widget.Holo.Light.TextView">
+        <item name="android:textColor">@color/SecondaryColor</item>
+    </style>
+
 
 
     <!-- Style of the Buttons -->
@@ -48,6 +53,8 @@
         <item name="android:focusable">true</item>
     </style>
 
+
+
     <!-- Style for the Buttons of the Quiz -->
     <style name="WeltkulturerbeBambergAppTheme.ButtonQuiz" parent="android:Widget.Holo.Light.Button">
         <item name="android:background">@drawable/button_quiz</item>
@@ -55,6 +62,8 @@
         <item name="android:clickable">true</item>
         <item name="android:focusable">true</item>
     </style>
+
+
 
     <!-- Style of the Text Views -->
     <style name="WeltkulturerbeBambergAppTheme.TextView" parent="android:Widget.Holo.Light.TextView">

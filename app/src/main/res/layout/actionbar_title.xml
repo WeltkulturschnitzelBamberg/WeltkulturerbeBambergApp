@@ -14,5 +14,6 @@
         android:text="@string/app_name"
         android:id="@+id/actionbar_title"
         android:layout_gravity="center"
-        android:gravity="center"/>
+        android:gravity="center"
+        style="@style/WeltkulturerbeBambergAppTheme.ActionBar.TextView"/>
 </LinearLayout>
