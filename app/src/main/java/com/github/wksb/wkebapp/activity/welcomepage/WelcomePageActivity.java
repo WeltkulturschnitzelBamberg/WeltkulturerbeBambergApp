@@ -2,6 +2,7 @@ package com.github.wksb.wkebapp.activity.welcomepage;
 
 import android.app.LoaderManager;
 import android.content.Loader;
+import android.graphics.Typeface;
 import android.os.Bundle;
 
 import com.github.wksb.wkebapp.InformationAsyncTaskLoader;
@@ -15,6 +16,7 @@ import com.github.wksb.wkebapp.QuizzesAsyncTaskLoader;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.TextView;
 
 /**
  * This activity is the launch activity of the World-Heritage-Application
@@ -63,6 +65,10 @@ public class WelcomePageActivity extends AppCompatActivity implements LoaderMana
         }
 
         activityState.onActivityStart();
+
+        //TODO Remove or improve
+        ((TextView)findViewById(R.id.tv_welcome_title)).setTypeface(Typeface.createFromAsset(getAssets(), "fonts/hanged_letters.ttf"));
+        getSupportActionBar().hide();
     }
 
     private void setUpActionBar() {
