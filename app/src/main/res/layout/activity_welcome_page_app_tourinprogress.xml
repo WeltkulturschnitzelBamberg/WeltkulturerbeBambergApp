@@ -5,15 +5,21 @@
     android:layout_height="match_parent"
     tools:context=".WelcomePageActivity">
 
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/altes_rathaus"/>
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="@string/tv_welcome_title"
         android:id="@+id/tv_welcome_title"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="127dp" />
+        style="@style/WeltkulturerbeBambergAppTheme.WelcomePage.TextView"
+        android:gravity="center"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"/>
 
     <Button
         android:layout_width="fill_parent"
@@ -23,7 +29,8 @@
         android:onClick="onBtnClickedContinue"
         android:layout_centerVertical="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        style="@style/WeltkulturerbeBambergAppTheme.WelcomePage.Button"/>
 
     <Button
         android:layout_width="fill_parent"
@@ -33,7 +40,8 @@
         android:onClick="onBtnClickedRestartTour"
         android:layout_below="@+id/btn_welcome_continue"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        style="@style/WeltkulturerbeBambergAppTheme.WelcomePage.Button"/>
 
     <Button
         android:layout_width="fill_parent"
@@ -42,6 +50,7 @@
         android:id="@+id/btn_welcome_about"
         android:onClick="onBtnClickedAbout"
         android:layout_below="@+id/btn_welcome_start"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        style="@style/WeltkulturerbeBambergAppTheme.WelcomePage.Button"/>
 
 </RelativeLayout>

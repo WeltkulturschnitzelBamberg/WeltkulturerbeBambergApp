@@ -1,18 +1,22 @@
 package com.github.wksb.wkebapp.activity.welcomepage;
 
-import android.app.Activity;
 import android.app.LoaderManager;
 import android.content.Loader;
+import android.graphics.Typeface;
 import android.os.Bundle;
 
 import com.github.wksb.wkebapp.InformationAsyncTaskLoader;
+import com.github.wksb.wkebapp.R;
 import com.github.wksb.wkebapp.RouteSegmentsAsyncTaskLoader;
 import com.github.wksb.wkebapp.RoutesAsyncTaskLoader;
 import com.github.wksb.wkebapp.WaypointsAsyncTaskLoader;
 import com.github.wksb.wkebapp.utilities.DebugUtils;
 import com.github.wksb.wkebapp.QuizzesAsyncTaskLoader;
 
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.TextView;
 
 /**
  * This activity is the launch activity of the World-Heritage-Application
@@ -21,7 +25,7 @@ import android.view.View;
  * @version 1.0
  * @since 2015-06-04
  */
-public class WelcomePageActivity extends Activity implements LoaderManager.LoaderCallbacks{
+public class WelcomePageActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks{
 
     /**
      * The state of this Activity. The Behaviour of this Activity changes with its current state
@@ -46,6 +50,9 @@ public class WelcomePageActivity extends Activity implements LoaderManager.Loade
             onFirstLaunch();
             getSharedPreferences("MISCELLANEOUS", MODE_PRIVATE).edit().putBoolean("IS_FIRST_APP_LAUNCH", false).commit();
         }
+
+        // Set up the ActionBar
+        setUpActionBar();
     }
 
     @Override
@@ -58,6 +65,22 @@ public class WelcomePageActivity extends Activity implements LoaderManager.Loade
         }
 
         activityState.onActivityStart();
+
+        //TODO Remove or improve
+        ((TextView)findViewById(R.id.tv_welcome_title)).setTypeface(Typeface.createFromAsset(getAssets(), "fonts/hanged_letters.ttf"));
+        getSupportActionBar().hide();
+    }
+
+    private void setUpActionBar() {
+        if (getSupportActionBar() == null)return;
+
+        // Use Custom ActionBar Layout
+        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+
+        // Set Custom ActionBar Layout
+        getSupportActionBar().setCustomView(R.layout.actionbar_title);
+
+        // WelcomePageActivity doesn't need a Back Button
     }
 
     /**
