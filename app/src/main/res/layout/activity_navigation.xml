@@ -10,7 +10,7 @@
     <include
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        layout="@layout/content_activity_navigation" />
+        layout="@layout/activity_navigation_content" />
 
     <LinearLayout
         android:id="@+id/linlayout_navigation"
