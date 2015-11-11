@@ -1,24 +1,37 @@
 <resources>
 
     <!-- Theme of the Application. -->
-    <style name="WeltkulturerbeBambergAppTheme" parent="android:Theme.Holo.Light">
-        <item name="android:actionBarStyle">@style/WeltkulturerbeBambergAppTheme.ActionBar</item>
-        <item name="android:buttonStyle">@style/WeltkulturerbeBambergAppTheme.Button</item>
-        <item name="android:textViewStyle">@style/WeltkulturerbeBambergAppTheme.TextView</item>
+    <style name="WeltkulturerbeBambergAppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="android:actionBarStyle">@style/WeltkulturerbeBambergAppTheme.ActionBar</item> <!-- Style of the ActionBar -->
+        <item name="android:buttonStyle">@style/WeltkulturerbeBambergAppTheme.Button</item> <!-- Style of the Buttons -->
+        <item name="android:textViewStyle">@style/WeltkulturerbeBambergAppTheme.TextView</item> <!-- Style of the TextViews -->
+        <item name="android:windowFullscreen">true</item> <!-- Hide Status Bar -->
+
+        <!-- Support AppCompat -->
+        <item name="actionBarStyle">@style/WeltkulturerbeBambergAppTheme.ActionBar</item> <!-- Style of the ActionBar -->
     </style>
 
+
+
     <!--- Style of the ActionBar -->
-    <style name="WeltkulturerbeBambergAppTheme.ActionBar" parent="android:Widget.Holo.Light.ActionBar">
+    <style name="WeltkulturerbeBambergAppTheme.ActionBar" parent="Widget.AppCompat.Light.ActionBar.Solid.Inverse">
         <item name="android:background">@color/PrimaryColor</item>
         <item name="android:displayOptions">showTitle</item>
         <item name="android:textColor">@color/white</item>
         <item name="android:titleTextStyle">@style/WeltkulturerbeBambergAppTheme.ActionBar.TitleText</item>
+
+        <!-- Support AppCompat -->
+        <item name="background">@color/PrimaryColor</item>
+        <item name="displayOptions">showTitle</item>
+        <item name="titleTextStyle">@style/WeltkulturerbeBambergAppTheme.ActionBar.TitleText</item>
     </style>
 
-    <!-- Style of the Title Text of the ActionBar -->
-    <style name="WeltkulturerbeBambergAppTheme.ActionBar.TitleText" parent="android:TextAppearance.Holo.Widget.ActionBar.Title">
+    <!-- Style of the Text of the ActionBar -->
+    <style name="WeltkulturerbeBambergAppTheme.ActionBar.TitleText" parent="TextAppearance.AppCompat.Widget.ActionBar.Title">
         <item name="android:textColor">@color/SecondaryColor</item>
     </style>
+
+
 
     <!-- Style of the Buttons -->
     <style name="WeltkulturerbeBambergAppTheme.Button" parent="android:Widget.Holo.Light.Button">

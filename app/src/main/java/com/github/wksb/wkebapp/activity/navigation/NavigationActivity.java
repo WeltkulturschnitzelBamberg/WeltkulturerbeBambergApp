@@ -1,17 +1,17 @@
 package com.github.wksb.wkebapp.activity.navigation;
 
+import android.app.ActionBar;
 import android.content.Intent;
-import android.content.res.Configuration;
 import android.database.Cursor;
-import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.ListView;
-import android.widget.Toolbar;
+import android.widget.TextView;
 
 import com.github.wksb.wkebapp.R;
 import com.github.wksb.wkebapp.activity.QuizActivity;
@@ -23,8 +23,6 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 
-import java.util.TooManyListenersException;
-
 /**
  * This activity shows a GoogleMaps map on which a route between to waypoints is shown.
  *
@@ -33,7 +31,10 @@ import java.util.TooManyListenersException;
  * @since 2015-06-04
  */
 
-public class NavigationActivity extends FragmentActivity {
+public class NavigationActivity extends AppCompatActivity {
+
+    // Title of the ActionBar
+    private TextView mActionBarTitle;
 
     // The Google Maps Fragment
     private GoogleMap mMap;
@@ -55,23 +56,34 @@ public class NavigationActivity extends FragmentActivity {
         if (mMap == null) setUpMap();
         if (mRoute == null) setUpRoute();
 
+        // Set up the Action Bar
+        setUpActionBar();
+
+        // Set up the Navigation Drawer
+        setUpDrawer();
+
         getSharedPreferences("TOUR", MODE_PRIVATE).edit().putBoolean("IS_IN_PROGRESS", true).commit(); // Set the Tour to being in progress
         mRoute.getRouteSegments().get(getSharedPreferences("TOUR", MODE_PRIVATE).getInt("PROGRESS", 1) - 1).init(this, mMap); // Load the n-th Segment in the current Route, depending on the progress. Load Segment 0 as default
+    }
 
-        mDrawerLayout = (DrawerLayout) findViewById(R.id.navlayout_navigation);
-        mLvWaypoints = (ListView) findViewById(R.id.lv_navigation);
+    private void setUpActionBar() {
+        if (getSupportActionBar() == null)return;
 
-        // Show Home Icon in Action Bar
-        if(getActionBar() != null) {
-            getActionBar().setDisplayHomeAsUpEnabled(true);
-            getActionBar().setHomeButtonEnabled(true);
-        }
+        // Use Custom ActionBar Title
+        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+        getSupportActionBar().setCustomView(R.layout.actionbar_title);
 
-        // Configure Navigation Drawer
-        setUpDrawer();
+        // Show DrawerToggle Button (Hamburger)
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeButtonEnabled(true);
+
+        mActionBarTitle = (TextView) findViewById(R.id.actionbar_title);
     }
 
     private void setUpDrawer() {
+        mDrawerLayout = (DrawerLayout) findViewById(R.id.navlayout_navigation);
+        mLvWaypoints = (ListView) findViewById(R.id.lv_navigation);
+
         // Configure Drawer Toggle Button in Action Bar
         mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, R.string.waypoint_1, R.string.waypoint_2);
         mDrawerToggle.setDrawerIndicatorEnabled(true);
@@ -88,7 +100,7 @@ public class NavigationActivity extends FragmentActivity {
         if (mRoute == null) setUpRoute();
 
         // TODO Improve this
-        setTitle("Progress: " + getSharedPreferences("TOUR", MODE_PRIVATE).getInt("PROGRESS", 0) + "/" + mRoute.getRouteSegments().size());
+        mActionBarTitle.setText(String.format("Progress: %d / %d", getSharedPreferences("TOUR", MODE_PRIVATE).getInt("PROGRESS", 0), mRoute.getRouteSegments().size()));
     }
 
     @Override
@@ -97,6 +109,13 @@ public class NavigationActivity extends FragmentActivity {
 
         // Synchronize the Drawer Toggle Button with the Navigation Drawer
         mDrawerToggle.syncState(); // Sync State, for example after switching from Landscape to Portrait Mode
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_navigation, menu);
+        return super.onCreateOptionsMenu(menu);
     }
 
     @Override

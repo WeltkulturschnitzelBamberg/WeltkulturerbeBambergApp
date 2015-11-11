@@ -7,11 +7,20 @@
     android:layout_height="match_parent"
     tools:openDrawer="start">
 
-    <include
+    <!-- Activity Content -->
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        layout="@layout/activity_navigation_content" />
+        android:layout_height="match_parent">
 
+        <!-- Activity Content -->
+        <include
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            layout="@layout/activity_navigation_content" />
+    </LinearLayout>
+
+
+    <!-- Navigation Drawer -->
     <LinearLayout
         android:id="@+id/linlayout_navigation"
         android:orientation="vertical"
