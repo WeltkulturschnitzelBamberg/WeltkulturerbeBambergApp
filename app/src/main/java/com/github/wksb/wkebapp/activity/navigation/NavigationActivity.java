@@ -1,13 +1,12 @@
 package com.github.wksb.wkebapp.activity.navigation;
 
-import android.app.ActionBar;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ListView;
@@ -69,13 +68,11 @@ public class NavigationActivity extends AppCompatActivity {
     private void setUpActionBar() {
         if (getSupportActionBar() == null)return;
 
-        // Use Custom ActionBar Title
-        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
-        getSupportActionBar().setCustomView(R.layout.actionbar_title);
+        // Use Custom ActionBar Layout and Display BackButton
+        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM | ActionBar.DISPLAY_HOME_AS_UP);
 
-        // Show DrawerToggle Button (Hamburger)
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setHomeButtonEnabled(true);
+        // Set Custom ActionBar Layout
+        getSupportActionBar().setCustomView(R.layout.actionbar_title);
 
         mActionBarTitle = (TextView) findViewById(R.id.actionbar_title);
     }

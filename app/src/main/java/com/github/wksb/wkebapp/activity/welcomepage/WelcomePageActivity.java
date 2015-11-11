@@ -1,7 +1,5 @@
 package com.github.wksb.wkebapp.activity.welcomepage;
 
-import android.app.ActionBar;
-import android.app.Activity;
 import android.app.LoaderManager;
 import android.content.Loader;
 import android.os.Bundle;
@@ -14,9 +12,9 @@ import com.github.wksb.wkebapp.WaypointsAsyncTaskLoader;
 import com.github.wksb.wkebapp.utilities.DebugUtils;
 import com.github.wksb.wkebapp.QuizzesAsyncTaskLoader;
 
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.TextView;
 
 /**
  * This activity is the launch activity of the World-Heritage-Application
@@ -70,8 +68,10 @@ public class WelcomePageActivity extends AppCompatActivity implements LoaderMana
     private void setUpActionBar() {
         if (getSupportActionBar() == null)return;
 
-        // Use Custom ActionBar Title
+        // Use Custom ActionBar Layout
         getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+
+        // Set Custom ActionBar Layout
         getSupportActionBar().setCustomView(R.layout.actionbar_title);
 
         // WelcomePageActivity doesn't need a Back Button
