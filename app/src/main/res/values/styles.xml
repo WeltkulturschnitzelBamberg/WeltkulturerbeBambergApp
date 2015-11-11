@@ -1,6 +1,8 @@
 <resources>
 
     <!-- Theme of the Application. -->
+    <!-- ========================= -->
+    <!-- ========================= -->
     <style name="WeltkulturerbeBambergAppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <item name="android:actionBarStyle">@style/WeltkulturerbeBambergAppTheme.ActionBar</item> <!-- Style of the ActionBar -->
         <item name="android:buttonStyle">@style/WeltkulturerbeBambergAppTheme.Button</item> <!-- Style of the Buttons -->
@@ -11,9 +13,9 @@
         <item name="actionBarStyle">@style/WeltkulturerbeBambergAppTheme.ActionBar</item> <!-- Style of the ActionBar -->
     </style>
 
-
-
     <!--- Style of the ActionBar -->
+    <!-- ======================= -->
+    <!-- ======================= -->
     <style name="WeltkulturerbeBambergAppTheme.ActionBar" parent="Widget.AppCompat.Light.ActionBar.Solid.Inverse">
         <item name="android:background">@color/PrimaryColor</item>
         <item name="android:displayOptions">showTitle</item>
@@ -36,9 +38,9 @@
         <item name="android:textColor">@color/SecondaryColor</item>
     </style>
 
-
-
     <!-- Style of the Buttons -->
+    <!-- ==================== -->
+    <!-- ==================== -->
     <style name="WeltkulturerbeBambergAppTheme.Button" parent="android:Widget.Holo.Light.Button">
         <item name="android:background">@drawable/button</item>
         <item name="android:textColor">@color/SecondaryColor</item>
@@ -53,9 +55,23 @@
         <item name="android:focusable">true</item>
     </style>
 
+    <!-- Style of the Text Views -->
+    <!-- ======================= -->
+    <!-- ======================= -->
+    <style name="WeltkulturerbeBambergAppTheme.TextView" parent="android:Widget.Holo.Light.TextView">
+        <item name="android:textColor">@color/PrimaryColor</item>
+    </style>
+
+    <style name="WeltkulturerbeBambergAppTheme.TextView.Small" parent="android:Widget.Holo.Light.TextView">
+        <item name="android:textColor">@color/PrimaryColor</item>
+        <item name="android:textSize">15sp</item>
+    </style>
 
 
-    <!-- Style for the Buttons of the Quiz -->
+
+    <!-- Styles for the the Quiz Activity -->
+    <!-- ================================= -->
+    <!-- ================================= -->
     <style name="WeltkulturerbeBambergAppTheme.ButtonQuiz" parent="android:Widget.Holo.Light.Button">
         <item name="android:background">@drawable/button_quiz</item>
         <item name="android:textColor">@color/SecondaryColor</item>
@@ -63,15 +79,20 @@
         <item name="android:focusable">true</item>
     </style>
 
-
-
-    <!-- Style of the Text Views -->
-    <style name="WeltkulturerbeBambergAppTheme.TextView" parent="android:Widget.Holo.Light.TextView">
-        <item name="android:textColor">@color/PrimaryColor</item>
+    <!-- Styles for the the WelcomePage Activity -->
+    <!-- ======================================= -->
+    <!-- ======================================= -->
+    <style name="WeltkulturerbeBambergAppTheme.WelcomePage.TextView" parent="android:Widget.Holo.Light.TextView">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">80sp</item>
     </style>
 
-    <!-- TextView Style with smaller text size -->
-    <style name="WeltkulturerbeBambergAppTheme.TextView.Small" parent="WeltkulturerbeBambergAppTheme.TextView">
-        <item name="android:textSize">15dp</item>
+    <style name="WeltkulturerbeBambergAppTheme.WelcomePage.Button" parent="android:Widget.Holo.Light.Button">
+        <item name="android:background">#44000000</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:clickable">true</item>
+        <item name="android:focusable">true</item>
     </style>
 </resources>
